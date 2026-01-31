@@ -1,3 +1,5 @@
+import { Login } from '@/features/accounts/views/login';
+
 export default function LoginPage() {
-  return <h1>Login Page</h1>;
+  return <Login />;
 }

@@ -115,6 +115,14 @@
     "workLocationRemote": "Remote",
     "workLocationType": "Work Location Preference"
   },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "loginTitle": "Login to your account",
+    "pageTitle": "Login",
+    "pageDescription": "Sign in to access your account"
+  },
   "meta": {
     "description": "FindCV | A platform for finding CVs",
     "title": "FindCV | Dashboard"

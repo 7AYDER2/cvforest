@@ -115,6 +115,14 @@
     "workLocationRemote": "عن بُعد",
     "workLocationType": "تفضيل موقع العمل"
   },
+  "login": {
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول",
+    "loginTitle": "تسجيل الدخول إلى حسابك",
+    "pageTitle": "تسجيل الدخول",
+    "pageDescription": "قم بتسجيل الدخول للوصول إلى حسابك"
+  },
   "meta": {
     "description": "FindCV | منصة للعثور على السير الذاتية",
     "title": "FindCV | لوحة التحكم"
