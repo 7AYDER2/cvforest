@@ -70,29 +70,30 @@ export const userAccountsService = {
       }
     }
 
-    // Create user with all provided fields
-    const user = await prisma.user.create({
-      data: {
-        name: data.name,
+    const { user } = await auth.api.createUser({
+      body: {
         email: data.email,
-        emailVerified: false,
-        jobTitle: data.jobTitle,
-        experienceInYears: data.experienceInYears,
-        expectedSalaryMin: data.expectedSalaryMin,
-        expectedSalaryMax: data.expectedSalaryMax,
-        expectedSalaryCurrency: data.expectedSalaryCurrency,
-        availabilityType: data.availabilityType,
-        workLocationType: data.workLocationType,
-        bio: data.bio,
-        availableForHire: data.availableForHire,
-        githubUrl: data.githubUrl,
-        linkedinUrl: data.linkedinUrl,
-        portfolioUrl: data.portfolioUrl,
-        phoneNumber: data.phoneNumber,
-        username: data.username,
-        displayUsername: data.displayUsername,
-        gender: data.gender,
-        governorateId: data.governorateId,
+        name: data.name,
+        data: {
+          emailVerified: false,
+          jobTitle: data.jobTitle,
+          experienceInYears: data.experienceInYears,
+          expectedSalaryMin: data.expectedSalaryMin,
+          expectedSalaryMax: data.expectedSalaryMax,
+          expectedSalaryCurrency: data.expectedSalaryCurrency,
+          availabilityType: data.availabilityType,
+          workLocationType: data.workLocationType,
+          bio: data.bio,
+          availableForHire: data.availableForHire,
+          githubUrl: data.githubUrl,
+          linkedinUrl: data.linkedinUrl,
+          portfolioUrl: data.portfolioUrl,
+          phoneNumber: data.phoneNumber,
+          username: data.username,
+          displayUsername: data.displayUsername,
+          gender: data.gender,
+          governorateId: data.governorateId,
+        },
       },
     });
 
