@@ -79,7 +79,7 @@
     "portfolioUrlInvalid": "يرجى إدخال رابط صحيح",
     "professionalInfoDescription": "خبرتك العملية وتفاصيل مسيرتك المهنية",
     "professionalInfoSection": "المعلومات المهنية",
-    "registrationSuccess": "تم التسجيل بنجاح! مرحباً بك في FindCV.",
+    "registrationSuccess": "تم التسجيل بنجاح! تحقق من بريدك الإلكتروني للحصول على رمز التحقق.",
     "salaryPlaceholder": "1000",
     "salaryValidation": "يجب أن يكون الراتب الأقصى أكبر من أو يساوي الراتب الأدنى",
     "signIn": "تسجيل الدخول",
@@ -95,6 +95,21 @@
     "workLocationPlaceholder": "اختر تفضيلك",
     "workLocationRemote": "عن بُعد",
     "workLocationType": "تفضيل موقع العمل"
+  },
+  "auth": {
+    "verifyEmail": "تحقق من بريدك الإلكتروني",
+    "verificationCodeSent": "لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك الإلكتروني",
+    "enterCode": "أدخل رمز التحقق",
+    "verifyCode": "تحقق من الرمز",
+    "invalidCode": "رمز التحقق غير صالح أو منتهي الصلاحية",
+    "setPassword": "تعيين كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "passwordMinLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+    "passwordSetSuccess": "تم تعيين كلمة المرور بنجاح! يمكنك الآن تسجيل الدخول.",
+    "passwordSetFailed": "فشل تعيين كلمة المرور. يرجى المحاولة مرة أخرى.",
+    "emailVerified": "تم التحقق من بريدك الإلكتروني. يرجى تعيين كلمة مرور لحسابك."
   },
   "meta": {
     "description": "FindCV | منصة للعثور على السير الذاتية",

@@ -18,9 +18,9 @@ export function useRegisterMut() {
         .json<RegisterResponseBody>();
     },
 
-    onSuccess: () => {
+    onSuccess: (data) => {
       n.success(t('join.registrationSuccess'));
-      router.push('/');
+      router.push(`/verify-email?email=${encodeURIComponent(data.user.email)}`);
     },
   });
 }
