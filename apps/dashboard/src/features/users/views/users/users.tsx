@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, Stack, Text } from '@mantine/core';
+import { Avatar, Center, Stack, Text } from '@mantine/core';
 import { useSetState } from '@mantine/hooks';
 import { DataTable } from 'mantine-datatable';
 import { useTranslations } from 'next-intl';
@@ -44,15 +44,15 @@ export function Users({ initialData }: UsersProps) {
             {
               accessor: 'avatar',
               title: '',
-              width: 64,
-              render: ({ avatar }) => {
-                return (
+              width: 56,
+              render: ({ avatar }) => (
+                <Center>
                   <Avatar
                     radius="var(--mantine-radius-md)"
                     src={constructImageUrl(avatar?.key)}
                   />
-                );
-              },
+                </Center>
+              ),
             },
             {
               accessor: 'name',

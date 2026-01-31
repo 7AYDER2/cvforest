@@ -109,6 +109,7 @@
     "savedSuccessfully": "Skill saved successfully"
   },
   "users": {
+    "approve": "Approve",
     "approvedSuccessfully": "User approved successfully",
     "availabilityType": "Availability Type",
     "availabilityTypeFreelance": "Freelance",
@@ -136,9 +137,13 @@
     "phoneNumber": "Phone Number",
     "phoneVerified": "Phone Verified",
     "portfolio": "Portfolio",
+    "reject": "Reject",
     "rejectedSuccessfully": "User rejected successfully",
     "skills": "Skills",
     "socialLinks": "Social Links",
+    "statusApproved": "Approved",
+    "statusPending": "Pending",
+    "statusRejected": "Rejected",
     "workLocationType": "Work Location Type",
     "workLocationTypeHybrid": "Hybrid",
     "workLocationTypeOnSite": "On-Site",

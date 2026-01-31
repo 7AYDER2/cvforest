@@ -2,6 +2,7 @@ import {
   Avatar,
   Badge,
   Button,
+  Divider,
   Group,
   Paper,
   SimpleGrid,
@@ -16,6 +17,7 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBuilding,
+  IconCheck,
   IconCircleCheck,
   IconClock,
   IconCurrencyDollar,
@@ -23,6 +25,7 @@ import {
   IconPhone,
   IconTrophy,
   IconWorld,
+  IconX,
   type TablerIcon,
 } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
@@ -36,6 +39,9 @@ import {
   translateGender,
   translateWorkLocationType,
 } from '@/utils/translation-maps';
+import { useUserApprove } from '../../hooks/use-user-approve';
+import { useUserReject } from '../../hooks/use-user-reject';
+import { UserStatusBadge } from '../user-status-badge/user-status-badge';
 
 interface UsersRowExpansionProps {
   user: User;
@@ -69,6 +75,8 @@ function InfoItem({
 
 export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
   const t = useTranslations();
+  const rejectMut = useUserReject();
+  const approveMut = useUserApprove();
 
   return (
     <Paper withBorder p="sm">
@@ -91,11 +99,16 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
                     {user.jobTitle}
                   </Text>
                 )}
-                {user.availableForHire && (
-                  <Badge color="green" variant="light" size="sm">
-                    {t('users.availableForHire')}
-                  </Badge>
-                )}
+
+                <Group gap="xs">
+                  {user.availableForHire && (
+                    <Badge color="green" variant="light" size="sm">
+                      {t('users.availableForHire')}
+                    </Badge>
+                  )}
+
+                  <UserStatusBadge status={user.status} />
+                </Group>
               </Stack>
             </Group>
 
@@ -319,6 +332,34 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
           </Paper>
         </Stack>
       </SimpleGrid>
+
+      <Divider my="md" />
+
+      <Group gap="xs" mt="xs">
+        {user.status !== 'Approved' && (
+          <Button
+            color="green"
+            variant="light"
+            loading={approveMut.isPending}
+            leftSection={<IconCheck size={18} />}
+            onClick={() => approveMut.mutate(user.id)}
+          >
+            {t('users.approve')}
+          </Button>
+        )}
+
+        {user.status !== 'Rejected' && (
+          <Button
+            color="red"
+            variant="light"
+            loading={rejectMut.isPending}
+            leftSection={<IconX size={18} />}
+            onClick={() => rejectMut.mutate(user.id)}
+          >
+            {t('users.reject')}
+          </Button>
+        )}
+      </Group>
     </Paper>
   );
 }

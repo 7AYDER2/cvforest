@@ -109,6 +109,7 @@
     "savedSuccessfully": "تم حفظ المهارة بنجاح"
   },
   "users": {
+    "approve": "موافقة",
     "approvedSuccessfully": "تم الموافقة على المستخدم بنجاح",
     "availabilityType": "نوع التوفر",
     "availabilityTypeFreelance": "عمل حر",
@@ -136,9 +137,13 @@
     "phoneNumber": "رقم الهاتف",
     "phoneVerified": "الهاتف موثق",
     "portfolio": "الموقع الشخصي",
+    "reject": "رفض",
     "rejectedSuccessfully": "تم رفض المستخدم بنجاح",
     "skills": "المهارات",
     "socialLinks": "روابط التواصل الاجتماعي",
+    "statusApproved": "موافق",
+    "statusPending": "قيد المراجعة",
+    "statusRejected": "مرفوض",
     "workLocationType": "نوع العمل",
     "workLocationTypeHybrid": "مختلط",
     "workLocationTypeOnSite": "حضوري",
