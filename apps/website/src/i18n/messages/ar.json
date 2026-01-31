@@ -18,8 +18,9 @@
     "recordsPerPageLabel": "عدد السجلات في الصفحة"
   },
   "header": {
-    "signIn": "تسجيل الدخول",
-    "signUp": "تسجيل حساب"
+    "courses": "الدورات",
+    "joinUs": "انضم إلينا",
+    "plans": "الخطط"
   },
   "login": {
     "codeRequired": "الرمز المكون من 6 أرقام مطلوب",

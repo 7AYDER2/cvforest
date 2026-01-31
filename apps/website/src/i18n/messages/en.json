@@ -18,8 +18,9 @@
     "recordsPerPageLabel": "Records per page"
   },
   "header": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "courses": "Courses",
+    "joinUs": "Join Us",
+    "plans": "Plans"
   },
   "login": {
     "codeRequired": "Code is required",

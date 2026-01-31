@@ -1,6 +1,7 @@
-import { Anchor, Button, Container, Group } from '@mantine/core';
-import { IconLogin, IconUser } from '@tabler/icons-react';
+import { Anchor, Button, Container, Divider, Group } from '@mantine/core';
+import { IconLogin } from '@tabler/icons-react';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/components/link/link';
 import cls from './styles.module.css';
 
 export async function Header() {
@@ -14,12 +15,20 @@ export async function Header() {
         </Anchor>
 
         <Group>
-          <Button leftSection={<IconUser size={18} />}>
-            {t('header.signUp')}
-          </Button>
+          <Group gap="xs">
+            <Button variant="subtle">{t('header.plans')}</Button>
+            <Button variant="subtle">{t('header.courses')}</Button>
+          </Group>
 
-          <Button variant="outline" leftSection={<IconLogin size={18} />}>
-            {t('header.signIn')}
+          <Divider orientation="vertical" />
+
+          <Button
+            variant="light"
+            component={Link}
+            href="/accounts/login"
+            leftSection={<IconLogin size={18} />}
+          >
+            {t('header.joinUs')}
           </Button>
         </Group>
       </Group>
