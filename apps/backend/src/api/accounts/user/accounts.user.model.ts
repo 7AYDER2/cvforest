@@ -114,6 +114,6 @@ export const UserAccountsModel = {
     password: t.String({ minLength: 8 }),
   }),
   UserAccountsVerifyOtpResponse: t.Object({
-    success: t.Boolean(),
+    message: t.String(),
   }),
 };

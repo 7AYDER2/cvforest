@@ -953,7 +953,7 @@ export interface components {
       password: string;
     };
     UserAccountsVerifyOtpResponse: {
-      success: boolean;
+      message: string;
     };
     UserGovernoratesListResponse: {
       id: string;

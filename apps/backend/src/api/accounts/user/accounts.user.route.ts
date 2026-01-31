@@ -79,9 +79,10 @@ export const accounts = new Elysia({ prefix: '/accounts' })
       });
 
       return {
-        success: true,
-        userId: result.user.id,
-        email: result.user.email,
+        message: t({
+          en: 'Password set successfully',
+          ar: 'تم تعيين كلمة المرور بنجاح',
+        }),
       };
     },
     {
