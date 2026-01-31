@@ -40,10 +40,7 @@ export const accounts = new Elysia({ prefix: '/accounts' })
     async ({ t, body: { email, otp } }) => {
       // Verify OTP using Better Auth
       const result = await auth.api.verifyEmailOTP({
-        body: {
-          email,
-          otp,
-        },
+        body: { email, otp },
       });
 
       if (!result || !result.user) {
