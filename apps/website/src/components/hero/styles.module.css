@@ -1,11 +1,6 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8)) 0%,
-    light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) 100%
-  );
 }
 
 .hero::before {

@@ -1,3 +1,8 @@
+html,
+body {
+  background-color: var(--mantine-color-gray-0);
+}
+
 .mantine-Button-root,
 .mantine-Input-input,
 .mantine-ActionIcon-root,
