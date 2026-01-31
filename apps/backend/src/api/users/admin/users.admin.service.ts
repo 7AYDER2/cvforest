@@ -8,7 +8,6 @@ import type { AdminUsersModel } from './users.admin.model';
 export const adminUsersService = {
   async list(query: typeof AdminUsersModel.AdminUsersListQuery.static) {
     const where: Prisma.UserWhereInput = {
-      status: 'Pending',
       ...(query.search && {
         OR: [
           { name: { contains: query.search, mode: 'insensitive' } },
@@ -46,11 +45,7 @@ export const adminUsersService = {
       include: {
         avatar: true,
         governorate: true,
-        userSkills: {
-          include: {
-            skill: true,
-          },
-        },
+        userSkills: { include: { skill: true } },
       },
     });
 
