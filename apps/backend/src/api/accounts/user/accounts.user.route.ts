@@ -37,7 +37,7 @@ export const accounts = new Elysia({ prefix: '/accounts' })
 
   .post(
     '/verify-email-otp',
-    async ({ t, body: { email, otp } }) => {
+    async ({ t, body: { email, otp, password } }) => {
       // Verify OTP using Better Auth
       const result = await auth.api.verifyEmailOTP({
         body: { email, otp },
@@ -52,6 +52,13 @@ export const accounts = new Elysia({ prefix: '/accounts' })
           }),
         });
       }
+
+      await auth.api.setUserPassword({
+        body: {
+          userId: result.user.id,
+          newPassword: password,
+        },
+      });
 
       return {
         success: true,
@@ -68,42 +75,6 @@ export const accounts = new Elysia({ prefix: '/accounts' })
   )
 
   .use(mustBeAuthed)
-
-  .post(
-    '/set-password',
-    async ({ t, user, body: { password } }) => {
-      if (!user.emailVerified) {
-        throw new HttpError({
-          statusCode: 400,
-          message: t({
-            en: 'Email not verified',
-            ar: 'البريد الإلكتروني غير مُحقق',
-          }),
-        });
-      }
-
-      await auth.api.setUserPassword({
-        body: {
-          userId: user.id,
-          newPassword: password,
-        },
-      });
-
-      return {
-        success: true,
-        message: t({
-          en: 'Password set successfully',
-          ar: 'تم تعيين كلمة المرور بنجاح',
-        }),
-      };
-    },
-    {
-      body: 'UserAccountsSetPasswordBody',
-      response: {
-        200: 'UserAccountsSetPasswordResponse',
-      },
-    },
-  )
 
   .get(
     '/session',

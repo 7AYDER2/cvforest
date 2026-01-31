@@ -104,19 +104,9 @@ export const UserAccountsModel = {
   UserAccountsVerifyOtpBody: t.Object({
     email: t.String({ format: 'email' }),
     otp: t.String({ minLength: 8, maxLength: 8 }),
+    password: t.String({ minLength: 8 }),
   }),
   UserAccountsVerifyOtpResponse: t.Object({
     success: t.Boolean(),
-    userId: t.String(),
-    email: t.String({ format: 'email' }),
-  }),
-
-  // Set Password
-  UserAccountsSetPasswordBody: t.Object({
-    password: t.String({ minLength: 8 }),
-  }),
-  UserAccountsSetPasswordResponse: t.Object({
-    success: t.Boolean(),
-    message: t.String(),
   }),
 };

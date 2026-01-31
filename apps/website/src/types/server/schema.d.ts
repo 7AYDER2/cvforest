@@ -260,22 +260,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/user/accounts/set-password': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: operations['postUserAccountsSet-password'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/user/accounts/session': {
     parameters: {
       query?: never;
@@ -944,19 +928,10 @@ export interface components {
       /** Format: email */
       email: string;
       otp: string;
+      password: string;
     };
     UserAccountsVerifyOtpResponse: {
       success: boolean;
-      userId: string;
-      /** Format: email */
-      email: string;
-    };
-    UserAccountsSetPasswordBody: {
-      password: string;
-    };
-    UserAccountsSetPasswordResponse: {
-      success: boolean;
-      message: string;
     };
     UserGovernoratesListResponse: {
       id: string;
@@ -1848,50 +1823,6 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['UserAccountsVerifyOtpResponse'];
-        };
-      };
-      /** @description Response for status 400 */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['BadRequestError'];
-        };
-      };
-      /** @description Response for status 422 */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['FieldsValidationError'];
-        };
-      };
-    };
-  };
-  'postUserAccountsSet-password': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['UserAccountsSetPasswordBody'];
-        'application/x-www-form-urlencoded': components['schemas']['UserAccountsSetPasswordBody'];
-        'multipart/form-data': components['schemas']['UserAccountsSetPasswordBody'];
-      };
-    };
-    responses: {
-      /** @description Response for status 200 */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': components['schemas']['UserAccountsSetPasswordResponse'];
         };
       };
       /** @description Response for status 400 */
