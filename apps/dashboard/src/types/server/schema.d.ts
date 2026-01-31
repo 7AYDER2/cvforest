@@ -244,6 +244,38 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/user/accounts/verify-email-otp': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations['postUserAccountsVerify-email-otp'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/user/accounts/setup-password': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations['postUserAccountsSetup-password'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/user/accounts/session': {
     parameters: {
       query?: never;
@@ -738,7 +770,8 @@ export interface components {
       experienceInYears: number;
       expectedSalaryMin?: number;
       expectedSalaryMax?: number;
-      expectedSalaryCurrency?: string;
+      /** @enum {string} */
+      expectedSalaryCurrency?: 'Iqd' | 'Usd';
       /** @enum {string} */
       availabilityType?: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
@@ -905,6 +938,26 @@ export interface components {
       message: string;
     };
     UserAccountsRevokeOtherSessionsResponse: {
+      message: string;
+    };
+    UserAccountsVerifyOtpBody: {
+      /** Format: email */
+      email: string;
+      otp: string;
+    };
+    UserAccountsVerifyOtpResponse: {
+      success: boolean;
+      userId: string;
+      /** Format: email */
+      email: string;
+    };
+    UserAccountsSetupPasswordBody: {
+      /** Format: email */
+      email: string;
+      password: string;
+    };
+    UserAccountsSetupPasswordResponse: {
+      success: boolean;
       message: string;
     };
     UserGovernoratesListResponse: {
@@ -1753,6 +1806,94 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['UserAccountsRegisterResponse'];
+        };
+      };
+      /** @description Response for status 400 */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['BadRequestError'];
+        };
+      };
+      /** @description Response for status 422 */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['FieldsValidationError'];
+        };
+      };
+    };
+  };
+  'postUserAccountsVerify-email-otp': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UserAccountsVerifyOtpBody'];
+        'application/x-www-form-urlencoded': components['schemas']['UserAccountsVerifyOtpBody'];
+        'multipart/form-data': components['schemas']['UserAccountsVerifyOtpBody'];
+      };
+    };
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserAccountsVerifyOtpResponse'];
+        };
+      };
+      /** @description Response for status 400 */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['BadRequestError'];
+        };
+      };
+      /** @description Response for status 422 */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['FieldsValidationError'];
+        };
+      };
+    };
+  };
+  'postUserAccountsSetup-password': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UserAccountsSetupPasswordBody'];
+        'application/x-www-form-urlencoded': components['schemas']['UserAccountsSetupPasswordBody'];
+        'multipart/form-data': components['schemas']['UserAccountsSetupPasswordBody'];
+      };
+    };
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserAccountsSetupPasswordResponse'];
         };
       };
       /** @description Response for status 400 */

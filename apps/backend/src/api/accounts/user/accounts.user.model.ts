@@ -1,5 +1,6 @@
 import {
   AvailabilityType,
+  Currency,
   Gender,
   WorkLocationType,
 } from '@db/gen/prisma/client';
@@ -22,7 +23,7 @@ export const UserAccountsModel = {
     // Optional professional fields
     expectedSalaryMin: t.Optional(t.Number({ minimum: 0 })),
     expectedSalaryMax: t.Optional(t.Number({ minimum: 0 })),
-    expectedSalaryCurrency: t.Optional(t.String()),
+    expectedSalaryCurrency: t.Optional(t.Enum(Currency)),
     availabilityType: t.Optional(t.Enum(AvailabilityType)),
     workLocationType: t.Optional(t.Enum(WorkLocationType)),
     bio: t.Optional(t.String()),
@@ -96,6 +97,27 @@ export const UserAccountsModel = {
 
   // Revoke Other Sessions
   UserAccountsRevokeOtherSessionsResponse: t.Object({
+    message: t.String(),
+  }),
+
+  // Verify OTP
+  UserAccountsVerifyOtpBody: t.Object({
+    email: t.String({ format: 'email' }),
+    otp: t.String({ minLength: 6, maxLength: 6 }),
+  }),
+  UserAccountsVerifyOtpResponse: t.Object({
+    success: t.Boolean(),
+    userId: t.String(),
+    email: t.String({ format: 'email' }),
+  }),
+
+  // Setup Password
+  UserAccountsSetupPasswordBody: t.Object({
+    email: t.String({ format: 'email' }),
+    password: t.String({ minLength: 8 }),
+  }),
+  UserAccountsSetupPasswordResponse: t.Object({
+    success: t.Boolean(),
     message: t.String(),
   }),
 };

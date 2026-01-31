@@ -1,5 +1,6 @@
 import { prisma } from '@db/client';
 import type { TranslationFn } from '@/types';
+import { auth } from '@/utils/auth';
 import { HttpError } from '@/utils/error';
 import type { UserAccountsModel } from './accounts.user.model';
 
@@ -74,6 +75,7 @@ export const userAccountsService = {
       data: {
         name: data.name,
         email: data.email,
+        emailVerified: false,
         jobTitle: data.jobTitle,
         experienceInYears: data.experienceInYears,
         expectedSalaryMin: data.expectedSalaryMin,
@@ -91,6 +93,14 @@ export const userAccountsService = {
         displayUsername: data.displayUsername,
         gender: data.gender,
         governorateId: data.governorateId,
+      },
+    });
+
+    // Send OTP via Better Auth emailOTP plugin
+    await auth.api.sendVerificationOTP({
+      body: {
+        email: user.email,
+        type: 'email-verification',
       },
     });
 

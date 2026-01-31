@@ -13,19 +13,135 @@ export const accounts = new Elysia({ prefix: '/accounts' })
   .post(
     '/register',
     async ({ body, t }) => {
-      await userAccountsService.registerUser(t, body);
+      const result = await userAccountsService.registerUser(t, body);
 
       return {
         message: t({
-          en: 'Registration successful',
-          ar: 'تم التسجيل بنجاح',
+          en: 'Registration successful. Please check your email for verification code.',
+          ar: 'تم التسجيل بنجاح. يرجى التحقق من بريدك الإلكتروني للحصول على رمز التحقق.',
         }),
+        user: {
+          id: result.id,
+          name: result.name,
+          email: result.email,
+        },
       };
     },
     {
       body: 'UserAccountsRegisterBody',
       response: {
         201: 'UserAccountsRegisterResponse',
+      },
+    },
+  )
+
+  .post(
+    '/verify-email-otp',
+    async ({ t, body: { email, otp } }) => {
+      // Verify OTP using Better Auth
+      const result = await auth.api.verifyEmailOTP({
+        body: {
+          email,
+          otp,
+        },
+      });
+
+      if (!result || !result.user) {
+        throw new HttpError({
+          statusCode: 400,
+          message: t({
+            en: 'Invalid or expired verification code',
+            ar: 'رمز التحقق غير صالح أو منتهي الصلاحية',
+          }),
+        });
+      }
+
+      return {
+        success: true,
+        userId: result.user.id,
+        email: result.user.email,
+      };
+    },
+    {
+      body: 'UserAccountsVerifyOtpBody',
+      response: {
+        200: 'UserAccountsVerifyOtpResponse',
+      },
+    },
+  )
+
+  .post(
+    '/setup-password',
+    async ({ t, body: { email, password } }) => {
+      const prisma = (await import('@db/client')).prisma;
+
+      // Verify user exists and email is verified
+      const user = await prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (!user) {
+        throw new HttpError({
+          statusCode: 404,
+          message: t({
+            en: 'User not found',
+            ar: 'المستخدم غير موجود',
+          }),
+        });
+      }
+
+      if (!user.emailVerified) {
+        throw new HttpError({
+          statusCode: 400,
+          message: t({
+            en: 'Email not verified',
+            ar: 'البريد الإلكتروني غير مُحقق',
+          }),
+        });
+      }
+
+      // Check if account already exists
+      const existingAccount = await prisma.account.findFirst({
+        where: { userId: user.id },
+      });
+
+      if (existingAccount) {
+        throw new HttpError({
+          statusCode: 409,
+          message: t({
+            en: 'Password already set',
+            ar: 'تم تعيين كلمة المرور بالفعل',
+          }),
+        });
+      }
+
+      // Use Bun's built-in password hashing
+      const hashedPassword = await Bun.password.hash(password, {
+        algorithm: 'bcrypt',
+        cost: 10,
+      });
+
+      await prisma.account.create({
+        data: {
+          userId: user.id,
+          accountId: user.email,
+          providerId: 'credential',
+          password: hashedPassword,
+        },
+      });
+
+      return {
+        success: true,
+        message: t({
+          en: 'Password set successfully',
+          ar: 'تم تعيين كلمة المرور بنجاح',
+        }),
+      };
+    },
+    {
+      body: 'UserAccountsSetupPasswordBody',
+      response: {
+        200: 'UserAccountsSetupPasswordResponse',
       },
     },
   )
