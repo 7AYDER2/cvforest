@@ -950,11 +950,8 @@ export interface components {
       /** Format: email */
       email: string;
       otp: string;
-      password: string;
     };
-    UserAccountsVerifyOtpResponse: {
-      message: string;
-    };
+    UserAccountsVerifyOtpResponse: unknown;
     UserGovernoratesListResponse: {
       id: string;
       name: string;

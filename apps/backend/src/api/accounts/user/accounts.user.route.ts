@@ -1,8 +1,10 @@
+import { prisma } from '@db/client';
 import { Elysia } from 'elysia';
 import { init } from '@/init';
 import { mustBeAuthed } from '@/plugins/better-auth';
 import { auth } from '@/utils/auth';
 import { HttpError } from '@/utils/error';
+import { setBetterAuthHeaders } from '../accounts.helpers';
 import { UserAccountsModel } from './accounts.user.model';
 import { userAccountsService } from './accounts.user.service';
 
@@ -55,7 +57,7 @@ export const accounts = new Elysia({ prefix: '/accounts' })
 
   .post(
     '/verify-email-otp',
-    async ({ t, body: { email, otp, password } }) => {
+    async ({ t, set, body: { email, otp } }) => {
       // Verify OTP using Better Auth
       const result = await auth.api.verifyEmailOTP({
         body: { email, otp },
@@ -71,19 +73,46 @@ export const accounts = new Elysia({ prefix: '/accounts' })
         });
       }
 
-      await auth.api.setUserPassword({
-        body: {
+      const password = crypto.randomUUID();
+
+      const account = await prisma.account.create({
+        data: {
           userId: result.user.id,
-          newPassword: password,
+          accountId: result.user.id,
+          providerId: 'email',
         },
       });
 
-      return {
-        message: t({
-          en: 'Password set successfully',
-          ar: 'تم تعيين كلمة المرور بنجاح',
-        }),
-      };
+      await auth.api.setUserPassword({
+        body: {
+          newPassword: password,
+          userId: result.user.id,
+        },
+      });
+
+      const res = await auth.api
+        .signInEmail({
+          returnHeaders: true,
+          body: { email, password },
+        })
+        .catch(() => {
+          throw new HttpError({
+            statusCode: 401,
+            message: t({
+              en: 'Invalid email or password',
+              ar: 'البريد الإلكتروني أو كلمة المرور غير صحيحة',
+            }),
+          });
+        });
+
+      setBetterAuthHeaders(set, res.headers);
+
+      await prisma.account.update({
+        where: { id: account.id },
+        data: { password: null },
+      });
+
+      return res;
     },
     {
       body: 'UserAccountsVerifyOtpBody',

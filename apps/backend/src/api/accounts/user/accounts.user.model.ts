@@ -111,9 +111,6 @@ export const UserAccountsModel = {
   UserAccountsVerifyOtpBody: t.Object({
     email: t.String({ format: 'email' }),
     otp: t.String({ minLength: 8, maxLength: 8 }),
-    password: t.String({ minLength: 8 }),
   }),
-  UserAccountsVerifyOtpResponse: t.Object({
-    message: t.String(),
-  }),
+  UserAccountsVerifyOtpResponse: t.Any(),
 };

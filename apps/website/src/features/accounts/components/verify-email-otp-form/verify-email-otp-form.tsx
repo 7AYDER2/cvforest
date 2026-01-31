@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  Button,
-  Center,
-  PasswordInput,
-  PinInput,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Button, Center, PinInput, Stack, Text, Title } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import { useVerifyEmailOtpForm } from '@/features/accounts/hooks/use-verify-email-otp-form';
 import { useVerifyEmailOtpMut } from '../../hooks/use-verify-email-otp-mut';
@@ -22,8 +14,8 @@ export function VerifyEmailOtpForm({ email }: VerifyEmailOtpFormProps) {
   const form = useVerifyEmailOtpForm();
   const verifyOtpMut = useVerifyEmailOtpMut();
 
-  const handleSubmit = form.onSubmit(async ({ otp, password }) => {
-    await verifyOtpMut.mutateAsync({ email, otp, password });
+  const handleSubmit = form.onSubmit(async ({ otp }) => {
+    await verifyOtpMut.mutateAsync({ email, otp });
   });
 
   return (
@@ -43,20 +35,6 @@ export function VerifyEmailOtpForm({ email }: VerifyEmailOtpFormProps) {
             {...form.getInputProps('otp')}
           />
         </Center>
-
-        <PasswordInput
-          required
-          label={t('auth.passwordPlaceholder')}
-          placeholder={t('auth.passwordPlaceholder')}
-          {...form.getInputProps('password')}
-        />
-
-        <PasswordInput
-          required
-          label={t('auth.confirmPassword')}
-          placeholder={t('auth.confirmPassword')}
-          {...form.getInputProps('confirmPassword')}
-        />
 
         <Button type="submit" loading={verifyOtpMut.isPending}>
           {t('auth.setPassword')}
