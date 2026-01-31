@@ -3,13 +3,12 @@ import { useDataTable } from '@/hooks/use-data-table';
 import { useKy } from '@/hooks/use-ky';
 import type { UsersList, UsersListQuery } from '../types';
 
-export function useUsersList({
-  initialData,
-  filters,
-}: {
+interface UseUsersListProps {
   initialData: UsersList;
   filters: Partial<UsersListQuery>;
-}) {
+}
+
+export function useUsersList({ initialData, filters }: UseUsersListProps) {
   const ky = useKy();
   const { getTableProps, sorting, pagination } = useDataTable();
 

@@ -41,7 +41,7 @@ import {
 } from '@/utils/translation-maps';
 import { useUserApprove } from '../../hooks/use-user-approve';
 import { useUserReject } from '../../hooks/use-user-reject';
-import { UserStatusBadge } from '../user-status-badge/user-status-badge';
+import { UserStatusBadge } from '../user-status-badge';
 
 interface UsersRowExpansionProps {
   user: User;
