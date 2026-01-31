@@ -7,22 +7,11 @@
     "success": "Success"
   },
   "auth": {
-    "confirmPassword": "Confirm Password",
-    "emailVerified": "Your email has been verified. Please set a password for your account.",
     "invalidCode": "Invalid or expired verification code",
-    "invalidEmail": "Please enter a valid email address",
-    "passwordLowerCase": "Password must contain at least one lowercase letter",
-    "passwordMaxLength": "Password must be less than 128 characters",
-    "passwordMinLength": "Password must be at least 8 characters",
-    "passwordNumber": "Password must contain at least one number",
     "passwordPlaceholder": "Enter your password",
     "passwordSetSuccess": "Password set successfully",
-    "passwordSpecial": "Password must contain at least one special character",
-    "passwordUpperCase": "Password must contain at least one uppercase letter",
-    "passwordsDoNotMatch": "Passwords do not match",
     "setPassword": "Set Your Password",
     "verificationCodeSent": "We've sent a 6-digit code to your email",
-    "verifyCode": "Verify Code",
     "verifyEmail": "Verify Your Email"
   },
   "confirmDelete": {
@@ -117,11 +106,10 @@
   },
   "login": {
     "email": "Email",
-    "password": "Password",
     "login": "Login",
-    "loginTitle": "Login to your account",
+    "pageDescription": "Sign in to access your account",
     "pageTitle": "Login",
-    "pageDescription": "Sign in to access your account"
+    "password": "Password"
   },
   "meta": {
     "description": "FindCV | A platform for finding CVs",
