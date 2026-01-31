@@ -43,6 +43,12 @@ enum Currency {
   Usd
 }
 
+enum UserStatus {
+  Pending
+  Approved
+  Rejected
+}
+
 model User {
   id String @id @default(uuid())
 
@@ -85,7 +91,7 @@ model User {
   portfolioUrl           String?
   availableForHire       Boolean?
 
-  accountVerified Boolean @default(false)
+  status UserStatus @default(Pending)
 
   // Backrefs
   files      File[]

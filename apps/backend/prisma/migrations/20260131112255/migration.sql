@@ -13,6 +13,9 @@ CREATE TYPE "Gender" AS ENUM ('Male', 'Female');
 -- CreateEnum
 CREATE TYPE "Currency" AS ENUM ('Iqd', 'Usd');
 
+-- CreateEnum
+CREATE TYPE "UserStatus" AS ENUM ('Pending', 'Approved', 'Rejected');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -45,7 +48,7 @@ CREATE TABLE "User" (
     "linkedinUrl" TEXT,
     "portfolioUrl" TEXT,
     "availableForHire" BOOLEAN,
-    "accountVerified" BOOLEAN NOT NULL DEFAULT false,
+    "status" "UserStatus" NOT NULL DEFAULT 'Pending',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
