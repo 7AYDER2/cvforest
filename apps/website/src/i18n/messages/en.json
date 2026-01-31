@@ -7,6 +7,13 @@
     "search": "Search",
     "success": "Success"
   },
+  "hero": {
+    "ctaDeveloper": "Upload Your CV",
+    "ctaRecruiter": "Browse Talent",
+    "description": "For developers: showcase your skills and control your data. For recruiters: access quality talent with structured profiles.",
+    "subtitle": "Privacy-First Platform",
+    "title": "Connect Talent with Opportunity"
+  },
   "confirmDelete": {
     "actionCannotBeUndone": "This action cannot be undone.",
     "areYouSureAboutThisAction": "Are you sure you want to perform this action?",
