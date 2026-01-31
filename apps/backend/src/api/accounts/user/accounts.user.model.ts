@@ -50,6 +50,13 @@ export const UserAccountsModel = {
     }),
   }),
 
+  // Login
+  UserAccountsLoginBody: t.Object({
+    email: t.String({ format: 'email' }),
+    password: t.String(),
+  }),
+  UserAccountsLoginResponse: t.Any(),
+
   // Session
   UserAccountsSessionResponse: t.Object({
     session: t.Object({

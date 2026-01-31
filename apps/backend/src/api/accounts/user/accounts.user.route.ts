@@ -36,6 +36,24 @@ export const accounts = new Elysia({ prefix: '/accounts' })
   )
 
   .post(
+    '/login',
+    async ({ body: { email, password } }) => {
+      const res = await auth.api.signInEmail({
+        asResponse: true,
+        body: { email, password },
+      });
+
+      return res;
+    },
+    {
+      body: 'UserAccountsLoginBody',
+      response: {
+        200: 'UserAccountsLoginResponse',
+      },
+    },
+  )
+
+  .post(
     '/verify-email-otp',
     async ({ t, body: { email, otp, password } }) => {
       // Verify OTP using Better Auth
