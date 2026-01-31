@@ -37,7 +37,7 @@ export async function Hero() {
             </Text>
           </Stack>
 
-          <Group gap="md" wrap="wrap" justify="center">
+          <Group gap="md" wrap="wrap" justify="center" className={cls.buttons}>
             <Button
               component={Link}
               href="/accounts/login"
