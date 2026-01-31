@@ -103,7 +103,7 @@ export const UserAccountsModel = {
   // Verify OTP
   UserAccountsVerifyOtpBody: t.Object({
     email: t.String({ format: 'email' }),
-    otp: t.String({ minLength: 6, maxLength: 6 }),
+    otp: t.String({ minLength: 8, maxLength: 8 }),
   }),
   UserAccountsVerifyOtpResponse: t.Object({
     success: t.Boolean(),

@@ -80,6 +80,7 @@ export function useJoinForm() {
   type FormValuesToBody = (values: FormValues) => RegisterRequestBody;
 
   return useForm<FormValues, FormValuesToBody>({
+    mode: 'uncontrolled',
     validate: zod4Resolver(schema),
     initialValues: {
       name: '',

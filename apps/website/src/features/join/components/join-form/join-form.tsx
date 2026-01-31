@@ -93,6 +93,7 @@ export function JoinForm() {
                   placeholder={t('join.namePlaceholder')}
                   leftSection={<IconUser size={18} />}
                   required
+                  key={form.key('name')}
                   {...form.getInputProps('name')}
                 />
 
@@ -102,6 +103,7 @@ export function JoinForm() {
                   leftSection={<IconAt size={18} />}
                   type="email"
                   required
+                  key={form.key('email')}
                   {...form.getInputProps('email')}
                 />
 
@@ -110,6 +112,7 @@ export function JoinForm() {
                   placeholder={t('join.phoneNumberPlaceholder')}
                   leftSection={<IconPhone size={18} />}
                   required
+                  key={form.key('phoneNumber')}
                   {...form.getInputProps('phoneNumber')}
                 />
 
@@ -121,6 +124,7 @@ export function JoinForm() {
                     { label: t('join.male'), value: Gender.Male },
                     { label: t('join.female'), value: Gender.Female },
                   ]}
+                  key={form.key('gender')}
                   {...form.getInputProps('gender')}
                 />
 
@@ -132,6 +136,7 @@ export function JoinForm() {
                   searchable
                   data={governorateOptions}
                   disabled={governoratesQuery.isLoading}
+                  key={form.key('governorateId')}
                   {...form.getInputProps('governorateId')}
                 />
               </Stack>
@@ -147,6 +152,7 @@ export function JoinForm() {
                   label={t('join.githubUrl')}
                   placeholder={t('join.githubPlaceholder')}
                   leftSection={<IconBrandGithub size={18} />}
+                  key={form.key('githubUrl')}
                   {...form.getInputProps('githubUrl')}
                 />
 
@@ -154,6 +160,7 @@ export function JoinForm() {
                   label={t('join.linkedinUrl')}
                   placeholder={t('join.linkedinPlaceholder')}
                   leftSection={<IconBrandLinkedin size={18} />}
+                  key={form.key('linkedinUrl')}
                   {...form.getInputProps('linkedinUrl')}
                 />
 
@@ -161,6 +168,7 @@ export function JoinForm() {
                   label={t('join.portfolioUrl')}
                   placeholder={t('join.portfolioPlaceholder')}
                   leftSection={<IconGlobe size={18} />}
+                  key={form.key('portfolioUrl')}
                   {...form.getInputProps('portfolioUrl')}
                 />
               </Stack>
@@ -179,6 +187,7 @@ export function JoinForm() {
                   placeholder={t('join.jobTitlePlaceholder')}
                   leftSection={<IconBriefcase size={18} />}
                   required
+                  key={form.key('jobTitle')}
                   {...form.getInputProps('jobTitle')}
                 />
 
@@ -189,6 +198,7 @@ export function JoinForm() {
                   label={t('join.experienceInYears')}
                   placeholder={t('join.experiencePlaceholder')}
                   leftSection={<IconClock size={18} />}
+                  key={form.key('experienceInYears')}
                   {...form.getInputProps('experienceInYears')}
                 />
 
@@ -200,6 +210,7 @@ export function JoinForm() {
                     label={t('join.expectedSalaryMin')}
                     placeholder={t('join.salaryPlaceholder')}
                     leftSection={<IconCurrencyDollar size={18} />}
+                    key={form.key('expectedSalaryMin')}
                     {...form.getInputProps('expectedSalaryMin')}
                   />
 
@@ -210,6 +221,7 @@ export function JoinForm() {
                     label={t('join.expectedSalaryMax')}
                     placeholder={t('join.salaryPlaceholder')}
                     leftSection={<IconCurrencyDollar size={18} />}
+                    key={form.key('expectedSalaryMax')}
                     {...form.getInputProps('expectedSalaryMax')}
                   />
 
@@ -219,6 +231,7 @@ export function JoinForm() {
                       label: translateCurrency(t, currency),
                       value: currency,
                     }))}
+                    key={form.key('expectedSalaryCurrency')}
                     {...form.getInputProps('expectedSalaryCurrency')}
                   />
                 </SimpleGrid>
@@ -229,6 +242,7 @@ export function JoinForm() {
                   placeholder={t('join.availabilityPlaceholder')}
                   leftSection={<IconClock size={18} />}
                   data={availabilityOptions}
+                  key={form.key('availabilityType')}
                   {...form.getInputProps('availabilityType')}
                 />
 
@@ -238,11 +252,13 @@ export function JoinForm() {
                   leftSection={<IconMapPin size={18} />}
                   data={workLocationOptions}
                   clearable
+                  key={form.key('workLocationType')}
                   {...form.getInputProps('workLocationType')}
                 />
 
                 <Checkbox
                   label={t('join.availableForHire')}
+                  key={form.key('availableForHire')}
                   {...form.getInputProps('availableForHire', {
                     type: 'checkbox',
                   })}
@@ -254,6 +270,7 @@ export function JoinForm() {
                   minRows={3}
                   maxRows={8}
                   autosize
+                  key={form.key('bio')}
                   {...form.getInputProps('bio')}
                 />
               </Stack>
@@ -271,6 +288,7 @@ export function JoinForm() {
                 placeholder={t('join.skillsPlaceholder')}
                 data={skillOptions}
                 disabled={skillsQuery.isLoading}
+                key={form.key('skillIds')}
                 {...form.getInputProps('skillIds')}
               />
             </FormSection>

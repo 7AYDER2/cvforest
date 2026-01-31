@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, PinInput, Stack, Text, Title } from '@mantine/core';
+import { Button, Center, PinInput, Stack, Text, Title } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import { useVerifyEmailOtpForm } from '@/features/auth/hooks/use-verify-email-otp-form';
 import { useVerifyEmailOtpMut } from '../../hooks/use-verify-email-otp-mut';
@@ -27,7 +27,17 @@ export function VerifyEmailOtpForm({ email }: VerifyEmailOtpFormProps) {
           {t('auth.verificationCodeSent')} {email}.
         </Text>
 
-        <PinInput length={8} oneTimeCode {...form.getInputProps('otp')} />
+        <Center>
+          <PinInput
+            size="lg"
+            length={8}
+            oneTimeCode
+            {...form.getInputProps('otp')}
+            onComplete={async (code) => {
+              await verifyOtpMut.mutateAsync({ email, otp: code });
+            }}
+          />
+        </Center>
 
         <Button type="submit" loading={form.submitting}>
           {t('auth.verifyCode')}

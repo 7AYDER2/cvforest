@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { useKy } from '@/hooks/use-ky';
+import { useNotifications } from '@/hooks/use-notifications';
 
 interface VerifyEmailOtpRequestBody {
   email: string;
@@ -14,6 +16,8 @@ interface VerifyEmailOtpResponseBody {
 
 export function useVerifyEmailOtpMut() {
   const ky = useKy();
+  const t = useTranslations();
+  const n = useNotifications();
 
   return useMutation({
     mutationFn: ({ email, otp }: VerifyEmailOtpRequestBody) => {
@@ -22,6 +26,9 @@ export function useVerifyEmailOtpMut() {
       return ky
         .post('accounts/verify-email-otp', { json: body })
         .json<VerifyEmailOtpResponseBody>();
+    },
+    onSuccess: () => {
+      n.success(t('auth.emailVerified'));
     },
   });
 }
