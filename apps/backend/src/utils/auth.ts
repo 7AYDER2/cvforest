@@ -2,7 +2,13 @@ import { prisma } from '@db/client';
 import { AvailabilityType, WorkLocationType } from '@db/gen/prisma/enums';
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { admin, openAPI, phoneNumber, username } from 'better-auth/plugins';
+import {
+  admin,
+  emailOTP,
+  openAPI,
+  phoneNumber,
+  username,
+} from 'better-auth/plugins';
 import { env } from '@/env';
 
 export const auth = betterAuth({
@@ -71,6 +77,16 @@ export const auth = betterAuth({
 
     openAPI({
       disableDefaultReference: true,
+    }),
+
+    emailOTP({
+      sendVerificationOTP: async ({ email, otp, type }) => {
+        console.log('======================== OTP =========================');
+        console.log(otp);
+        console.log(type);
+        console.log(email);
+        console.log('======================== OTP =========================');
+      },
     }),
 
     phoneNumber({
