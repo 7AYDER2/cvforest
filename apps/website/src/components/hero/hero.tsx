@@ -39,19 +39,19 @@ export async function Hero() {
 
           <Group gap="md" wrap="wrap" justify="center" className={cls.buttons}>
             <Button
-              component={Link}
-              href="/accounts/login"
               size="lg"
+              href="/join"
+              component={Link}
               leftSection={<IconUpload size={20} />}
             >
               {t('hero.ctaDeveloper')}
             </Button>
 
             <Button
-              component={Link}
-              href="/browse"
               size="lg"
+              href="/browse"
               variant="light"
+              component={Link}
               leftSection={<IconBriefcase size={20} />}
             >
               {t('hero.ctaRecruiter')}
