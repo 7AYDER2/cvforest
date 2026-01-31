@@ -17,6 +17,10 @@
     "noRecords": "No records to show",
     "recordsPerPageLabel": "Records per page"
   },
+  "header": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
   "login": {
     "codeRequired": "Code is required",
     "enterOtp": "Enter OTP",

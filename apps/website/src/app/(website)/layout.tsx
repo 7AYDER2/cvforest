@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { Header } from '@/components/header';
 import { getKy } from '@/server/actions';
 import type { GetResponseBody } from '@/types/server/helpers';
 
@@ -21,5 +22,10 @@ export default async function DashboardLayout({
     return redirect('/accounts/login');
   }
 
-  return children;
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  );
 }
