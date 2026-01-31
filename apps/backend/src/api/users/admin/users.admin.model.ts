@@ -19,7 +19,7 @@ const UserWithRelations = t.Composite([
 ]);
 
 export const AdminUsersModel = {
-  // List Query
+  // List
   AdminUsersListQuery: t.Object({
     ...paginationSchema,
     ...sortingSchema,
@@ -27,18 +27,21 @@ export const AdminUsersModel = {
     // Filters
     search: t.Optional(t.String()),
   }),
-
-  // List Response
   AdminUsersListResponse: t.Object({
     total: t.Number(),
     data: t.Array(UserWithRelations),
   }),
 
-  // Get Response
+  // Get
   AdminUsersGetResponse: UserWithRelations,
 
   // Approve Response
   AdminUsersApproveResponse: t.Object({
+    message: t.String(),
+  }),
+
+  // Reject Response
+  AdminUsersRejectResponse: t.Object({
     message: t.String(),
   }),
 };

@@ -42,4 +42,16 @@ export const users = new Elysia({ prefix: '/users' })
         200: 'AdminUsersApproveResponse',
       },
     },
+  )
+
+  .patch(
+    '/:id/reject',
+    async ({ params: { id }, t }) => {
+      return adminUsersService.reject(id, t);
+    },
+    {
+      response: {
+        200: 'AdminUsersRejectResponse',
+      },
+    },
   );

@@ -260,6 +260,22 @@ export interface paths {
     patch: operations['patchAdminUsersByIdApprove'];
     trace?: never;
   };
+  '/admin/users/{id}/reject': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations['patchAdminUsersByIdReject'];
+    trace?: never;
+  };
   '/user/accounts/register': {
     parameters: {
       query?: never;
@@ -886,6 +902,9 @@ export interface components {
       }[];
     };
     AdminUsersApproveResponse: {
+      message: string;
+    };
+    AdminUsersRejectResponse: {
       message: string;
     };
     UserAccountsRegisterBody: {
@@ -1962,6 +1981,46 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['AdminUsersApproveResponse'];
+        };
+      };
+      /** @description Response for status 400 */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['BadRequestError'];
+        };
+      };
+      /** @description Response for status 422 */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['FieldsValidationError'];
+        };
+      };
+    };
+  };
+  patchAdminUsersByIdReject: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['AdminUsersRejectResponse'];
         };
       };
       /** @description Response for status 400 */

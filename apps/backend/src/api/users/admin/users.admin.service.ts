@@ -92,7 +92,7 @@ export const adminUsersService = {
       });
     }
 
-    if (user.status !== 'Pending') {
+    if (user.status === 'Approved') {
       throw new HttpError({
         statusCode: 400,
         message: t({
@@ -111,6 +111,44 @@ export const adminUsersService = {
       message: t({
         en: 'User approved successfully',
         ar: 'تمت الموافقة على المستخدم بنجاح',
+      }),
+    };
+  },
+
+  async reject(id: string, t: TranslationFn) {
+    const user = await prisma.user.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      throw new HttpError({
+        statusCode: 404,
+        message: t({
+          en: 'User not found',
+          ar: 'المستخدم غير موجود',
+        }),
+      });
+    }
+
+    if (user.status === 'Rejected') {
+      throw new HttpError({
+        statusCode: 400,
+        message: t({
+          en: 'User already rejected',
+          ar: 'تم رفض المستخدم بالفعل',
+        }),
+      });
+    }
+
+    await prisma.user.update({
+      where: { id },
+      data: { status: 'Rejected' },
+    });
+
+    return {
+      message: t({
+        en: 'User rejected successfully',
+        ar: 'تم رفض المستخدم بنجاح',
       }),
     };
   },
