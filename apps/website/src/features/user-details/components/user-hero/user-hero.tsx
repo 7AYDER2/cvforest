@@ -50,41 +50,43 @@ export function UserHero({ user }: UserHeroProps) {
       {/* Gradient banner */}
       <Box className={cls.banner} />
 
-      {/* Avatar + info */}
-      <Stack gap="md" px="md" className={cls.heroContent}>
-        <div className={cls.avatarWrapper}>
-          <div className={cls.avatarRing}>
-            <Avatar
-              size={112}
-              radius="50%"
-              name={user.name}
-              src={constructImageUrl(user.avatar?.key)}
-              color="primary"
-            />
-            {user.availableForHire && (
-              <Tooltip label={t('cvs.availableForHire')} withArrow>
-                <span className={cls.availableDot} />
-              </Tooltip>
-            )}
+      <Group justify="space-between">
+        {/* Avatar + info */}
+        <Group gap="md" px="md" className={cls.heroContent}>
+          <div className={cls.avatarWrapper}>
+            <div className={cls.avatarRing}>
+              <Avatar
+                size={112}
+                radius="50%"
+                name={user.name}
+                src={constructImageUrl(user.avatar?.key)}
+                color="primary"
+              />
+              {user.availableForHire && (
+                <Tooltip label={t('cvs.availableForHire')} withArrow>
+                  <span className={cls.availableDot} />
+                </Tooltip>
+              )}
+            </div>
           </div>
-        </div>
 
-        <Stack gap={4}>
-          <Group gap="sm" align="center">
-            <Title order={2}>{user.name}</Title>
-            {user.availableForHire && (
-              <Badge size="sm" radius="xl" className={cls.availableBadge}>
-                {t('cvs.availableForHire')}
-              </Badge>
+          <Stack gap={4} mt="md">
+            <Group gap="sm" align="center">
+              <Title order={2}>{user.name}</Title>
+              {user.availableForHire && (
+                <Badge size="sm" radius="xl" className={cls.availableBadge}>
+                  {t('cvs.availableForHire')}
+                </Badge>
+              )}
+            </Group>
+
+            {user.jobTitle && (
+              <Text size="lg" c="dimmed">
+                {user.jobTitle}
+              </Text>
             )}
-          </Group>
-
-          {user.jobTitle && (
-            <Text size="lg" c="dimmed">
-              {user.jobTitle}
-            </Text>
-          )}
-        </Stack>
+          </Stack>
+        </Group>
 
         {/* Social links */}
         {(socialLinks.length > 0 || user.email) && (
@@ -120,7 +122,7 @@ export function UserHero({ user }: UserHeroProps) {
             </Tooltip>
           </Group>
         )}
-      </Stack>
+      </Group>
     </Box>
   );
 }
