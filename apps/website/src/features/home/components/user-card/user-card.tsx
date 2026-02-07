@@ -154,14 +154,32 @@ export function UserCard({ user }: { user: UserListItem }) {
               {socialLinks.map((link) => (
                 <Tooltip key={link.label} label={link.label} withArrow>
                   <ActionIcon
-                    component="a"
-                    href={link.url as string}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="subtle"
-                    color="gray"
                     size="sm"
-                    onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                    role="link"
+                    tabIndex={0}
+                    color="gray"
+                    variant="subtle"
+                    component="span"
+                    onClick={(e: React.MouseEvent) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(
+                        link.url as string,
+                        '_blank',
+                        'noopener,noreferrer',
+                      );
+                    }}
+                    onKeyDown={(e: React.KeyboardEvent) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open(
+                          link.url as string,
+                          '_blank',
+                          'noopener,noreferrer',
+                        );
+                      }
+                    }}
                   >
                     <link.icon size={16} />
                   </ActionIcon>
@@ -171,12 +189,24 @@ export function UserCard({ user }: { user: UserListItem }) {
 
             <Tooltip label={t('users.email')}>
               <ActionIcon
+                component="span"
+                role="link"
+                tabIndex={0}
                 size="sm"
                 color="gray"
-                component="a"
                 variant="subtle"
-                href={`mailto:${user.email}`}
-                onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.location.href = `mailto:${user.email}`;
+                }}
+                onKeyDown={(e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.location.href = `mailto:${user.email}`;
+                  }
+                }}
               >
                 <IconMail />
               </ActionIcon>
