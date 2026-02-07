@@ -1,9 +1,38 @@
-import { Avatar, Badge, Group, Paper, Stack, Text } from '@mantine/core';
-import { IconBriefcase, IconMapPin } from '@tabler/icons-react';
+import {
+  ActionIcon,
+  Avatar,
+  Badge,
+  Box,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  Tooltip,
+} from '@mantine/core';
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBriefcase,
+  IconClock,
+  IconMapPin,
+  IconWorld,
+} from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { constructImageUrl } from '@/utils/helpers';
 import type { UserListItem } from '../../types';
 import cls from './styles.module.css';
+
+const AVAILABILITY_KEYS: Record<string, string> = {
+  FullTime: 'cvs.fullTime',
+  PartTime: 'cvs.partTime',
+  Freelance: 'cvs.freelance',
+};
+
+const WORK_LOCATION_KEYS: Record<string, string> = {
+  OnSite: 'cvs.onSite',
+  Remote: 'cvs.remote',
+  Hybrid: 'cvs.hybrid',
+};
 
 export function UserCard({ user }: { user: UserListItem }) {
   const t = useTranslations();
@@ -12,47 +41,96 @@ export function UserCard({ user }: { user: UserListItem }) {
   const visibleSkills = skills.slice(0, 3);
   const remainingCount = skills.length - visibleSkills.length;
 
-  return (
-    <Paper withBorder p="lg" radius="lg" className={cls.card}>
-      <Stack align="center" gap="sm">
-        <Avatar
-          size={164}
-          radius="xl"
-          name={user.name}
-          src={constructImageUrl(user.avatar?.key)}
-          color="primary"
-        />
+  const socialLinks = [
+    {
+      url: user.githubUrl,
+      icon: IconBrandGithub,
+      label: 'GitHub',
+    },
+    {
+      url: user.linkedinUrl,
+      icon: IconBrandLinkedin,
+      label: 'LinkedIn',
+    },
+    {
+      url: user.portfolioUrl,
+      icon: IconWorld,
+      label: 'Portfolio',
+    },
+  ].filter((link) => link.url);
 
-        <Stack align="center" gap={4}>
-          <Text fw={600} size="md" ta="center" lineClamp={1}>
+  return (
+    <Paper withBorder radius="lg" className={cls.card} p={0}>
+      {/* Gradient header band */}
+      <Box className={cls.header} />
+
+      {/* Avatar overlapping the header */}
+      <div className={cls.avatarWrapper}>
+        <div className={cls.avatarRing}>
+          <Avatar
+            size={92}
+            radius="50%"
+            name={user.name}
+            src={constructImageUrl(user.avatar?.key)}
+            color="primary"
+          />
+          {user.availableForHire && (
+            <Tooltip label={t('cvs.availableForHire')} withArrow>
+              <span className={cls.availableDot} />
+            </Tooltip>
+          )}
+        </div>
+      </div>
+
+      {/* Card body */}
+      <Stack align="center" gap="xs" className={cls.body}>
+        {/* Identity */}
+        <Stack align="center" gap={2}>
+          <Text fw={700} size="md" ta="center" lineClamp={1}>
             {user.name}
           </Text>
 
           {user.jobTitle && (
-            <Group gap={4} wrap="nowrap">
-              <IconBriefcase size={14} color="var(--mantine-color-dimmed)" />
-              <Text size="sm" c="dimmed" lineClamp={1}>
-                {user.jobTitle}
-              </Text>
-            </Group>
-          )}
-
-          {user.governorate && (
-            <Group gap={4} wrap="nowrap">
-              <IconMapPin size={14} color="var(--mantine-color-dimmed)" />
-              <Text size="xs" c="dimmed">
-                {user.governorate.name}
-              </Text>
-            </Group>
+            <Text size="sm" c="dimmed" ta="center" lineClamp={1}>
+              {user.jobTitle}
+            </Text>
           )}
         </Stack>
 
-        {user.experienceInYears != null && (
-          <Text size="xs" c="dimmed">
-            {t('cvs.yearsExperience', { number: user.experienceInYears })}
-          </Text>
-        )}
+        {/* Meta chips */}
+        <Group gap={6} justify="center" wrap="wrap">
+          {user.governorate && (
+            <span className={cls.metaChip}>
+              <IconMapPin size={12} />
+              {user.governorate.name}
+            </span>
+          )}
 
+          {user.experienceInYears != null && (
+            <span className={cls.metaChip}>
+              <IconClock size={12} />
+              {t('cvs.yearsExperience', { number: user.experienceInYears })}
+            </span>
+          )}
+
+          {user.availabilityType &&
+            AVAILABILITY_KEYS[user.availabilityType] != null && (
+              <span className={cls.metaChip}>
+                <IconBriefcase size={12} />
+                {t(AVAILABILITY_KEYS[user.availabilityType] as string)}
+              </span>
+            )}
+
+          {user.workLocationType &&
+            WORK_LOCATION_KEYS[user.workLocationType] != null && (
+              <span className={cls.metaChip}>
+                <IconWorld size={12} />
+                {t(WORK_LOCATION_KEYS[user.workLocationType] as string)}
+              </span>
+            )}
+        </Group>
+
+        {/* Skills */}
         {visibleSkills.length > 0 && (
           <Group gap={6} justify="center" wrap="wrap">
             {visibleSkills.map((skill) => (
@@ -60,17 +138,43 @@ export function UserCard({ user }: { user: UserListItem }) {
                 key={skill.id}
                 size="sm"
                 variant="light"
-                color="primary"
-                radius="sm"
+                radius="xl"
+                className={cls.skillPill}
               >
                 {skill.name}
               </Badge>
             ))}
             {remainingCount > 0 && (
-              <Badge size="sm" variant="light" color="gray" radius="sm">
+              <Badge size="sm" variant="light" color="gray" radius="xl">
                 +{remainingCount}
               </Badge>
             )}
+          </Group>
+        )}
+
+        {/* Social links footer */}
+        {socialLinks.length > 0 && (
+          <Group
+            gap="xs"
+            justify="center"
+            className={cls.socialFooter}
+            w="100%"
+          >
+            {socialLinks.map((link) => (
+              <Tooltip key={link.label} label={link.label} withArrow>
+                <ActionIcon
+                  component="a"
+                  href={link.url as string}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="subtle"
+                  color="gray"
+                  size="sm"
+                >
+                  <link.icon size={16} />
+                </ActionIcon>
+              </Tooltip>
+            ))}
           </Group>
         )}
       </Stack>

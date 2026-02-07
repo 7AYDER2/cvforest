@@ -15,7 +15,14 @@
     "verifyEmail": "تحقق من بريدك الإلكتروني"
   },
   "cvs": {
+    "availableForHire": "متاح للتوظيف",
     "browseAll": "تصفح جميع المواهب",
+    "freelance": "عمل حر",
+    "fullTime": "دوام كامل",
+    "hybrid": "هجين",
+    "onSite": "في الموقع",
+    "partTime": "دوام جزئي",
+    "remote": "عن بُعد",
     "subtitle": "اكتشف أفضل المحترفين المستعدين لفرص جديدة",
     "title": "أحدث السير الذاتية",
     "yearsExperience": "{number} سنوات خبرة"
