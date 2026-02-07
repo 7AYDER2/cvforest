@@ -20,11 +20,9 @@ CREATE TYPE "UserStatus" AS ENUM ('Pending', 'Approved', 'Rejected');
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "image" TEXT,
     "email" TEXT NOT NULL,
     "emailVerified" BOOLEAN NOT NULL DEFAULT false,
-    "image" TEXT,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "phoneNumber" TEXT,
     "phoneNumberVerified" BOOLEAN,
     "username" TEXT,
@@ -36,21 +34,33 @@ CREATE TABLE "User" (
     "gender" "Gender",
     "avatarId" TEXT,
     "governorateId" TEXT,
-    "jobTitle" TEXT,
-    "experienceInYears" INTEGER,
-    "expectedSalaryMin" INTEGER,
-    "expectedSalaryMax" INTEGER,
-    "expectedSalaryCurrency" "Currency",
-    "availabilityType" "AvailabilityType",
-    "workLocationType" "WorkLocationType",
-    "bio" TEXT,
-    "githubUrl" TEXT,
-    "linkedinUrl" TEXT,
-    "portfolioUrl" TEXT,
-    "availableForHire" BOOLEAN,
-    "status" "UserStatus" NOT NULL DEFAULT 'Pending',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Cv" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "jobTitle" TEXT NOT NULL,
+    "experienceInYears" INTEGER NOT NULL,
+    "expectedSalaryMin" INTEGER NOT NULL,
+    "expectedSalaryMax" INTEGER NOT NULL,
+    "expectedSalaryCurrency" "Currency" NOT NULL,
+    "availabilityType" "AvailabilityType" NOT NULL,
+    "workLocationType" "WorkLocationType" NOT NULL,
+    "bio" TEXT NOT NULL,
+    "githubUrl" TEXT NOT NULL,
+    "linkedinUrl" TEXT NOT NULL,
+    "portfolioUrl" TEXT NOT NULL,
+    "availableForHire" BOOLEAN NOT NULL,
+    "status" "UserStatus" NOT NULL DEFAULT 'Pending',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Cv_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -66,7 +76,7 @@ CREATE TABLE "Skill" (
 -- CreateTable
 CREATE TABLE "UserSkill" (
     "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
+    "cvId" TEXT NOT NULL,
     "skillId" TEXT NOT NULL,
 
     CONSTRAINT "UserSkill_pkey" PRIMARY KEY ("id")
@@ -149,6 +159,9 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_phoneNumber_key" ON "User"("phoneNumber");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Cv_userId_key" ON "Cv"("userId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Session_token_key" ON "Session"("token");
 
 -- CreateIndex
@@ -164,7 +177,10 @@ ALTER TABLE "User" ADD CONSTRAINT "User_avatarId_fkey" FOREIGN KEY ("avatarId") 
 ALTER TABLE "User" ADD CONSTRAINT "User_governorateId_fkey" FOREIGN KEY ("governorateId") REFERENCES "Governorate"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserSkill" ADD CONSTRAINT "UserSkill_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Cv" ADD CONSTRAINT "Cv_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserSkill" ADD CONSTRAINT "UserSkill_cvId_fkey" FOREIGN KEY ("cvId") REFERENCES "Cv"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "UserSkill" ADD CONSTRAINT "UserSkill_skillId_fkey" FOREIGN KEY ("skillId") REFERENCES "Skill"("id") ON DELETE CASCADE ON UPDATE CASCADE;

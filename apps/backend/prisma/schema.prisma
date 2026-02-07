@@ -52,12 +52,12 @@ enum UserStatus {
 model User {
   id String @id @default(uuid())
 
-  name                String
-  email               String   @unique
-  emailVerified       Boolean  @default(false)
-  image               String?
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @default(now()) @updatedAt
+  name  String
+  image String?
+
+  email         String  @unique
+  emailVerified Boolean @default(false)
+
   phoneNumber         String?  @unique
   phoneNumberVerified Boolean?
 
@@ -77,26 +77,44 @@ model User {
   governorateId String?
   governorate   Governorate? @relation(fields: [governorateId], references: [id])
 
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Backrefs
+  files    File[]
+  sessions Session[]
+  accounts Account[]
+  cv       Cv?
+}
+
+model Cv {
+  id String @id @default(uuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   // Professional Information
-  jobTitle               String?
-  experienceInYears      Int?
-  expectedSalaryMin      Int?
-  expectedSalaryMax      Int?
-  expectedSalaryCurrency Currency?
-  availabilityType       AvailabilityType?
-  workLocationType       WorkLocationType?
-  bio                    String?
-  githubUrl              String?
-  linkedinUrl            String?
-  portfolioUrl           String?
-  availableForHire       Boolean?
+  jobTitle               String
+  experienceInYears      Int
+  expectedSalaryMin      Int
+  expectedSalaryMax      Int
+  expectedSalaryCurrency Currency
+  availabilityType       AvailabilityType
+  workLocationType       WorkLocationType
+  bio                    String
+  githubUrl              String
+  linkedinUrl            String
+  portfolioUrl           String
+  availableForHire       Boolean
 
   status UserStatus @default(Pending)
 
-  // Backrefs
-  files      File[]
-  sessions   Session[]
-  accounts   Account[]
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Backref
   userSkills UserSkill[]
 }
 
@@ -106,16 +124,18 @@ model Skill {
   name String
 
   // Metadata
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Backref
   userSkills UserSkill[]
 }
 
 model UserSkill {
   id String @id @default(uuid())
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cvId String
+  cv   Cv     @relation(fields: [cvId], references: [id], onDelete: Cascade)
 
   skillId String
   skill   Skill  @relation(fields: [skillId], references: [id], onDelete: Cascade)
