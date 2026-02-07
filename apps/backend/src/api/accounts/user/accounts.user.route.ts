@@ -103,7 +103,17 @@ export const accounts = new Elysia({ prefix: '/accounts' })
         });
       }
 
-      return res;
+      const user = await userAccountsService.getUser(t, res.session.userId);
+
+      return {
+        session: res.session,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar,
+        },
+      };
     },
     {
       response: {

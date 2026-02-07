@@ -24,6 +24,25 @@ export const userAccountsService = {
     return profile;
   },
 
+  async getUser(t: TranslationFn, sessionId: string) {
+    const session = await prisma.user.findUnique({
+      where: { id: sessionId },
+      include: { avatar: true },
+    });
+
+    if (!session) {
+      throw new HttpError({
+        statusCode: 404,
+        message: t({
+          en: 'Session not found',
+          ar: 'جلست غير موجودة',
+        }),
+      });
+    }
+
+    return session;
+  },
+
   async updateProfile(
     userId: string,
     data: typeof UserAccountsModel.UserAccountsProfileUpdateBody.static,

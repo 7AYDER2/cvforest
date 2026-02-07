@@ -73,7 +73,9 @@
   "header": {
     "courses": "Courses",
     "plans": "Plans",
+    "profile": "Profile",
     "signIn": "Sign In",
+    "signOut": "Sign Out",
     "signUp": "Sign Up",
     "uploadCv": "Upload CV"
   },

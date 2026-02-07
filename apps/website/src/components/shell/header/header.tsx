@@ -5,6 +5,7 @@ import { IconLogin, IconUpload } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/components/link/link';
 import type { SessionResponseBody } from '@/features/accounts/types';
+import { HeaderUserButton } from './header-user-button';
 import cls from './styles.module.css';
 
 interface HeaderProps {
@@ -37,6 +38,7 @@ export function Header({ session }: HeaderProps) {
               >
                 {t('header.uploadCv')}
               </Button>
+              <HeaderUserButton session={session} />
             </Group>
           ) : (
             <>

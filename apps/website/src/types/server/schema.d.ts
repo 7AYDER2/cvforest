@@ -1097,6 +1097,10 @@ export interface components {
         /** Format: email */
         email: string;
         role?: string | null;
+        avatar: null | {
+          id: string;
+          key: string;
+        };
       };
     };
     UserAccountsProfileResponse: {

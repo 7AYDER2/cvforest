@@ -1,4 +1,5 @@
 import { Gender } from '@db/gen/prisma/client';
+import { __nullable__ } from '@db/gen/prismabox/__nullable__';
 import { AccountPlain } from '@db/gen/prismabox/Account';
 import { FilePlain } from '@db/gen/prismabox/File';
 import { SessionPlain } from '@db/gen/prismabox/Session';
@@ -47,6 +48,7 @@ export const UserAccountsModel = {
       name: t.String(),
       email: t.String({ format: 'email' }),
       role: t.Optional(t.Union([t.String(), t.Null()])),
+      avatar: __nullable__(t.Object({ id: t.String(), key: t.String() })),
     }),
   }),
 
