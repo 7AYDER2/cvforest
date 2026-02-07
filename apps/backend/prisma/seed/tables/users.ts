@@ -6,6 +6,8 @@ import {
   UserStatus,
   WorkLocationType,
 } from '@db/gen/prisma/client';
+import { bios } from '@db/seed/data/bios';
+import { jobTitles } from '@db/seed/data/jobTitles';
 import {
   genFullName,
   logSeedTable,
@@ -34,8 +36,8 @@ export async function seedUsers(prisma: PrismaClient) {
           : 'Approved',
 
         gender: dunna.basic.choice(Object.values(Gender)),
-        bio: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-        jobTitle: 'Software Engineer',
+        bio: dunna.basic.choice(bios),
+        jobTitle: dunna.basic.choice(jobTitles),
         avatarId: dunna.basic.choice(files).id,
         experienceInYears: dunna.basic.integer({ min: 0, max: 10 }),
         expectedSalaryMin: dunna.basic.integer({ min: 0, max: 100000 }),
