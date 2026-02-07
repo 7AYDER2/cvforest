@@ -4,25 +4,25 @@ import { zod4Resolver } from 'mantine-form-zod-resolver';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 import { phoneNumberZodValidator } from '@/utils/schemas';
-import type { RegisterRequestBody } from '../types';
+import type { SignUpRequestBody } from '../types';
 
 const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
 
-export function useJoinForm() {
+export function useSignUpForm() {
   const t = useTranslations();
 
   const schema = z
     .object({
-      name: z.string().min(1, { message: t('join.nameRequired') }),
-      email: z.email({ message: t('join.emailInvalid') }),
+      name: z.string().min(1, { error: t('signup.nameRequired') }),
+      email: z.email({ error: t('signup.emailInvalid') }),
       password: z
         .string()
-        .min(8, { message: t('join.passwordInvalid') })
-        .max(128, { message: t('join.passwordInvalid') })
-        .regex(strongPasswordRegex, { message: t('join.passwordInvalid') }),
+        .min(8, { error: t('signup.passwordInvalid') })
+        .max(128, { error: t('signup.passwordInvalid') })
+        .regex(strongPasswordRegex, { error: t('signup.passwordInvalid') }),
       confirmPassword: z
         .string()
-        .min(1, { message: t('join.confirmPasswordMismatch') }),
+        .min(1, { error: t('signup.confirmPasswordMismatch') }),
       phoneNumber: z
         .union([z.literal(''), phoneNumberZodValidator])
         .optional()
@@ -30,12 +30,12 @@ export function useJoinForm() {
       gender: z.enum([Gender.Male, Gender.Female]).optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      message: t('join.confirmPasswordMismatch'),
+      error: t('signup.confirmPasswordMismatch'),
       path: ['confirmPassword'],
     });
 
   type FormValues = z.infer<typeof schema>;
-  type FormValuesToBody = (values: FormValues) => RegisterRequestBody;
+  type FormValuesToBody = (values: FormValues) => SignUpRequestBody;
 
   return useForm<FormValues, FormValuesToBody>({
     mode: 'uncontrolled',
@@ -48,7 +48,7 @@ export function useJoinForm() {
       phoneNumber: '',
       gender: undefined,
     },
-    transformValues: (values): RegisterRequestBody => {
+    transformValues: (values): SignUpRequestBody => {
       const phone = values.phoneNumber?.replaceAll(' ', '')?.trim();
       return {
         name: values.name,

@@ -1,3 +1,17 @@
-import type { GetRequestBody } from '@/types/server/helpers';
+import type { GetRequestBody, GetResponseBody } from '@/types/server/helpers';
 
-export type LoginRequestBody = GetRequestBody<'/user/accounts/login', 'post'>;
+export type SignInRequestBody = GetRequestBody<
+  '/user/accounts/sign-in',
+  'post'
+>;
+
+export type SignUpRequestBody = GetRequestBody<
+  '/user/accounts/sign-up',
+  'post'
+>;
+
+export type SignUpResponseBody = GetResponseBody<
+  '/user/accounts/sign-up',
+  'post',
+  201
+>;

@@ -25,7 +25,7 @@ import { useSignInForm } from '@/features/accounts/hooks/use-sign-in-form';
 import { useSignInMut } from '@/features/accounts/hooks/use-sign-in-mut';
 import { useSetLocale } from '@/hooks/use-set-locale';
 
-export function Login({ locale }: { locale: string }) {
+export function SignIn({ locale }: { locale: string }) {
   const t = useTranslations();
   const form = useSignInForm();
   const signInMut = useSignInMut();
@@ -45,7 +45,7 @@ export function Login({ locale }: { locale: string }) {
         bg="var(--mantine-primary-color-1)"
       >
         <Center h="100%" p="xl">
-          <Title>{t('login.logo')}</Title>
+          <Title>{t('signIn.logo')}</Title>
         </Center>
       </Box>
 
@@ -55,7 +55,7 @@ export function Login({ locale }: { locale: string }) {
       >
         <Stack w="100%" maw={{ base: '100%', sm: 400, md: 500 }} gap="md">
           <Title c="nature.7" order={1} size="h1" ta="center">
-            {t('login.loginTitle')}
+            {t('signIn.signInTitle')}
           </Title>
 
           <Paper
@@ -70,14 +70,14 @@ export function Login({ locale }: { locale: string }) {
                   <TextInput
                     required
                     autoCapitalize="off"
-                    label={t('login.email')}
+                    label={t('signIn.email')}
                     leftSection={<IconUser size={18} />}
                     {...form.getInputProps('email')}
                   />
 
                   <PasswordInput
                     required
-                    label={t('login.password')}
+                    label={t('signIn.password')}
                     leftSection={<IconKey size={18} />}
                     {...form.getInputProps('password')}
                   />
@@ -89,7 +89,7 @@ export function Login({ locale }: { locale: string }) {
                     loading={signInMut.isPending}
                     leftSection={<IconLogin size={18} />}
                   >
-                    {t('login.login')}
+                    {t('signIn.signIn')}
                   </Button>
                 </Stack>
               </form>

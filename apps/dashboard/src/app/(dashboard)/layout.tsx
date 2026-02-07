@@ -15,11 +15,11 @@ export default async function DashboardLayout({
     .get('accounts/session')
     .json<SessionResponseBody>()
     .catch(() => {
-      return redirect('/accounts/login');
+      return redirect('/accounts/sign-in');
     });
 
   if (!session || session.user.role !== 'admin') {
-    return redirect('/accounts/login');
+    return redirect('/accounts/sign-in');
   }
 
   return <Shell>{children}</Shell>;

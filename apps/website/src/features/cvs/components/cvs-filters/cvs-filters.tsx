@@ -9,9 +9,9 @@ import {
   IconTools,
 } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
+import { useGovernoratesQuery } from '@/features/cvs/hooks/use-governorates-query';
+import { useSkillsQuery } from '@/features/cvs/hooks/use-skills-query';
 import type { CvListQuery } from '@/features/home/types';
-import { useGovernoratesQuery } from '@/features/join/hooks/use-governorates-query';
-import { useSkillsQuery } from '@/features/join/hooks/use-skills-query';
 import {
   translateAvailabilityType,
   translateWorkLocationType,

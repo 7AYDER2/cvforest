@@ -20,8 +20,8 @@ export function VerifyEmailSuccess({ error }: VerifyEmailSuccessProps) {
         ) : (
           <Text>{t('auth.emailVerifiedSuccess')}</Text>
         )}
-        <Button component={Link} href="/login" variant="light">
-          {t('login.login')}
+        <Button component={Link} href="/sign-in" variant="light">
+          {t('signIn.signIn')}
         </Button>
       </Stack>
     </Container>

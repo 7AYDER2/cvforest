@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useKy } from '@/hooks/use-ky';
-import type { LoginRequestBody } from '../types';
+import type { SignInRequestBody } from '../types';
 
 export function useSignInMut() {
   const ky = useKy();
@@ -10,8 +10,8 @@ export function useSignInMut() {
   return useMutation({
     onSuccess: () => router.push('/'),
 
-    mutationFn: async (body: LoginRequestBody) => {
-      await ky.post('accounts/login', { json: body });
+    mutationFn: async (body: SignInRequestBody) => {
+      await ky.post('accounts/sign-in', { json: body });
     },
   });
 }

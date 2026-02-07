@@ -15,7 +15,7 @@ import { useTranslations } from 'next-intl';
 import { useSignInForm } from '../../hooks/use-sign-in-form';
 import { useSignInMut } from '../../hooks/use-sign-in-mut';
 
-export function Login() {
+export function SignIn() {
   const t = useTranslations();
   const form = useSignInForm();
   const signInMut = useSignInMut();
@@ -28,9 +28,9 @@ export function Login() {
     <Container size="xs" pt={200}>
       <Stack gap="lg">
         <div>
-          <Title order={1}>{t('login.pageTitle')}</Title>
+          <Title order={1}>{t('signIn.pageTitle')}</Title>
           <Text c="dimmed" size="lg">
-            {t('login.pageDescription')}
+            {t('signIn.pageDescription')}
           </Text>
         </div>
 
@@ -40,15 +40,15 @@ export function Login() {
               <TextInput
                 required
                 autoCapitalize="off"
-                label={t('login.email')}
-                placeholder={t('join.emailPlaceholder')}
+                label={t('signIn.email')}
+                placeholder={t('signup.emailPlaceholder')}
                 leftSection={<IconUser size={18} />}
                 {...form.getInputProps('email')}
               />
 
               <PasswordInput
                 required
-                label={t('login.password')}
+                label={t('signIn.password')}
                 placeholder={t('auth.passwordPlaceholder')}
                 leftSection={<IconKey size={18} />}
                 {...form.getInputProps('password')}
@@ -61,7 +61,7 @@ export function Login() {
                 loading={signInMut.isPending}
                 leftSection={<IconLogin size={18} />}
               >
-                {t('login.login')}
+                {t('signIn.signIn')}
               </Button>
             </Stack>
           </form>

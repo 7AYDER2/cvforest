@@ -34,9 +34,9 @@ export const userAccountsService = {
     });
   },
 
-  async registerUser(
+  async signUpUser(
     t: TranslationFn,
-    data: typeof UserAccountsModel.UserAccountsRegisterBody.static,
+    data: typeof UserAccountsModel.UserAccountsSignUpBody.static,
   ) {
     // Check if email already exists
     const existingUser = await prisma.user.findUnique({

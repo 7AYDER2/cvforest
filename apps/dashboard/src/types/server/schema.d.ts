@@ -308,7 +308,7 @@ export interface paths {
     patch: operations['patchAdminCvsByIdReject'];
     trace?: never;
   };
-  '/user/accounts/register': {
+  '/user/accounts/sign-up': {
     parameters: {
       query?: never;
       header?: never;
@@ -317,14 +317,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['postUserAccountsRegister'];
+    post: operations['postUserAccountsSign-up'];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/user/accounts/login': {
+  '/user/accounts/sign-in': {
     parameters: {
       query?: never;
       header?: never;
@@ -333,7 +333,23 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['postUserAccountsLogin'];
+    post: operations['postUserAccountsSign-in'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/user/accounts/verify-email': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['getUserAccountsVerify-email'];
+    put?: never;
+    post?: never;
     delete?: never;
     options?: never;
     head?: never;
@@ -1039,38 +1055,21 @@ export interface components {
     AdminCvsRejectResponse: {
       message: string;
     };
-    UserAccountsRegisterBody: {
+    UserAccountsSignUpBody: {
       name: string;
       /** Format: email */
       email: string;
-      jobTitle: string;
-      experienceInYears: number;
-      expectedSalaryMin?: number;
-      expectedSalaryMax?: number;
-      /** @enum {string} */
-      expectedSalaryCurrency?: 'Iqd' | 'Usd';
-      /** @enum {string} */
-      availabilityType?: 'FullTime' | 'PartTime' | 'Freelance';
-      /** @enum {string} */
-      workLocationType?: 'OnSite' | 'Remote' | 'Hybrid';
-      bio?: string;
-      availableForHire?: boolean;
-      /** Format: uri */
-      githubUrl?: string;
-      /** Format: uri */
-      linkedinUrl?: string;
-      /** Format: uri */
-      portfolioUrl?: string;
       /** @description يجب ادخال رقم هاتف عراقي صحيح مثال +9647701234567 */
       phoneNumber?: string;
-      username?: string;
-      displayUsername?: string;
       /** @enum {string} */
       gender?: 'Male' | 'Female';
+      birthDate?: Record<string, never> | string | number;
       /** Format: uuid */
-      governorateId?: string;
+      avatarId?: string;
+      /** @description Minimum 8 characters, at least one lowercase letter, one uppercase letter, and one number */
+      password: string;
     };
-    UserAccountsRegisterResponse: {
+    UserAccountsSignUpResponse: {
       message: string;
       user: {
         id: string;
@@ -1079,12 +1078,12 @@ export interface components {
         email: string;
       };
     };
-    UserAccountsLoginBody: {
+    UserAccountsSignInBody: {
       /** Format: email */
       email: string;
       password: string;
     };
-    UserAccountsLoginResponse: unknown;
+    UserAccountsSignInResponse: unknown;
     UserAccountsSessionResponse: {
       session: {
         id: string;
@@ -1196,6 +1195,9 @@ export interface components {
     };
     UserAccountsRevokeOtherSessionsResponse: {
       message: string;
+    };
+    VerifyEmailQuery: {
+      token: string;
     };
     UserGovernoratesListResponse: {
       id: string;
@@ -2394,7 +2396,7 @@ export interface operations {
       };
     };
   };
-  postUserAccountsRegister: {
+  'postUserAccountsSign-up': {
     parameters: {
       query?: never;
       header?: never;
@@ -2403,9 +2405,9 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': components['schemas']['UserAccountsRegisterBody'];
-        'application/x-www-form-urlencoded': components['schemas']['UserAccountsRegisterBody'];
-        'multipart/form-data': components['schemas']['UserAccountsRegisterBody'];
+        'application/json': components['schemas']['UserAccountsSignUpBody'];
+        'application/x-www-form-urlencoded': components['schemas']['UserAccountsSignUpBody'];
+        'multipart/form-data': components['schemas']['UserAccountsSignUpBody'];
       };
     };
     responses: {
@@ -2415,7 +2417,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['UserAccountsRegisterResponse'];
+          'application/json': components['schemas']['UserAccountsSignUpResponse'];
         };
       };
       /** @description Response for status 400 */
@@ -2438,7 +2440,7 @@ export interface operations {
       };
     };
   };
-  postUserAccountsLogin: {
+  'postUserAccountsSign-in': {
     parameters: {
       query?: never;
       header?: never;
@@ -2447,9 +2449,9 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': components['schemas']['UserAccountsLoginBody'];
-        'application/x-www-form-urlencoded': components['schemas']['UserAccountsLoginBody'];
-        'multipart/form-data': components['schemas']['UserAccountsLoginBody'];
+        'application/json': components['schemas']['UserAccountsSignInBody'];
+        'application/x-www-form-urlencoded': components['schemas']['UserAccountsSignInBody'];
+        'multipart/form-data': components['schemas']['UserAccountsSignInBody'];
       };
     };
     responses: {
@@ -2459,9 +2461,40 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['UserAccountsLoginResponse'];
+          'application/json': components['schemas']['UserAccountsSignInResponse'];
         };
       };
+      /** @description Response for status 400 */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['BadRequestError'];
+        };
+      };
+      /** @description Response for status 422 */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['FieldsValidationError'];
+        };
+      };
+    };
+  };
+  'getUserAccountsVerify-email': {
+    parameters: {
+      query: {
+        token: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
       /** @description Response for status 400 */
       400: {
         headers: {

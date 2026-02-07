@@ -8,8 +8,8 @@ import type { TranslationFn } from '@/types';
 
 export function translateGender(t: TranslationFn, gender: Gender) {
   const map: Record<Gender, string> = {
-    Male: t('profiles.male'),
-    Female: t('profiles.female'),
+    Male: t('gender.male'),
+    Female: t('gender.female'),
   };
 
   return map[gender];
@@ -20,9 +20,9 @@ export function translateAvailabilityType(
   availability: AvailabilityType,
 ) {
   const map: Record<AvailabilityType, string> = {
-    FullTime: t('join.availabilityFullTime'),
-    PartTime: t('join.availabilityPartTime'),
-    Freelance: t('join.availabilityFreelance'),
+    FullTime: t('availability.fullTime'),
+    PartTime: t('availability.partTime'),
+    Freelance: t('availability.freelance'),
   };
 
   return map[availability];
@@ -33,9 +33,9 @@ export function translateWorkLocationType(
   workLocation: WorkLocationType,
 ) {
   const map: Record<WorkLocationType, string> = {
-    OnSite: t('join.workLocationOnSite'),
-    Remote: t('join.workLocationRemote'),
-    Hybrid: t('join.workLocationHybrid'),
+    OnSite: t('workLocation.onSite'),
+    Remote: t('workLocation.remote'),
+    Hybrid: t('workLocation.hybrid'),
   };
 
   return map[workLocation];
@@ -43,8 +43,8 @@ export function translateWorkLocationType(
 
 export function translateCurrency(t: TranslationFn, currency: Currency) {
   const map: Record<Currency, string> = {
-    Iqd: t('join.currencyIQD'),
-    Usd: t('join.currencyUSD'),
+    Iqd: t('currency.iqd'),
+    Usd: t('currency.usd'),
   };
 
   return map[currency];

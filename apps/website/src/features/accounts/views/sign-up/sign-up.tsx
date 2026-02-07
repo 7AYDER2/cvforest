@@ -1,25 +1,25 @@
 import { Container, Stack, Text, Title } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import { Header } from '@/components/header';
-import { JoinForm } from '../../components/join-form';
+import { SignUpForm } from '../../components/sign-up-form';
 
-export function Join() {
+export function SignUp() {
   const t = useTranslations();
 
   return (
-    <Container size="lg">
+    <div>
       <Header />
 
-      <Stack gap="lg">
+      <Container size="xs" component={Stack} mt="md">
         <div>
-          <Title order={1}>{t('join.pageTitle')}</Title>
+          <Title order={1}>{t('signup.pageTitle')}</Title>
           <Text c="dimmed" size="lg">
-            {t('join.pageDescription')}
+            {t('signup.pageDescription')}
           </Text>
         </div>
 
-        <JoinForm />
-      </Stack>
-    </Container>
+        <SignUpForm />
+      </Container>
+    </div>
   );
 }

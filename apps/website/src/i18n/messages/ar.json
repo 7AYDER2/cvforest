@@ -10,12 +10,14 @@
     "emailVerifiedSuccess": "تم التحقق من بريدك الإلكتروني. يمكنك الآن تسجيل الدخول.",
     "invalidCode": "رمز التحقق غير صالح أو منتهي الصلاحية",
     "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
-    "passwordSetSuccess": "تم تعيين كلمة المرور بنجاح",
-    "setPassword": "تعيين كلمة المرور",
-    "verificationCodeSent": "لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك الإلكتروني",
     "verificationLinkInstructions": "انقر على الرابط في البريد للتحقق من حسابك.",
     "verificationLinkSent": "أرسلنا رابط التحقق إلى",
     "verifyEmail": "تحقق من بريدك الإلكتروني"
+  },
+  "availability": {
+    "freelance": "عمل حر",
+    "fullTime": "دوام كامل",
+    "partTime": "دوام جزئي"
   },
   "browse": {
     "availabilityPlaceholder": "نوع التوفر",
@@ -34,6 +36,10 @@
     "areYouSureAboutThisAction": "هل أنت متأكد أنك تريد القيام بهذا الإجراء؟",
     "cancel": "إلغاء",
     "confirm": "تأكيد"
+  },
+  "currency": {
+    "iqd": "دينار عراقي",
+    "usd": "دولار أمريكي"
   },
   "cvs": {
     "availableForHire": "متاح للتوظيف",
@@ -60,10 +66,14 @@
     "quickLinks": "روابط سريعة",
     "termsOfService": "شروط الخدمة"
   },
+  "gender": {
+    "female": "أنثى",
+    "male": "ذكر"
+  },
   "header": {
     "courses": "الدورات",
-    "joinUs": "انضم إلينا",
-    "plans": "الخطط"
+    "plans": "الخطط",
+    "signUp": "التسجيل"
   },
   "hero": {
     "ctaDeveloper": "ارفع سيرتك الذاتية",
@@ -71,88 +81,6 @@
     "description": "للمطورين: اعرض مهاراتك وتحكم في بياناتك. للموظفين: احصل على مواهب عالية الجودة مع ملفات منظمة.",
     "subtitle": "منصة تحترم الخصوصية",
     "title": "اربط المواهب بالفرص"
-  },
-  "join": {
-    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
-    "availabilityFreelance": "عمل حر",
-    "availabilityFullTime": "دوام كامل",
-    "availabilityPartTime": "دوام جزئي",
-    "availabilityPlaceholder": "اختر توفرك",
-    "availabilityType": "نوع التوفر",
-    "availableForHire": "متاح للتوظيف",
-    "bio": "نبذة / ملخص",
-    "bioPlaceholder": "أخبرنا عن خبرتك ومهاراتك وما تبحث عنه...",
-    "currency": "العملة",
-    "currencyIQD": "الدينار العراقي (IQD)",
-    "currencyUSD": "الدولار الأمريكي (USD)",
-    "email": "البريد الإلكتروني",
-    "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح",
-    "emailPlaceholder": "john@example.com",
-    "expectedSalaryMax": "الراتب المتوقع الأقصى",
-    "expectedSalaryMin": "الراتب المتوقع الأدنى",
-    "experienceInYears": "سنوات الخبرة",
-    "experiencePlaceholder": "3",
-    "experienceRequired": "سنوات الخبرة مطلوبة",
-    "female": "أنثى",
-    "gender": "الجنس",
-    "genderRequired": "الجنس مطلوب",
-    "githubPlaceholder": "https://github.com/yourusername",
-    "githubUrl": "رابط GitHub",
-    "githubUrlInvalid": "يرجى إدخال رابط صحيح",
-    "governorate": "المحافظة",
-    "governoratePlaceholder": "اختر محافظتك",
-    "governorateRequired": "المحافظة مطلوبة",
-    "jobTitle": "المسمى الوظيفي",
-    "jobTitlePlaceholder": "Full Stack Developer",
-    "jobTitleRequired": "المسمى الوظيفي مطلوب",
-    "linkedinPlaceholder": "https://linkedin.com/in/yourprofile",
-    "linkedinUrl": "رابط LinkedIn",
-    "linkedinUrlInvalid": "يرجى إدخال رابط صحيح",
-    "male": "ذكر",
-    "name": "الاسم الكامل",
-    "namePlaceholder": "John Doe",
-    "nameRequired": "الاسم مطلوب",
-    "password": "كلمة المرور",
-    "passwordPlaceholder": "8 أحرف على الأقل، حرف كبير، حرف صغير، ورقم",
-    "passwordRequired": "كلمة المرور مطلوبة",
-    "passwordInvalid": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل مع حرف كبير وحرف صغير ورقم",
-    "confirmPassword": "تأكيد كلمة المرور",
-    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
-    "confirmPasswordMismatch": "كلمتا المرور غير متطابقتين",
-    "pageDescription": "أنشئ ملفك المهني واجذب انتباه أصحاب العمل",
-    "pageTitle": "انضم إلى CV Forest",
-    "personalInfoDescription": "أخبرنا عن نفسك",
-    "personalInfoSection": "المعلومات الشخصية",
-    "phoneNumber": "رقم الهاتف",
-    "phoneNumberPlaceholder": "+964 770 123 4567",
-    "portfolioPlaceholder": "https://yourportfolio.com",
-    "portfolioUrl": "رابط المعرض",
-    "portfolioUrlInvalid": "يرجى إدخال رابط صحيح",
-    "professionalInfoDescription": "خبرتك العملية وتفاصيل مسيرتك المهنية",
-    "professionalInfoSection": "المعلومات المهنية",
-    "registrationSuccess": "تم التسجيل بنجاح! تحقق من بريدك الإلكتروني للحصول على رابط التحقق.",
-    "salaryPlaceholder": "1000",
-    "salaryValidation": "يجب أن يكون الراتب الأقصى أكبر من أو يساوي الراتب الأدنى",
-    "signIn": "تسجيل الدخول",
-    "skills": "المهارات والتقنيات",
-    "skillsDescription": "ما هي التقنيات والأدوات التي تعمل بها؟",
-    "skillsPlaceholder": "ابحث واختر مهاراتك",
-    "skillsSection": "المهارات والتقنيات",
-    "socialLinksDescription": "شارك وجودك على الإنترنت (اختياري لكن موصى به)",
-    "socialLinksSection": "روابط التواصل والمعرض",
-    "submitButton": "إنشاء حساب",
-    "workLocationHybrid": "هجين",
-    "workLocationOnSite": "في الموقع",
-    "workLocationPlaceholder": "اختر تفضيلك",
-    "workLocationRemote": "عن بُعد",
-    "workLocationType": "تفضيل موقع العمل"
-  },
-  "login": {
-    "email": "البريد الإلكتروني",
-    "login": "تسجيل الدخول",
-    "pageDescription": "قم بتسجيل الدخول للوصول إلى حسابك",
-    "pageTitle": "تسجيل الدخول",
-    "password": "كلمة المرور"
   },
   "meta": {
     "description": "CV Forest | منصة للعثور على السير الذاتية",
@@ -194,6 +122,38 @@
     "revokeSuccess": "تم إلغاء الجلسة بنجاح",
     "userAgent": "مستخدم الويب"
   },
+  "signIn": {
+    "email": "البريد الإلكتروني",
+    "pageDescription": "قم بتسجيل الدخول للوصول إلى حسابك",
+    "pageTitle": "تسجيل الدخول",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول"
+  },
+  "signup": {
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordMismatch": "كلمات المرور غير متطابقة",
+    "confirmPasswordPlaceholder": "أكد كلمة المرور الخاصة بك",
+    "email": "البريد الإلكتروني",
+    "emailInvalid": "عنوان بريد إلكتروني غير صالح",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "gender": "الجنس",
+    "name": "الاسم",
+    "namePlaceholder": "أدخل اسمك",
+    "nameRequired": "الاسم مطلوب",
+    "pageDescription": "أنشئ حسابك للبدء",
+    "pageTitle": "التسجيل",
+    "password": "كلمة المرور",
+    "passwordInvalid": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتحتوي على أحرف كبيرة وصغيرة ورقم",
+    "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+    "personalInfoDescription": "أدخل معلوماتك الشخصية",
+    "personalInfoSection": "المعلومات الشخصية",
+    "phoneNumber": "رقم الهاتف",
+    "phoneNumberPlaceholder": "أدخل رقم هاتفك",
+    "registrationSuccess": "تم التسجيل بنجاح! يرجى التحقق من بريدك الإلكتروني للتحقق من حسابك.",
+    "signIn": "تسجيل الدخول",
+    "submitButton": "التسجيل"
+  },
   "userDetails": {
     "about": "نبذة",
     "activeDays": "أيام النشاط",
@@ -209,6 +169,15 @@
     "viewOnGithub": "عرض على GitHub"
   },
   "users": {
-    "email": "البريد الإلكتروني"
+    "availabilityType": "نوع التوفر",
+    "email": "البريد الإلكتروني",
+    "experienceInYears": "الخبرة (بالسنوات)",
+    "governorate": "المحافظة",
+    "workLocationType": "نوع موقع العمل"
+  },
+  "workLocation": {
+    "hybrid": "مختلط",
+    "onSite": "حضوري",
+    "remote": "عن بعد"
   }
 }

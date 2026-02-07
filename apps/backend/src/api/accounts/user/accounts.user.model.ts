@@ -7,8 +7,8 @@ import { t } from 'elysia';
 import { IraqiPhoneNumberSchema, StrongPasswordSchema } from '@/utils/schemas';
 
 export const UserAccountsModel = {
-  // Register
-  UserAccountsRegisterBody: t.Object({
+  // Sign up
+  UserAccountsSignUpBody: t.Object({
     // Required fields
     name: t.String(),
     email: t.String({ format: 'email' }),
@@ -18,7 +18,7 @@ export const UserAccountsModel = {
     avatarId: t.Optional(t.String({ format: 'uuid' })),
     password: StrongPasswordSchema,
   }),
-  UserAccountsRegisterResponse: t.Object({
+  UserAccountsSignUpResponse: t.Object({
     message: t.String(),
     user: t.Object({
       id: t.String(),
@@ -27,12 +27,12 @@ export const UserAccountsModel = {
     }),
   }),
 
-  // Login
-  UserAccountsLoginBody: t.Object({
+  // Sign in
+  UserAccountsSignInBody: t.Object({
     email: t.String({ format: 'email' }),
     password: t.String(),
   }),
-  UserAccountsLoginResponse: t.Any(),
+  UserAccountsSignInResponse: t.Any(),
 
   // Session
   UserAccountsSessionResponse: t.Object({

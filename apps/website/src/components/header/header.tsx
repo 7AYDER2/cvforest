@@ -21,12 +21,12 @@ export async function Header() {
           </Group>
 
           <Button
-            href="/join"
+            href="/sign-up"
             variant="light"
             component={Link}
             leftSection={<IconLogin size={18} />}
           >
-            {t('header.joinUs')}
+            {t('header.signUp')}
           </Button>
         </Group>
       </Group>

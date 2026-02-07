@@ -12,9 +12,9 @@ export const accounts = new Elysia({ prefix: '/accounts' })
   .model(UserAccountsModel)
 
   .post(
-    '/register',
+    '/sign-up',
     async ({ body, t }) => {
-      const result = await userAccountsService.registerUser(t, body);
+      const result = await userAccountsService.signUpUser(t, body);
 
       return {
         message: t({
@@ -29,15 +29,15 @@ export const accounts = new Elysia({ prefix: '/accounts' })
       };
     },
     {
-      body: 'UserAccountsRegisterBody',
+      body: 'UserAccountsSignUpBody',
       response: {
-        201: 'UserAccountsRegisterResponse',
+        201: 'UserAccountsSignUpResponse',
       },
     },
   )
 
   .post(
-    '/login',
+    '/sign-in',
     async ({ body: { email, password } }) => {
       const res = await auth.api.signInEmail({
         asResponse: true,
@@ -47,9 +47,9 @@ export const accounts = new Elysia({ prefix: '/accounts' })
       return res;
     },
     {
-      body: 'UserAccountsLoginBody',
+      body: 'UserAccountsSignInBody',
       response: {
-        200: 'UserAccountsLoginResponse',
+        200: 'UserAccountsSignInResponse',
       },
     },
   )

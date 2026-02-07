@@ -118,7 +118,7 @@ export function UserSidebar({ user }: UserSidebarProps) {
           {user.user.governorate && (
             <InfoRow
               icon={IconMapPin}
-              label={t('join.governorate')}
+              label={t('users.governorate')}
               value={user.user.governorate.name}
             />
           )}
@@ -126,7 +126,7 @@ export function UserSidebar({ user }: UserSidebarProps) {
           {user.experienceInYears != null && (
             <InfoRow
               icon={IconClock}
-              label={t('join.experienceInYears')}
+              label={t('users.experienceInYears')}
               value={t('cvs.yearsExperience', {
                 number: user.experienceInYears,
               })}
@@ -136,7 +136,7 @@ export function UserSidebar({ user }: UserSidebarProps) {
           {user.availabilityType && (
             <InfoRow
               icon={IconBriefcase}
-              label={t('join.availabilityType')}
+              label={t('users.availabilityType')}
               value={translateAvailabilityType(t, user.availabilityType)}
             />
           )}
@@ -144,7 +144,7 @@ export function UserSidebar({ user }: UserSidebarProps) {
           {user.workLocationType && (
             <InfoRow
               icon={IconWorld}
-              label={t('join.workLocationType')}
+              label={t('users.workLocationType')}
               value={translateWorkLocationType(t, user.workLocationType)}
             />
           )}
