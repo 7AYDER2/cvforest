@@ -15,6 +15,7 @@ import {
   username,
 } from 'better-auth/plugins';
 import { env } from '@/env';
+import { sendEmail } from './email/helper';
 
 export const auth = betterAuth({
   basePath: '/',
@@ -92,11 +93,12 @@ export const auth = betterAuth({
       otpLength: 8,
 
       sendVerificationOTP: async ({ email, otp, type }) => {
-        console.log('======================== OTP =========================');
-        console.log(otp);
-        console.log(type);
-        console.log(email);
-        console.log('======================== OTP =========================');
+        await sendEmail({
+          to: email,
+          subject: 'CV Forest - Verification OTP',
+          text: `Your verification OTP is ${otp} for ${type}`,
+          html: `<p>Your verification OTP is <b>${otp}</b> for <b>${type}</b></p>`,
+        });
       },
     }),
 
