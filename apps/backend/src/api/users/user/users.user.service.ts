@@ -1,18 +1,58 @@
 import { prisma } from '@db/client';
-import type { Prisma } from '@db/gen/prisma/client';
+import type {
+  AvailabilityType,
+  Prisma,
+  WorkLocationType,
+} from '@db/gen/prisma/client';
 import { parsePaginationProps, parseSortingProps } from '@/utils/helpers';
 import type { UserUsersModel } from './users.user.model';
 
 export const userUsersService = {
   async list(query: typeof UserUsersModel.UserUsersListQuery.static) {
+    const skillIds = query.skillIds
+      ? Array.isArray(query.skillIds)
+        ? query.skillIds
+        : [query.skillIds]
+      : undefined;
+
     const where: Prisma.UserWhereInput = {
       status: 'Approved',
       availableForHire: true,
+
       ...(query.search && {
         OR: [
           { name: { contains: query.search, mode: 'insensitive' } },
           { jobTitle: { contains: query.search, mode: 'insensitive' } },
         ],
+      }),
+
+      ...(query.governorateId && {
+        governorateId: query.governorateId,
+      }),
+
+      ...(skillIds && {
+        userSkills: { some: { skillId: { in: skillIds } } },
+      }),
+
+      ...(query.availabilityType && {
+        availabilityType: query.availabilityType as AvailabilityType,
+      }),
+
+      ...(query.workLocationType && {
+        workLocationType: query.workLocationType as WorkLocationType,
+      }),
+
+      ...(query.experienceMin !== undefined && {
+        experienceInYears: { gte: query.experienceMin },
+      }),
+
+      ...(query.experienceMax !== undefined && {
+        experienceInYears: {
+          ...(query.experienceMin !== undefined && {
+            gte: query.experienceMin,
+          }),
+          lte: query.experienceMax,
+        },
       }),
     };
 
@@ -21,6 +61,7 @@ export const userUsersService = {
     const data = await prisma.user.findMany({
       ...parsePaginationProps(query),
       ...parseSortingProps(query),
+
       where,
       include: {
         avatar: true,

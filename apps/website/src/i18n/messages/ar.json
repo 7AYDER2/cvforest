@@ -15,10 +15,16 @@
     "verifyEmail": "تحقق من بريدك الإلكتروني"
   },
   "browse": {
+    "availabilityPlaceholder": "نوع التوفر",
+    "experienceMax": "أقصى خبرة",
+    "experienceMin": "أدنى خبرة",
+    "governoratePlaceholder": "المحافظة",
     "noResults": "لم يتم العثور على ملفات تطابق بحثك",
     "searchPlaceholder": "ابحث بالاسم أو المسمى الوظيفي...",
+    "skillsPlaceholder": "المهارات",
     "subtitle": "استعرض جميع المحترفين المتاحين على FindCV",
-    "title": "تصفح المواهب"
+    "title": "تصفح المواهب",
+    "workLocationPlaceholder": "موقع العمل"
   },
   "confirmDelete": {
     "actionCannotBeUndone": "لا يمكن التراجع عن هذا الإجراء.",

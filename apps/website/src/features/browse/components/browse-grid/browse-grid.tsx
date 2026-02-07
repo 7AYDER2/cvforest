@@ -13,12 +13,21 @@ import { useTranslations } from 'next-intl';
 import { SearchInput } from '@/components/search-input';
 import { UserCard } from '@/features/home/components/user-card';
 import { useBrowseUsers } from '../../hooks/use-browse-users';
+import { BrowseFilters } from '../browse-filters';
 import cls from './styles.module.css';
 
 export function BrowseGrid() {
   const t = useTranslations();
-  const { users, search, setSearch, page, setPage, totalPages } =
-    useBrowseUsers();
+  const {
+    users,
+    search,
+    setSearch,
+    page,
+    setPage,
+    totalPages,
+    filters,
+    setFilters,
+  } = useBrowseUsers();
 
   return (
     <Stack gap="xl">
@@ -29,6 +38,8 @@ export function BrowseGrid() {
           placeholder={t('browse.searchPlaceholder')}
         />
       </Group>
+
+      <BrowseFilters filters={filters} setFilters={setFilters} />
 
       {users.isLoading ? (
         <SimpleGrid

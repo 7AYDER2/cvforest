@@ -15,10 +15,16 @@
     "verifyEmail": "Verify Your Email"
   },
   "browse": {
+    "availabilityPlaceholder": "Availability type",
+    "experienceMax": "Max experience",
+    "experienceMin": "Min experience",
+    "governoratePlaceholder": "Governorate",
     "noResults": "No profiles found matching your search",
     "searchPlaceholder": "Search by name or job title...",
+    "skillsPlaceholder": "Skills",
     "subtitle": "Explore all professionals available on FindCV",
-    "title": "Browse Talent"
+    "title": "Browse Talent",
+    "workLocationPlaceholder": "Work location"
   },
   "confirmDelete": {
     "actionCannotBeUndone": "This action cannot be undone.",

@@ -26,6 +26,12 @@ export const UserUsersModel = {
 
     // Filters
     search: t.Optional(t.String()),
+    governorateId: t.Optional(t.String()),
+    skillIds: t.Optional(t.Union([t.Array(t.String()), t.String()])),
+    availabilityType: t.Optional(t.String()),
+    workLocationType: t.Optional(t.String()),
+    experienceMin: t.Optional(t.Number()),
+    experienceMax: t.Optional(t.Number()),
   }),
   UserUsersListResponse: t.Object({
     total: t.Number(),

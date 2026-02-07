@@ -1160,6 +1160,12 @@ export interface components {
       /** @default desc */
       sortingDirection: string;
       search?: string;
+      governorateId?: string;
+      skillIds?: string[] | string;
+      availabilityType?: string;
+      workLocationType?: string;
+      experienceMin?: number;
+      experienceMax?: number;
     };
     UserUsersListResponse: {
       total: number;
@@ -2665,6 +2671,12 @@ export interface operations {
         sortingColumn: string;
         sortingDirection: string;
         search?: string;
+        governorateId?: string;
+        skillIds?: string[] | string;
+        availabilityType?: string;
+        workLocationType?: string;
+        experienceMin?: number;
+        experienceMax?: number;
       };
       header?: never;
       path?: never;
