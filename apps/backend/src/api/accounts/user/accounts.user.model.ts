@@ -1,15 +1,10 @@
-import {
-  AvailabilityType,
-  Currency,
-  Gender,
-  WorkLocationType,
-} from '@db/gen/prisma/client';
+import { Gender } from '@db/gen/prisma/client';
 import { AccountPlain } from '@db/gen/prismabox/Account';
 import { FilePlain } from '@db/gen/prismabox/File';
 import { SessionPlain } from '@db/gen/prismabox/Session';
 import { UserPlain } from '@db/gen/prismabox/User';
 import { t } from 'elysia';
-import { IraqiPhoneNumberSchema } from '@/utils/schemas';
+import { IraqiPhoneNumberSchema, StrongPasswordSchema } from '@/utils/schemas';
 
 export const UserAccountsModel = {
   // Register
@@ -17,29 +12,11 @@ export const UserAccountsModel = {
     // Required fields
     name: t.String(),
     email: t.String({ format: 'email' }),
-    jobTitle: t.String(),
-    experienceInYears: t.Number({ minimum: 0 }),
-
-    // Optional professional fields
-    expectedSalaryMin: t.Optional(t.Number({ minimum: 0 })),
-    expectedSalaryMax: t.Optional(t.Number({ minimum: 0 })),
-    expectedSalaryCurrency: t.Optional(t.Enum(Currency)),
-    availabilityType: t.Optional(t.Enum(AvailabilityType)),
-    workLocationType: t.Optional(t.Enum(WorkLocationType)),
-    bio: t.Optional(t.String()),
-    availableForHire: t.Optional(t.Boolean()),
-
-    // Optional social/portfolio fields
-    githubUrl: t.Optional(t.String({ format: 'uri' })),
-    linkedinUrl: t.Optional(t.String({ format: 'uri' })),
-    portfolioUrl: t.Optional(t.String({ format: 'uri' })),
-
-    // Optional profile fields
     phoneNumber: t.Optional(IraqiPhoneNumberSchema),
-    username: t.Optional(t.String()),
-    displayUsername: t.Optional(t.String()),
     gender: t.Optional(t.Enum(Gender)),
-    governorateId: t.Optional(t.String({ format: 'uuid' })),
+    birthDate: t.Optional(t.Date()),
+    avatarId: t.Optional(t.String({ format: 'uuid' })),
+    password: StrongPasswordSchema,
   }),
   UserAccountsRegisterResponse: t.Object({
     message: t.String(),

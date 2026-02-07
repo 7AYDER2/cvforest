@@ -14,3 +14,11 @@ export const IraqiPhoneNumberSchema = t.String({
   pattern: '^\\+9647\\d{9}$',
   description: 'يجب ادخال رقم هاتف عراقي صحيح مثال +9647701234567',
 });
+
+export const StrongPasswordSchema = t.String({
+  minLength: 8,
+  maxLength: 128,
+  pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$',
+  description:
+    'Minimum 8 characters, at least one lowercase letter, one uppercase letter, and one number',
+});
