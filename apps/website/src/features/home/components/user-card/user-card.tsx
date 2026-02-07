@@ -131,26 +131,28 @@ export function UserCard({ user }: { user: UserListItem }) {
         </Group>
 
         {/* Skills */}
-        {visibleSkills.length > 0 && (
-          <Group gap={6} justify="center" wrap="wrap">
-            {visibleSkills.map((skill) => (
-              <Badge
-                key={skill.id}
-                size="sm"
-                variant="light"
-                radius="xl"
-                className={cls.skillPill}
-              >
-                {skill.name}
-              </Badge>
-            ))}
-            {remainingCount > 0 && (
-              <Badge size="sm" variant="light" color="gray" radius="xl">
-                +{remainingCount}
-              </Badge>
-            )}
-          </Group>
-        )}
+        <Box className={cls.skillsRow}>
+          {visibleSkills.length > 0 && (
+            <Group gap={6} justify="center" wrap="wrap">
+              {visibleSkills.map((skill) => (
+                <Badge
+                  key={skill.id}
+                  size="sm"
+                  variant="light"
+                  radius="xl"
+                  className={cls.skillPill}
+                >
+                  {skill.name}
+                </Badge>
+              ))}
+              {remainingCount > 0 && (
+                <Badge size="sm" variant="light" color="gray" radius="xl">
+                  +{remainingCount}
+                </Badge>
+              )}
+            </Group>
+          )}
+        </Box>
 
         {/* Social links footer */}
         <Group w="100%" className={cls.socialFooter} justify="space-between">

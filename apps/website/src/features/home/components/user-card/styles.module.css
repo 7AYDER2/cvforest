@@ -118,6 +118,14 @@
   font-weight: 500;
 }
 
+/* ── Skills row (fixed height for consistent card layout) ── */
+.skillsRow {
+  min-height: 3.5rem; /* ~56px, fits 2 lines of sm badges */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ── Social footer ── */
 .socialFooter {
   border-top: 1px solid var(--mantine-color-gray-2);
