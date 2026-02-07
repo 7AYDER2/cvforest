@@ -13,5 +13,12 @@ module.exports = {
       args: 'start',
       cwd: './apps/dashboard',
     },
+
+    {
+      name: 'website',
+      script: 'bun',
+      args: 'start',
+      cwd: './apps/website',
+    },
   ],
 };
