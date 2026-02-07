@@ -14,6 +14,7 @@ import {
   IconBrandLinkedin,
   IconBriefcase,
   IconClock,
+  IconMail,
   IconMapPin,
   IconWorld,
 } from '@tabler/icons-react';
@@ -153,13 +154,8 @@ export function UserCard({ user }: { user: UserListItem }) {
         )}
 
         {/* Social links footer */}
-        {socialLinks.length > 0 && (
-          <Group
-            gap="xs"
-            justify="center"
-            className={cls.socialFooter}
-            w="100%"
-          >
+        <Group w="100%" className={cls.socialFooter} justify="space-between">
+          <Group gap="xs">
             {socialLinks.map((link) => (
               <Tooltip key={link.label} label={link.label} withArrow>
                 <ActionIcon
@@ -176,7 +172,19 @@ export function UserCard({ user }: { user: UserListItem }) {
               </Tooltip>
             ))}
           </Group>
-        )}
+
+          <Tooltip label={t('users.email')}>
+            <ActionIcon
+              size="sm"
+              color="gray"
+              component="a"
+              variant="subtle"
+              href={`mailto:${user.email}`}
+            >
+              <IconMail />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
       </Stack>
     </Paper>
   );
