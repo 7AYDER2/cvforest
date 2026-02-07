@@ -244,23 +244,39 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/admin/users/{id}/approve': {
+  '/admin/cvs/': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get?: never;
+    get: operations['getAdminCvs'];
     put?: never;
     post?: never;
     delete?: never;
     options?: never;
     head?: never;
-    patch: operations['patchAdminUsersByIdApprove'];
+    patch?: never;
     trace?: never;
   };
-  '/admin/users/{id}/reject': {
+  '/admin/cvs/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['getAdminCvsById'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/admin/cvs/{id}/approve': {
     parameters: {
       query?: never;
       header?: never;
@@ -273,7 +289,23 @@ export interface paths {
     delete?: never;
     options?: never;
     head?: never;
-    patch: operations['patchAdminUsersByIdReject'];
+    patch: operations['patchAdminCvsByIdApprove'];
+    trace?: never;
+  };
+  '/admin/cvs/{id}/reject': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations['patchAdminCvsByIdReject'];
     trace?: never;
   };
   '/user/accounts/register': {
@@ -468,14 +500,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/user/users/': {
+  '/user/cvs/': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['getUserUsers'];
+    get: operations['getUserCvs'];
     put?: never;
     post?: never;
     delete?: never;
@@ -484,14 +516,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/user/users/{id}': {
+  '/user/cvs/{id}': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['getUserUsersById'];
+    get: operations['getUserCvsById'];
     put?: never;
     post?: never;
     delete?: never;
@@ -559,11 +591,9 @@ export interface components {
     AdminAccountsProfileResponse: {
       id: string;
       name: string;
+      image: null | string;
       email: string;
       emailVerified: boolean;
-      image: null | string;
-      createdAt: Record<string, never> | string | number;
-      updatedAt: Record<string, never> | string | number;
       phoneNumber: null | string;
       phoneNumberVerified: null | boolean;
       username: null | string;
@@ -575,20 +605,8 @@ export interface components {
       gender: null | ('Male' | 'Female');
       avatarId: null | string;
       governorateId: null | string;
-      jobTitle: null | string;
-      experienceInYears: null | (string | number);
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-      workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-      bio: null | string;
-      githubUrl: null | string;
-      linkedinUrl: null | string;
-      portfolioUrl: null | string;
-      availableForHire: null | boolean;
-      /** @enum {string} */
-      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
       avatar: {
         id: string;
         key: string;
@@ -640,11 +658,9 @@ export interface components {
     AdminAccountsProfileUpdateResponse: {
       id: string;
       name: string;
+      image: null | string;
       email: string;
       emailVerified: boolean;
-      image: null | string;
-      createdAt: Record<string, never> | string | number;
-      updatedAt: Record<string, never> | string | number;
       phoneNumber: null | string;
       phoneNumberVerified: null | boolean;
       username: null | string;
@@ -656,20 +672,8 @@ export interface components {
       gender: null | ('Male' | 'Female');
       avatarId: null | string;
       governorateId: null | string;
-      jobTitle: null | string;
-      experienceInYears: null | (string | number);
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-      workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-      bio: null | string;
-      githubUrl: null | string;
-      linkedinUrl: null | string;
-      portfolioUrl: null | string;
-      availableForHire: null | boolean;
-      /** @enum {string} */
-      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
     };
     AdminAccountsRevokeSessionBody: {
       token: string;
@@ -813,11 +817,9 @@ export interface components {
       data: {
         id: string;
         name: string;
+        image: null | string;
         email: string;
         emailVerified: boolean;
-        image: null | string;
-        createdAt: Record<string, never> | string | number;
-        updatedAt: Record<string, never> | string | number;
         phoneNumber: null | string;
         phoneNumberVerified: null | boolean;
         username: null | string;
@@ -829,20 +831,8 @@ export interface components {
         gender: null | ('Male' | 'Female');
         avatarId: null | string;
         governorateId: null | string;
-        jobTitle: null | string;
-        experienceInYears: null | (string | number);
-        expectedSalaryMin: null | (string | number);
-        expectedSalaryMax: null | (string | number);
-        expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-        availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-        workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-        bio: null | string;
-        githubUrl: null | string;
-        linkedinUrl: null | string;
-        portfolioUrl: null | string;
-        availableForHire: null | boolean;
-        /** @enum {string} */
-        status: 'Pending' | 'Approved' | 'Rejected';
+        createdAt: Record<string, never> | string | number;
+        updatedAt: Record<string, never> | string | number;
         avatar: {
           id: string;
           key: string;
@@ -859,27 +849,14 @@ export interface components {
           createdAt: Record<string, never> | string | number;
           updatedAt: Record<string, never> | string | number;
         } | null;
-        userSkills: {
-          id: string;
-          userId: string;
-          skillId: string;
-          skill: {
-            id: string;
-            name: string;
-            createdAt: Record<string, never> | string | number;
-            updatedAt: Record<string, never> | string | number;
-          };
-        }[];
       }[];
     };
     AdminUsersGetResponse: {
       id: string;
       name: string;
+      image: null | string;
       email: string;
       emailVerified: boolean;
-      image: null | string;
-      createdAt: Record<string, never> | string | number;
-      updatedAt: Record<string, never> | string | number;
       phoneNumber: null | string;
       phoneNumberVerified: null | boolean;
       username: null | string;
@@ -891,20 +868,8 @@ export interface components {
       gender: null | ('Male' | 'Female');
       avatarId: null | string;
       governorateId: null | string;
-      jobTitle: null | string;
-      experienceInYears: null | (string | number);
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-      workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-      bio: null | string;
-      githubUrl: null | string;
-      linkedinUrl: null | string;
-      portfolioUrl: null | string;
-      availableForHire: null | boolean;
-      /** @enum {string} */
-      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
       avatar: {
         id: string;
         key: string;
@@ -921,9 +886,160 @@ export interface components {
         createdAt: Record<string, never> | string | number;
         updatedAt: Record<string, never> | string | number;
       } | null;
-      userSkills: {
+    };
+    AdminUsersApproveResponse: {
+      message: string;
+    };
+    AdminUsersRejectResponse: {
+      message: string;
+    };
+    AdminCvsListQuery: {
+      /** @default 1 */
+      page: number;
+      /** @default 10 */
+      pageSize: number;
+      /** @default createdAt */
+      sortingColumn: string;
+      /** @default desc */
+      sortingDirection: string;
+      /** @enum {string} */
+      status?: 'Pending' | 'Approved' | 'Rejected';
+      search?: string;
+    };
+    AdminCvsListResponse: {
+      total: number;
+      data: {
         id: string;
         userId: string;
+        jobTitle: string;
+        experienceInYears: string | number;
+        expectedSalaryMin: string | number;
+        expectedSalaryMax: string | number;
+        /** @enum {string} */
+        expectedSalaryCurrency: 'Iqd' | 'Usd';
+        /** @enum {string} */
+        availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
+        /** @enum {string} */
+        workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
+        bio: string;
+        githubUrl: string;
+        linkedinUrl: string;
+        portfolioUrl: string;
+        availableForHire: boolean;
+        /** @enum {string} */
+        status: 'Pending' | 'Approved' | 'Rejected';
+        createdAt: Record<string, never> | string | number;
+        updatedAt: Record<string, never> | string | number;
+        user: {
+          id: string;
+          name: string;
+          image: null | string;
+          email: string;
+          emailVerified: boolean;
+          phoneNumber: null | string;
+          phoneNumberVerified: null | boolean;
+          username: null | string;
+          displayUsername: null | string;
+          role: null | string;
+          banned: null | boolean;
+          banReason: null | string;
+          banExpires: null | (Record<string, never> | string | number);
+          gender: null | ('Male' | 'Female');
+          avatarId: null | string;
+          governorateId: null | string;
+          createdAt: Record<string, never> | string | number;
+          updatedAt: Record<string, never> | string | number;
+          avatar: {
+            id: string;
+            key: string;
+            size: string | number;
+            type: 'Image' | 'Video' | 'Other';
+            isPublic: boolean;
+            userId: null | string;
+            createdAt: Record<string, never> | string | number;
+            updatedAt: Record<string, never> | string | number;
+          } | null;
+          governorate: {
+            id: string;
+            name: string;
+            createdAt: Record<string, never> | string | number;
+            updatedAt: Record<string, never> | string | number;
+          } | null;
+        };
+        userSkills: {
+          id: string;
+          cvId: string;
+          skillId: string;
+          skill: {
+            id: string;
+            name: string;
+            createdAt: Record<string, never> | string | number;
+            updatedAt: Record<string, never> | string | number;
+          };
+        }[];
+      }[];
+    };
+    AdminCvsGetResponse: {
+      id: string;
+      userId: string;
+      jobTitle: string;
+      experienceInYears: string | number;
+      expectedSalaryMin: string | number;
+      expectedSalaryMax: string | number;
+      /** @enum {string} */
+      expectedSalaryCurrency: 'Iqd' | 'Usd';
+      /** @enum {string} */
+      availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
+      /** @enum {string} */
+      workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
+      bio: string;
+      githubUrl: string;
+      linkedinUrl: string;
+      portfolioUrl: string;
+      availableForHire: boolean;
+      /** @enum {string} */
+      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
+      user: {
+        id: string;
+        name: string;
+        image: null | string;
+        email: string;
+        emailVerified: boolean;
+        phoneNumber: null | string;
+        phoneNumberVerified: null | boolean;
+        username: null | string;
+        displayUsername: null | string;
+        role: null | string;
+        banned: null | boolean;
+        banReason: null | string;
+        banExpires: null | (Record<string, never> | string | number);
+        gender: null | ('Male' | 'Female');
+        avatarId: null | string;
+        governorateId: null | string;
+        createdAt: Record<string, never> | string | number;
+        updatedAt: Record<string, never> | string | number;
+        avatar: {
+          id: string;
+          key: string;
+          size: string | number;
+          type: 'Image' | 'Video' | 'Other';
+          isPublic: boolean;
+          userId: null | string;
+          createdAt: Record<string, never> | string | number;
+          updatedAt: Record<string, never> | string | number;
+        } | null;
+        governorate: {
+          id: string;
+          name: string;
+          createdAt: Record<string, never> | string | number;
+          updatedAt: Record<string, never> | string | number;
+        } | null;
+      };
+      userSkills: {
+        id: string;
+        cvId: string;
         skillId: string;
         skill: {
           id: string;
@@ -933,10 +1049,10 @@ export interface components {
         };
       }[];
     };
-    AdminUsersApproveResponse: {
+    AdminCvsApproveResponse: {
       message: string;
     };
-    AdminUsersRejectResponse: {
+    AdminCvsRejectResponse: {
       message: string;
     };
     UserAccountsRegisterBody: {
@@ -1003,11 +1119,9 @@ export interface components {
     UserAccountsProfileResponse: {
       id: string;
       name: string;
+      image: null | string;
       email: string;
       emailVerified: boolean;
-      image: null | string;
-      createdAt: Record<string, never> | string | number;
-      updatedAt: Record<string, never> | string | number;
       phoneNumber: null | string;
       phoneNumberVerified: null | boolean;
       username: null | string;
@@ -1019,20 +1133,8 @@ export interface components {
       gender: null | ('Male' | 'Female');
       avatarId: null | string;
       governorateId: null | string;
-      jobTitle: null | string;
-      experienceInYears: null | (string | number);
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-      workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-      bio: null | string;
-      githubUrl: null | string;
-      linkedinUrl: null | string;
-      portfolioUrl: null | string;
-      availableForHire: null | boolean;
-      /** @enum {string} */
-      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
       avatar: {
         id: string;
         key: string;
@@ -1085,11 +1187,9 @@ export interface components {
     UserAccountsProfileUpdateResponse: {
       id: string;
       name: string;
+      image: null | string;
       email: string;
       emailVerified: boolean;
-      image: null | string;
-      createdAt: Record<string, never> | string | number;
-      updatedAt: Record<string, never> | string | number;
       phoneNumber: null | string;
       phoneNumberVerified: null | boolean;
       username: null | string;
@@ -1101,20 +1201,8 @@ export interface components {
       gender: null | ('Male' | 'Female');
       avatarId: null | string;
       governorateId: null | string;
-      jobTitle: null | string;
-      experienceInYears: null | (string | number);
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-      workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-      bio: null | string;
-      githubUrl: null | string;
-      linkedinUrl: null | string;
-      portfolioUrl: null | string;
-      availableForHire: null | boolean;
-      /** @enum {string} */
-      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
     };
     UserAccountsRevokeSessionBody: {
       token: string;
@@ -1166,7 +1254,7 @@ export interface components {
       updatedAt: Record<string, never> | string | number;
     };
     UserFilesDeleteResponse: unknown;
-    UserUsersListQuery: {
+    UserCvsListQuery: {
       /** @default 1 */
       page: number;
       /** @default 10 */
@@ -1175,24 +1263,125 @@ export interface components {
       sortingColumn: string;
       /** @default desc */
       sortingDirection: string;
+      /** @enum {string} */
+      status?: 'Pending' | 'Approved' | 'Rejected';
       search?: string;
-      governorateId?: string;
       skillIds?: string[] | string;
-      availabilityType?: string;
-      workLocationType?: string;
+      /** Format: uuid */
+      governorateId?: string;
+      /** @enum {string} */
+      availabilityType?: 'FullTime' | 'PartTime' | 'Freelance';
+      /** @enum {string} */
+      workLocationType?: 'OnSite' | 'Remote' | 'Hybrid';
       experienceMin?: number;
       experienceMax?: number;
+      salaryMin?: number;
+      salaryMax?: number;
+      /** @enum {string} */
+      salaryCurrency?: 'Iqd' | 'Usd';
+      availableForHire?: boolean;
     };
-    UserUsersListResponse: {
+    UserCvsListResponse: {
       total: number;
       data: {
         id: string;
-        name: string;
-        email: string;
-        emailVerified: boolean;
-        image: null | string;
+        userId: string;
+        jobTitle: string;
+        experienceInYears: string | number;
+        expectedSalaryMin: string | number;
+        expectedSalaryMax: string | number;
+        /** @enum {string} */
+        expectedSalaryCurrency: 'Iqd' | 'Usd';
+        /** @enum {string} */
+        availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
+        /** @enum {string} */
+        workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
+        bio: string;
+        githubUrl: string;
+        linkedinUrl: string;
+        portfolioUrl: string;
+        availableForHire: boolean;
+        /** @enum {string} */
+        status: 'Pending' | 'Approved' | 'Rejected';
         createdAt: Record<string, never> | string | number;
         updatedAt: Record<string, never> | string | number;
+        user: {
+          id: string;
+          name: string;
+          image: null | string;
+          email: string;
+          emailVerified: boolean;
+          phoneNumber: null | string;
+          phoneNumberVerified: null | boolean;
+          username: null | string;
+          displayUsername: null | string;
+          role: null | string;
+          banned: null | boolean;
+          banReason: null | string;
+          banExpires: null | (Record<string, never> | string | number);
+          gender: null | ('Male' | 'Female');
+          avatarId: null | string;
+          governorateId: null | string;
+          createdAt: Record<string, never> | string | number;
+          updatedAt: Record<string, never> | string | number;
+          avatar: {
+            id: string;
+            key: string;
+            size: string | number;
+            type: 'Image' | 'Video' | 'Other';
+            isPublic: boolean;
+            userId: null | string;
+            createdAt: Record<string, never> | string | number;
+            updatedAt: Record<string, never> | string | number;
+          } | null;
+          governorate: {
+            id: string;
+            name: string;
+            createdAt: Record<string, never> | string | number;
+            updatedAt: Record<string, never> | string | number;
+          } | null;
+        };
+        userSkills: {
+          id: string;
+          cvId: string;
+          skillId: string;
+          skill: {
+            id: string;
+            name: string;
+            createdAt: Record<string, never> | string | number;
+            updatedAt: Record<string, never> | string | number;
+          };
+        }[];
+      }[];
+    };
+    UserCvsGetResponse: {
+      id: string;
+      userId: string;
+      jobTitle: string;
+      experienceInYears: string | number;
+      expectedSalaryMin: string | number;
+      expectedSalaryMax: string | number;
+      /** @enum {string} */
+      expectedSalaryCurrency: 'Iqd' | 'Usd';
+      /** @enum {string} */
+      availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
+      /** @enum {string} */
+      workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
+      bio: string;
+      githubUrl: string;
+      linkedinUrl: string;
+      portfolioUrl: string;
+      availableForHire: boolean;
+      /** @enum {string} */
+      status: 'Pending' | 'Approved' | 'Rejected';
+      createdAt: Record<string, never> | string | number;
+      updatedAt: Record<string, never> | string | number;
+      user: {
+        id: string;
+        name: string;
+        image: null | string;
+        email: string;
+        emailVerified: boolean;
         phoneNumber: null | string;
         phoneNumberVerified: null | boolean;
         username: null | string;
@@ -1204,20 +1393,8 @@ export interface components {
         gender: null | ('Male' | 'Female');
         avatarId: null | string;
         governorateId: null | string;
-        jobTitle: null | string;
-        experienceInYears: null | (string | number);
-        expectedSalaryMin: null | (string | number);
-        expectedSalaryMax: null | (string | number);
-        expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-        availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-        workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-        bio: null | string;
-        githubUrl: null | string;
-        linkedinUrl: null | string;
-        portfolioUrl: null | string;
-        availableForHire: null | boolean;
-        /** @enum {string} */
-        status: 'Pending' | 'Approved' | 'Rejected';
+        createdAt: Record<string, never> | string | number;
+        updatedAt: Record<string, never> | string | number;
         avatar: {
           id: string;
           key: string;
@@ -1234,75 +1411,10 @@ export interface components {
           createdAt: Record<string, never> | string | number;
           updatedAt: Record<string, never> | string | number;
         } | null;
-        userSkills: {
-          id: string;
-          userId: string;
-          skillId: string;
-          skill: {
-            id: string;
-            name: string;
-            createdAt: Record<string, never> | string | number;
-            updatedAt: Record<string, never> | string | number;
-          };
-        }[];
-      }[];
-    };
-    UserUsersGetParams: {
-      /** Format: uuid */
-      id: string;
-    };
-    UserUsersGetResponse: {
-      id: string;
-      name: string;
-      email: string;
-      emailVerified: boolean;
-      image: null | string;
-      createdAt: Record<string, never> | string | number;
-      updatedAt: Record<string, never> | string | number;
-      phoneNumber: null | string;
-      phoneNumberVerified: null | boolean;
-      username: null | string;
-      displayUsername: null | string;
-      role: null | string;
-      banned: null | boolean;
-      banReason: null | string;
-      banExpires: null | (Record<string, never> | string | number);
-      gender: null | ('Male' | 'Female');
-      avatarId: null | string;
-      governorateId: null | string;
-      jobTitle: null | string;
-      experienceInYears: null | (string | number);
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      availabilityType: null | ('FullTime' | 'PartTime' | 'Freelance');
-      workLocationType: null | ('OnSite' | 'Remote' | 'Hybrid');
-      bio: null | string;
-      githubUrl: null | string;
-      linkedinUrl: null | string;
-      portfolioUrl: null | string;
-      availableForHire: null | boolean;
-      /** @enum {string} */
-      status: 'Pending' | 'Approved' | 'Rejected';
-      avatar: {
-        id: string;
-        key: string;
-        size: string | number;
-        type: 'Image' | 'Video' | 'Other';
-        isPublic: boolean;
-        userId: null | string;
-        createdAt: Record<string, never> | string | number;
-        updatedAt: Record<string, never> | string | number;
-      } | null;
-      governorate: {
-        id: string;
-        name: string;
-        createdAt: Record<string, never> | string | number;
-        updatedAt: Record<string, never> | string | number;
-      } | null;
+      };
       userSkills: {
         id: string;
-        userId: string;
+        cvId: string;
         skillId: string;
         skill: {
           id: string;
@@ -2141,13 +2253,18 @@ export interface operations {
       };
     };
   };
-  patchAdminUsersByIdApprove: {
+  getAdminCvs: {
     parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
+      query: {
+        page: number;
+        pageSize: number;
+        sortingColumn: string;
+        sortingDirection: string;
+        status?: 'Pending' | 'Approved' | 'Rejected';
+        search?: string;
       };
+      header?: never;
+      path?: never;
       cookie?: never;
     };
     requestBody?: never;
@@ -2158,7 +2275,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['AdminUsersApproveResponse'];
+          'application/json': components['schemas']['AdminCvsListResponse'];
         };
       };
       /** @description Response for status 400 */
@@ -2181,7 +2298,7 @@ export interface operations {
       };
     };
   };
-  patchAdminUsersByIdReject: {
+  getAdminCvsById: {
     parameters: {
       query?: never;
       header?: never;
@@ -2198,7 +2315,87 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['AdminUsersRejectResponse'];
+          'application/json': components['schemas']['AdminCvsGetResponse'];
+        };
+      };
+      /** @description Response for status 400 */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['BadRequestError'];
+        };
+      };
+      /** @description Response for status 422 */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['FieldsValidationError'];
+        };
+      };
+    };
+  };
+  patchAdminCvsByIdApprove: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['AdminCvsApproveResponse'];
+        };
+      };
+      /** @description Response for status 400 */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['BadRequestError'];
+        };
+      };
+      /** @description Response for status 422 */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['FieldsValidationError'];
+        };
+      };
+    };
+  };
+  patchAdminCvsByIdReject: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['AdminCvsRejectResponse'];
         };
       };
       /** @description Response for status 400 */
@@ -2744,20 +2941,25 @@ export interface operations {
       };
     };
   };
-  getUserUsers: {
+  getUserCvs: {
     parameters: {
       query: {
         page: number;
         pageSize: number;
         sortingColumn: string;
         sortingDirection: string;
+        status?: 'Pending' | 'Approved' | 'Rejected';
         search?: string;
-        governorateId?: string;
         skillIds?: string[] | string;
-        availabilityType?: string;
-        workLocationType?: string;
+        governorateId?: string;
+        availabilityType?: 'FullTime' | 'PartTime' | 'Freelance';
+        workLocationType?: 'OnSite' | 'Remote' | 'Hybrid';
         experienceMin?: number;
         experienceMax?: number;
+        salaryMin?: number;
+        salaryMax?: number;
+        salaryCurrency?: 'Iqd' | 'Usd';
+        availableForHire?: boolean;
       };
       header?: never;
       path?: never;
@@ -2771,7 +2973,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['UserUsersListResponse'];
+          'application/json': components['schemas']['UserCvsListResponse'];
         };
       };
       /** @description Response for status 400 */
@@ -2794,7 +2996,7 @@ export interface operations {
       };
     };
   };
-  getUserUsersById: {
+  getUserCvsById: {
     parameters: {
       query?: never;
       header?: never;
@@ -2811,7 +3013,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['UserUsersGetResponse'];
+          'application/json': components['schemas']['UserCvsGetResponse'];
         };
       };
       /** @description Response for status 400 */

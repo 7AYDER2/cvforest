@@ -2,6 +2,7 @@ import { ScrollArea, Stack, Text } from '@mantine/core';
 import {
   IconBuilding,
   IconCode,
+  IconFileText,
   IconHome,
   IconUser,
 } from '@tabler/icons-react';
@@ -40,6 +41,11 @@ export function Links() {
           icon: IconCode,
           label: t('sidebar.skills'),
           path: '/skills',
+        },
+        {
+          icon: IconFileText,
+          label: t('sidebar.cvs'),
+          path: '/cvs',
         },
       ],
     },

@@ -9,7 +9,6 @@ import { SearchInput } from '@/components/search-input';
 import { useUsersList } from '@/features/users/hooks/use-users-list';
 import type { UsersList } from '@/features/users/types';
 import { constructImageUrl } from '@/utils/helpers';
-import { UsersRowExpansion } from '../../components/users-row-expansion';
 
 interface UsersProps {
   initialData: UsersList;
@@ -35,9 +34,6 @@ export function Users({ initialData }: UsersProps) {
       />
 
       <DataTable
-        rowExpansion={{
-          content: ({ record }) => <UsersRowExpansion user={record} />,
-        }}
         {...getTableProps({
           query: users,
           columns: [

@@ -12,7 +12,6 @@ import {
   Title,
 } from '@mantine/core';
 import {
-  IconAB,
   IconAt,
   IconBrandGithub,
   IconBrandLinkedin,
@@ -31,20 +30,19 @@ import {
 import { useTranslations } from 'next-intl';
 import { BooleanBadge } from '@/components/boolean-badge';
 import { PhoneNumber } from '@/components/phone-number';
-import type { User } from '@/features/users/types';
+import type { Cv } from '@/features/cvs/types';
 import { constructImageUrl } from '@/utils/helpers';
 import {
   translateAvailabilityType,
   translateCurrency,
-  translateGender,
   translateWorkLocationType,
 } from '@/utils/translation-maps';
-import { useUserApprove } from '../../hooks/use-user-approve';
-import { useUserReject } from '../../hooks/use-user-reject';
-import { UserStatusBadge } from '../user-status-badge';
+import { useCvApprove } from '../../hooks/use-cv-approve';
+import { useCvReject } from '../../hooks/use-cv-reject';
+import { CvStatusBadge } from '../cv-status-badge';
 
-interface UsersRowExpansionProps {
-  user: User;
+interface CvsRowExpansionProps {
+  cv: Cv;
 }
 
 function InfoItem({
@@ -73,10 +71,11 @@ function InfoItem({
   );
 }
 
-export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
+export function CvsRowExpansion({ cv }: CvsRowExpansionProps) {
   const t = useTranslations();
-  const rejectMut = useUserReject();
-  const approveMut = useUserApprove();
+  const rejectMut = useCvReject();
+  const approveMut = useCvApprove();
+  const user = cv.user;
 
   return (
     <Paper withBorder p="sm">
@@ -94,20 +93,20 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
               />
               <Stack gap={4}>
                 <Title order={2}>{user.name}</Title>
-                {user.jobTitle && (
+                {cv.jobTitle && (
                   <Text c="dimmed" fz={14}>
-                    {user.jobTitle}
+                    {cv.jobTitle}
                   </Text>
                 )}
 
                 <Group gap="xs">
-                  {user.availableForHire && (
+                  {cv.availableForHire && (
                     <Badge color="green" variant="light" size="sm">
-                      {t('users.availableForHire')}
+                      {t('cvs.availableForHire')}
                     </Badge>
                   )}
 
-                  <UserStatusBadge status={user.status} />
+                  <CvStatusBadge status={cv.status} />
                 </Group>
               </Stack>
             </Group>
@@ -115,12 +114,12 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
             <Stack>
               <InfoItem
                 icon={IconTrophy}
-                label={t('users.experience')}
+                label={t('cvs.experience')}
                 value={
                   <Text>
-                    {user.experienceInYears ? (
-                      t('users.years', {
-                        number: user.experienceInYears,
+                    {cv.experienceInYears ? (
+                      t('cvs.years', {
+                        number: cv.experienceInYears,
                       })
                     ) : (
                       <Text c="dimmed">-</Text>
@@ -131,25 +130,25 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
 
               <InfoItem
                 icon={IconCurrencyDollar}
-                label={t('users.expectedSalary')}
+                label={t('cvs.expectedSalary')}
                 value={
                   <Text>
-                    {user.expectedSalaryMin?.toLocaleString()}{' '}
-                    {user.expectedSalaryMin && user.expectedSalaryMax && '-'}{' '}
-                    {user.expectedSalaryMax?.toLocaleString()}{' '}
-                    {user.expectedSalaryCurrency &&
-                      translateCurrency(t, user.expectedSalaryCurrency)}
+                    {cv.expectedSalaryMin?.toLocaleString()}{' '}
+                    {cv.expectedSalaryMin && cv.expectedSalaryMax && '-'}{' '}
+                    {cv.expectedSalaryMax?.toLocaleString()}{' '}
+                    {cv.expectedSalaryCurrency &&
+                      translateCurrency(t, cv.expectedSalaryCurrency)}
                   </Text>
                 }
               />
 
               <InfoItem
                 icon={IconClock}
-                label={t('users.availabilityType')}
+                label={t('cvs.availabilityType')}
                 value={
                   <Text>
-                    {user.availabilityType
-                      ? translateAvailabilityType(t, user.availabilityType)
+                    {cv.availabilityType
+                      ? translateAvailabilityType(t, cv.availabilityType)
                       : '-'}
                   </Text>
                 }
@@ -157,11 +156,11 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
 
               <InfoItem
                 icon={IconBuilding}
-                label={t('users.workLocationType')}
+                label={t('cvs.workLocationType')}
                 value={
                   <Text>
-                    {user.workLocationType
-                      ? translateWorkLocationType(t, user.workLocationType)
+                    {cv.workLocationType
+                      ? translateWorkLocationType(t, cv.workLocationType)
                       : '-'}
                   </Text>
                 }
@@ -169,13 +168,13 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
 
               <InfoItem
                 icon={IconCircleCheck}
-                label={t('users.availableForHire')}
+                label={t('cvs.availableForHire')}
                 value={
-                  user.availableForHire !== null ? (
+                  cv.availableForHire !== null ? (
                     <BooleanBadge
-                      value={user.availableForHire}
+                      value={cv.availableForHire}
                       label={{
-                        true: t('users.availableForHire'),
+                        true: t('cvs.availableForHire'),
                         false: t('_.no'),
                       }}
                     />
@@ -188,34 +187,36 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
           </Paper>
 
           {/* Bio Section */}
-          <Paper component={Stack} gap={4}>
-            <Title c="gray.8" order={4}>
-              {t('users.bio')}
-            </Title>
+          {cv.bio && (
+            <Paper component={Stack} gap={4}>
+              <Title c="gray.8" order={4}>
+                {t('cvs.bio')}
+              </Title>
 
-            <Text fz={14}>{user.bio}</Text>
-          </Paper>
+              <Text fz={14}>{cv.bio}</Text>
+            </Paper>
+          )}
         </Stack>
 
         <Stack gap="md">
           {/* Contact Information Section */}
           <Paper component={Stack} gap={4}>
             <Title c="gray.8" order={4}>
-              {t('users.contactInformation')}
+              {t('cvs.contactInformation')}
             </Title>
 
             <Stack>
               <InfoItem
                 icon={IconAt}
-                label={t('users.email')}
+                label={t('cvs.email')}
                 value={
                   <Group gap="xs">
                     <Text>{user.email}</Text>
                     <BooleanBadge
                       value={user.emailVerified ?? false}
                       label={{
-                        true: t('users.emailVerified'),
-                        false: t('users.emailNotVerified'),
+                        true: t('cvs.emailVerified'),
+                        false: t('cvs.emailNotVerified'),
                       }}
                     />
                   </Group>
@@ -224,7 +225,7 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
 
               <InfoItem
                 icon={IconPhone}
-                label={t('users.phone')}
+                label={t('cvs.phone')}
                 value={
                   <Group gap="xs">
                     {user.phoneNumber ? (
@@ -237,8 +238,8 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
                       <BooleanBadge
                         value={user.phoneNumberVerified ?? false}
                         label={{
-                          true: t('users.phoneVerified'),
-                          false: t('users.phoneNotVerified'),
+                          true: t('cvs.phoneVerified'),
+                          false: t('cvs.phoneNotVerified'),
                         }}
                       />
                     ) : null}
@@ -247,20 +248,8 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
               />
 
               <InfoItem
-                icon={IconAB}
-                label={t('users.gender')}
-                value={
-                  user.gender ? (
-                    <Text>{translateGender(t, user.gender)}</Text>
-                  ) : (
-                    <Text c="dimmed">-</Text>
-                  )
-                }
-              />
-
-              <InfoItem
                 icon={IconMapPin}
-                label={t('users.location')}
+                label={t('cvs.location')}
                 value={
                   user.governorate ? (
                     <Text>{user.governorate.name}</Text>
@@ -275,10 +264,10 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
           {/* Skills Section */}
           <Paper component={Stack} gap={4}>
             <Title c="gray.8" order={4}>
-              {t('users.skills')}
+              {t('cvs.skills')}
             </Title>
             <Group gap={4}>
-              {user.userSkills.map((userSkill) => (
+              {cv.userSkills.map((userSkill) => (
                 <Badge key={userSkill.id} variant="light" size="sm">
                   {userSkill.skill.name}
                 </Badge>
@@ -289,7 +278,7 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
           {/* Social Links Section */}
           <Paper component={Stack} gap={4}>
             <Title c="gray.8" order={4}>
-              {t('users.socialLinks')}
+              {t('cvs.socialLinks')}
             </Title>
 
             <Group gap="sm">
@@ -297,12 +286,12 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
                 component="a"
                 target="_blank"
                 variant="light"
-                disabled={!user.githubUrl}
+                disabled={!cv.githubUrl}
                 rel="noopener noreferrer"
-                href={user.githubUrl ?? ''}
+                href={cv.githubUrl}
                 leftSection={<IconBrandGithub size={18} />}
               >
-                {t('users.github')}
+                {t('cvs.github')}
               </Button>
 
               <Button
@@ -310,11 +299,11 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
                 target="_blank"
                 variant="light"
                 rel="noopener noreferrer"
-                disabled={!user.linkedinUrl}
-                href={user.linkedinUrl ?? ''}
+                disabled={!cv.linkedinUrl}
+                href={cv.linkedinUrl}
                 leftSection={<IconBrandLinkedin size={18} />}
               >
-                {t('users.linkedin')}
+                {t('cvs.linkedin')}
               </Button>
 
               <Button
@@ -322,11 +311,11 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
                 target="_blank"
                 variant="light"
                 rel="noopener noreferrer"
-                disabled={!user.portfolioUrl}
-                href={user.portfolioUrl ?? ''}
+                disabled={!cv.portfolioUrl}
+                href={cv.portfolioUrl}
                 leftSection={<IconWorld size={18} />}
               >
-                {t('users.portfolio')}
+                {t('cvs.portfolio')}
               </Button>
             </Group>
           </Paper>
@@ -336,27 +325,27 @@ export function UsersRowExpansion({ user }: UsersRowExpansionProps) {
       <Divider my="md" />
 
       <Group gap="xs" mt="xs">
-        {user.status !== 'Approved' && (
+        {cv.status !== 'Approved' && (
           <Button
             color="green"
             variant="light"
             loading={approveMut.isPending}
             leftSection={<IconCheck size={18} />}
-            onClick={() => approveMut.mutate(user.id)}
+            onClick={() => approveMut.mutate(cv.id)}
           >
-            {t('users.approve')}
+            {t('cvs.approve')}
           </Button>
         )}
 
-        {user.status !== 'Rejected' && (
+        {cv.status !== 'Rejected' && (
           <Button
             color="red"
             variant="light"
             loading={rejectMut.isPending}
             leftSection={<IconX size={18} />}
-            onClick={() => rejectMut.mutate(user.id)}
+            onClick={() => rejectMut.mutate(cv.id)}
           >
-            {t('users.reject')}
+            {t('cvs.reject')}
           </Button>
         )}
       </Group>

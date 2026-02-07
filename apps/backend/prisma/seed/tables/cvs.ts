@@ -1,10 +1,10 @@
 import {
+  AvailabilityType,
   Currency,
   type PrismaClient,
   WorkLocationType,
 } from '@db/gen/prisma/client';
-import { AvailabilityType } from '@db/gen/prismabox/AvailabilityType';
-import { logSeedTable } from '@db/seed/utils/helpers';
+import { logSeedTable, runInBatches } from '@db/seed/utils/helpers';
 import { dunna } from 'dunna';
 import { bios } from '../data/bios';
 import { jobTitles } from '../data/jobTitles';
@@ -50,4 +50,6 @@ export async function seedCvs(prisma: PrismaClient) {
 
     promises.push(promise);
   }
+
+  await runInBatches(promises);
 }
