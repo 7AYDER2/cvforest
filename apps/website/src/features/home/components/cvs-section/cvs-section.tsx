@@ -17,7 +17,7 @@ import cls from './styles.module.css';
 
 export function CvsSection() {
   const t = useTranslations();
-  const { users } = useUsersList({ filters: {} });
+  const users = useUsersList({ filters: {} });
 
   return (
     <section className={cls.section}>

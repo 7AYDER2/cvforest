@@ -9,12 +9,13 @@ interface UsersListProps {
 
 export function useUsersList({ filters }: UsersListProps) {
   const ky = useKy();
-  const { getTableProps, sorting, pagination } = useDataTable();
 
   const usersListQuery: UserListQuery = {
-    ...pagination,
-    ...sorting,
     ...filters,
+    page: 1,
+    pageSize: 12,
+    sortingColumn: 'createdAt',
+    sortingDirection: 'desc',
   };
 
   const users = useQuery({
@@ -26,5 +27,5 @@ export function useUsersList({ filters }: UsersListProps) {
     },
   });
 
-  return { getTableProps, users };
+  return users;
 }
