@@ -35,11 +35,10 @@ export function UserSkills({ user }: UserSkillsProps) {
               variant="light"
               radius="xl"
               style={{
-                background:
-                  'linear-gradient(135deg, var(--mantine-color-primary-0), var(--mantine-color-primary-1))',
+                fontWeight: 500,
+                background: 'var(--mantine-color-primary-0)',
                 border: '1px solid var(--mantine-color-primary-2)',
                 color: 'var(--mantine-color-primary-8)',
-                fontWeight: 500,
               }}
             >
               {skill.name}
