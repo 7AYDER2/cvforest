@@ -44,9 +44,9 @@ export async function seedUsers(prisma: PrismaClient) {
         availabilityType: dunna.basic.choice(Object.values(AvailabilityType)),
         workLocationType: dunna.basic.choice(Object.values(WorkLocationType)),
         availableForHire: dunna.basic.boolean(),
-        githubUrl: 'https://github.com/user',
-        linkedinUrl: 'https://linkedin.com/user',
-        portfolioUrl: 'https://user.com',
+        githubUrl: 'https://github.com/alimehasin',
+        linkedinUrl: 'https://linkedin.com/alimehasin',
+        portfolioUrl: 'https://alimehasin.com',
         governorateId: dunna.basic.choice(governorates).id,
         userSkills: {
           createMany: {
