@@ -68,6 +68,11 @@ export const userCvsService = {
         },
       }),
 
+      // Filter by expected salary currency
+      ...(query.salaryCurrency && {
+        expectedSalaryCurrency: query.salaryCurrency,
+      }),
+
       // Filter by available for hire
       ...(query.availableForHire !== undefined && {
         availableForHire: query.availableForHire,

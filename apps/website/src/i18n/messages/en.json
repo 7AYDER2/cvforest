@@ -24,6 +24,7 @@
   },
   "browse": {
     "availabilityPlaceholder": "Availability type",
+    "currencyPlaceholder": "Currency",
     "experienceMax": "Max experience",
     "experienceMin": "Min experience",
     "governoratePlaceholder": "Governorate",
@@ -47,6 +48,8 @@
   "cvs": {
     "availableForHire": "Available for hire",
     "browseAll": "Browse All Talent",
+    "skills": "Skills",
+    "skillsPlaceholder": "Typescript, React, Next.js, etc.",
     "subtitle": "Discover top professionals ready for new opportunities",
     "title": "Latest CVs",
     "yearsExperience": "{number} years exp."

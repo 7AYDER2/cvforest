@@ -24,6 +24,7 @@
   },
   "browse": {
     "availabilityPlaceholder": "نوع التوفر",
+    "currencyPlaceholder": "العملة",
     "experienceMax": "أقصى خبرة",
     "experienceMin": "أدنى خبرة",
     "governoratePlaceholder": "المحافظة",
@@ -47,6 +48,8 @@
   "cvs": {
     "availableForHire": "متاح للتوظيف",
     "browseAll": "تصفح جميع المواهب",
+    "skills": "المهارات",
+    "skillsPlaceholder": "Typescript, React, Next.js, مثل",
     "subtitle": "اكتشف أفضل المحترفين المستعدين لفرص جديدة",
     "title": "أحدث السير الذاتية",
     "yearsExperience": "{number} سنوات خبرة"
