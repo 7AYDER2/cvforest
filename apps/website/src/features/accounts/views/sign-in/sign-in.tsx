@@ -34,7 +34,7 @@ export function SignIn() {
           </Text>
         </div>
 
-        <Paper withBorder radius="md" shadow="sm" p={{ base: 'md', sm: 'lg' }}>
+        <Paper withBorder shadow="sm" p={{ base: 'md', sm: 'lg' }}>
           <form onSubmit={handleSubmit}>
             <Stack gap="md">
               <TextInput

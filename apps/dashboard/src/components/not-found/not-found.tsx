@@ -38,7 +38,6 @@ export function NotFound() {
             leftSection={<IconHome size={16} />}
             size="md"
             href="/"
-            radius="md"
             component={Link}
             variant="filled"
           >
@@ -47,7 +46,6 @@ export function NotFound() {
 
           <Button
             size="md"
-            radius="md"
             variant="outline"
             onClick={() => router.back()}
             leftSection={<IconArrowLeft size={16} />}

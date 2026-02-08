@@ -35,19 +35,17 @@ export function NotFound() {
         {/* Action Buttons */}
         <Group gap="md" mt="lg">
           <Button
-            leftSection={<IconHome size={16} />}
             size="md"
             href="/"
-            radius="md"
             component={Link}
             variant="filled"
+            leftSection={<IconHome size={16} />}
           >
             {t('notFound.goHome')}
           </Button>
 
           <Button
             size="md"
-            radius="md"
             variant="outline"
             onClick={() => router.back()}
             leftSection={<IconArrowLeft size={16} />}

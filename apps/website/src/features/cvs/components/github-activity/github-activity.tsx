@@ -81,7 +81,7 @@ export function GithubActivity({ user }: GithubActivityProps) {
 
         {/* Calendar heatmap */}
         <Box className={cls.calendarWrapper}>
-          {isLoading && <Skeleton height={130} radius="md" />}
+          {isLoading && <Skeleton height={130} />}
 
           {isError && (
             <Text size="sm" c="dimmed" ta="center" py="md">

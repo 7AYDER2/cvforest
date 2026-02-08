@@ -40,7 +40,7 @@ function InfoRow({
 
   return (
     <div className={cls.infoRow}>
-      <ThemeIcon variant="light" size="md" radius="md">
+      <ThemeIcon variant="light" size="md">
         <Icon size={16} />
       </ThemeIcon>
       <div>

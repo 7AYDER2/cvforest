@@ -60,7 +60,7 @@ export function UserButton() {
         <MenuTarget>
           <UnstyledButton className={cls.button} disabled={profile.isLoading}>
             {profile.isLoading ? (
-              <Skeleton h={38} w={38} radius="md" />
+              <Skeleton h={38} w={38} />
             ) : (
               <Avatar
                 name={profile.data?.name ?? undefined}
