@@ -11,13 +11,13 @@ import {
 import { IconArrowRight } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/components/link/link';
-import { useUsersList } from '../../hooks/use-users-query';
-import { UserCard } from '../user-card';
+import { useCvsList } from '@/features/cvs/hooks/use-cvs-list';
+import { CvCard } from '../cv-card';
 import cls from './styles.module.css';
 
 export function CvsSection() {
   const t = useTranslations();
-  const users = useUsersList({ filters: {} });
+  const { cvs } = useCvsList();
 
   return (
     <section className={cls.section}>
@@ -36,7 +36,7 @@ export function CvsSection() {
           spacing="lg"
           className={cls.grid}
         >
-          {users.isLoading
+          {cvs.isLoading
             ? Array.from({ length: 8 }).map((_, i) => (
                 <Skeleton
                   key={`skeleton-${i.toString()}`}
@@ -44,9 +44,7 @@ export function CvsSection() {
                   radius="lg"
                 />
               ))
-            : users.data?.data.map((user) => (
-                <UserCard key={user.id} user={user} />
-              ))}
+            : cvs.data?.data.map((cv) => <CvCard key={cv.id} cv={cv} />)}
         </SimpleGrid>
 
         <Stack align="center">

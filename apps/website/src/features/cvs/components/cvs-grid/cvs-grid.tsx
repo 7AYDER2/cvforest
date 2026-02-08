@@ -11,7 +11,7 @@ import {
 import { IconMoodEmpty } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { SearchInput } from '@/components/search-input';
-import { UserCard } from '@/features/home/components/user-card';
+import { CvCard } from '@/features/home/components/cv-card';
 import { useCvsList } from '../../hooks/use-cvs-list';
 import { CvsFilters } from '../cvs-filters';
 import cls from './styles.module.css';
@@ -61,8 +61,8 @@ export function CvsGrid() {
           className={cls.grid}
           cols={{ base: 1, xs: 2, md: 3, lg: 4 }}
         >
-          {cvs.data.data.map((user) => (
-            <UserCard key={user.id} user={user} />
+          {cvs.data.data.map((cv) => (
+            <CvCard key={cv.id} cv={cv} />
           ))}
         </SimpleGrid>
       ) : (

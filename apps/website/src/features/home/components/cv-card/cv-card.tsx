@@ -25,29 +25,29 @@ import {
   translateAvailabilityType,
   translateWorkLocationType,
 } from '@/utils/translation-maps';
-import type { UserListItem } from '../../types';
+import type { CvListItem } from '../../types';
 import cls from './styles.module.css';
 
-export function UserCard({ user }: { user: UserListItem }) {
+export function CvCard({ cv }: { cv: CvListItem }) {
   const t = useTranslations();
 
-  const skills = user.userSkills.map((us) => us.skill);
+  const skills = cv.userSkills.map((us) => us.skill);
   const visibleSkills = skills.slice(0, 4);
   const remainingCount = skills.length - visibleSkills.length;
 
   const socialLinks = [
     {
-      url: user.githubUrl,
+      url: cv.githubUrl,
       icon: IconBrandGithub,
       label: 'GitHub',
     },
     {
-      url: user.linkedinUrl,
+      url: cv.linkedinUrl,
       icon: IconBrandLinkedin,
       label: 'LinkedIn',
     },
     {
-      url: user.portfolioUrl,
+      url: cv.portfolioUrl,
       icon: IconWorld,
       label: 'Portfolio',
     },
@@ -60,7 +60,7 @@ export function UserCard({ user }: { user: UserListItem }) {
       className={cls.card}
       p={0}
       component={Link}
-      href={`/cvs/${user.id}`}
+      href={`/cvs/${cv.id}`}
       style={{ textDecoration: 'none', color: 'inherit' }}
     >
       {/* Gradient header band */}
@@ -72,11 +72,11 @@ export function UserCard({ user }: { user: UserListItem }) {
           <Avatar
             size={92}
             radius="50%"
-            name={user.user.name}
-            src={constructImageUrl(user.user.avatar?.key)}
+            name={cv.user.name}
+            src={constructImageUrl(cv.user.avatar?.key)}
             color="primary"
           />
-          {user.availableForHire && (
+          {cv.availableForHire && (
             <Tooltip label={t('cvs.availableForHire')} withArrow>
               <span className={cls.availableDot} />
             </Tooltip>
@@ -89,43 +89,43 @@ export function UserCard({ user }: { user: UserListItem }) {
         {/* Identity */}
         <Stack align="center" gap={2}>
           <Text fw={700} size="md" ta="center" lineClamp={1}>
-            {user.user.name}
+            {cv.user.name}
           </Text>
 
-          {user.jobTitle && (
+          {cv.jobTitle && (
             <Text size="sm" c="dimmed" ta="center" lineClamp={1}>
-              {user.jobTitle}
+              {cv.jobTitle}
             </Text>
           )}
         </Stack>
 
         {/* Meta chips */}
         <Group gap={6} justify="center" wrap="wrap">
-          {user.user.governorate && (
+          {cv.user.governorate && (
             <span className={cls.metaChip}>
               <IconMapPin size={12} />
-              {user.user.governorate.name}
+              {cv.user.governorate.name}
             </span>
           )}
 
-          {user.experienceInYears != null && (
+          {cv.experienceInYears != null && (
             <span className={cls.metaChip}>
               <IconClock size={12} />
-              {t('cvs.yearsExperience', { number: user.experienceInYears })}
+              {t('cvs.yearsExperience', { number: cv.experienceInYears })}
             </span>
           )}
 
-          {user.availabilityType && (
+          {cv.availabilityType && (
             <span className={cls.metaChip}>
               <IconBriefcase size={12} />
-              {translateAvailabilityType(t, user.availabilityType)}
+              {translateAvailabilityType(t, cv.availabilityType)}
             </span>
           )}
 
-          {user.workLocationType && (
+          {cv.workLocationType && (
             <span className={cls.metaChip}>
               <IconWorld size={12} />
-              {translateWorkLocationType(t, user.workLocationType)}
+              {translateWorkLocationType(t, cv.workLocationType)}
             </span>
           )}
         </Group>
@@ -204,13 +204,13 @@ export function UserCard({ user }: { user: UserListItem }) {
               onClick={(e: React.MouseEvent) => {
                 e.preventDefault();
                 e.stopPropagation();
-                window.location.href = `mailto:${user.user.email}`;
+                window.location.href = `mailto:${cv.user.email}`;
               }}
               onKeyDown={(e: React.KeyboardEvent) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   e.stopPropagation();
-                  window.location.href = `mailto:${user.user.email}`;
+                  window.location.href = `mailto:${cv.user.email}`;
                 }
               }}
             >
