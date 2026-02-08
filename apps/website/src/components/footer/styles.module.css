@@ -7,6 +7,12 @@
   border-radius: var(--mantine-radius-default);
 }
 
+.content {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: var(--mantine-spacing-xl);
+}
+
 .brand {
   text-decoration: none;
 }

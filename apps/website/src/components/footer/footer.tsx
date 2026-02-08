@@ -36,7 +36,7 @@ export async function Footer() {
   return (
     <footer className={cls.footer}>
       <Container size="lg">
-        <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing="xl">
+        <div className={cls.content}>
           <Stack gap="sm">
             <Anchor fz="h3" fw={600} href="/" className={cls.brand}>
               CV Forest
@@ -46,92 +46,94 @@ export async function Footer() {
             </Text>
           </Stack>
 
-          <Stack gap="sm">
-            <Text fw={600} size="sm" className={cls.sectionTitle}>
-              {t('footer.quickLinks')}
-            </Text>
-            <Anchor component={Link} href="/" size="sm" className={cls.link}>
-              {t('footer.home')}
-            </Anchor>
-            <Anchor
-              component={Link}
-              href="/plans"
-              size="sm"
-              className={cls.link}
-            >
-              {t('footer.plans')}
-            </Anchor>
-            <Anchor
-              component={Link}
-              href="/courses"
-              size="sm"
-              className={cls.link}
-            >
-              {t('footer.courses')}
-            </Anchor>
-          </Stack>
+          <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="xl">
+            <Stack gap="sm">
+              <Text fw={600} size="sm" className={cls.sectionTitle}>
+                {t('footer.quickLinks')}
+              </Text>
+              <Anchor component={Link} href="/" size="sm" className={cls.link}>
+                {t('footer.home')}
+              </Anchor>
+              <Anchor
+                component={Link}
+                href="/plans"
+                size="sm"
+                className={cls.link}
+              >
+                {t('footer.plans')}
+              </Anchor>
+              <Anchor
+                component={Link}
+                href="/courses"
+                size="sm"
+                className={cls.link}
+              >
+                {t('footer.courses')}
+              </Anchor>
+            </Stack>
 
-          <Stack gap="sm">
-            <Text fw={600} size="sm" className={cls.sectionTitle}>
-              {t('footer.company')}
-            </Text>
-            <Anchor
-              component={Link}
-              href="/about"
-              size="sm"
-              className={cls.link}
-            >
-              {t('footer.aboutUs')}
-            </Anchor>
-            <Anchor
-              component={Link}
-              href="/contact"
-              size="sm"
-              className={cls.link}
-            >
-              {t('footer.contactUs')}
-            </Anchor>
-            <Anchor
-              component={Link}
-              href="/privacy"
-              size="sm"
-              className={cls.link}
-            >
-              {t('footer.privacyPolicy')}
-            </Anchor>
-            <Anchor
-              component={Link}
-              href="/terms"
-              size="sm"
-              className={cls.link}
-            >
-              {t('footer.termsOfService')}
-            </Anchor>
-          </Stack>
+            <Stack gap="sm">
+              <Text fw={600} size="sm" className={cls.sectionTitle}>
+                {t('footer.company')}
+              </Text>
+              <Anchor
+                component={Link}
+                href="/about"
+                size="sm"
+                className={cls.link}
+              >
+                {t('footer.aboutUs')}
+              </Anchor>
+              <Anchor
+                component={Link}
+                href="/contact"
+                size="sm"
+                className={cls.link}
+              >
+                {t('footer.contactUs')}
+              </Anchor>
+              <Anchor
+                component={Link}
+                href="/privacy"
+                size="sm"
+                className={cls.link}
+              >
+                {t('footer.privacyPolicy')}
+              </Anchor>
+              <Anchor
+                component={Link}
+                href="/terms"
+                size="sm"
+                className={cls.link}
+              >
+                {t('footer.termsOfService')}
+              </Anchor>
+            </Stack>
 
-          <Stack gap="sm">
-            <Text fw={600} size="sm" className={cls.sectionTitle}>
-              {t('footer.followUs')}
-            </Text>
-            <Group gap="xs">
-              {socialLinks.map((social) => (
-                <ActionIcon
-                  key={social.label}
-                  component="a"
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="subtle"
-                  size="lg"
-                  aria-label={social.label}
-                  className={cls.socialIcon}
-                >
-                  <social.icon size={20} />
-                </ActionIcon>
-              ))}
-            </Group>
-          </Stack>
-        </SimpleGrid>
+            <Stack gap="sm">
+              <Text fw={600} size="sm" className={cls.sectionTitle}>
+                {t('footer.followUs')}
+              </Text>
+              <Group gap="xs">
+                {socialLinks.map((social) => (
+                  <ActionIcon
+                    key={social.label}
+                    component="a"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="subtle"
+                    size="lg"
+                    aria-label={social.label}
+                    className={cls.socialIcon}
+                  >
+                    <social.icon size={20} />
+                  </ActionIcon>
+                ))}
+              </Group>
+            </Stack>
+          </SimpleGrid>
+        </div>
 
         <Divider my="md" />
 
