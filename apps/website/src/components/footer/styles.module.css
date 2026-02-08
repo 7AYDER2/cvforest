@@ -43,3 +43,11 @@
 .socialIcon:hover {
   transform: scale(1.1);
 }
+
+.languageOption {
+  transition: opacity 150ms ease;
+}
+
+.languageOption:disabled {
+  opacity: 0.8;
+}

@@ -16,6 +16,7 @@ import {
 } from '@tabler/icons-react';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/components/link/link';
+import { FooterLanguageSwitcher } from './footer-language-switcher';
 import cls from './styles.module.css';
 
 const socialLinks = [
@@ -46,7 +47,7 @@ export async function Footer() {
             </Text>
           </Stack>
 
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="xl">
+          <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing="xl">
             <Stack gap="sm">
               <Text fw={600} size="sm" className={cls.sectionTitle}>
                 {t('footer.quickLinks')}
@@ -131,6 +132,13 @@ export async function Footer() {
                   </ActionIcon>
                 ))}
               </Group>
+            </Stack>
+
+            <Stack gap="sm">
+              <Text fw={600} size="sm" className={cls.sectionTitle}>
+                {t('footer.language')}
+              </Text>
+              <FooterLanguageSwitcher />
             </Stack>
           </SimpleGrid>
         </div>
