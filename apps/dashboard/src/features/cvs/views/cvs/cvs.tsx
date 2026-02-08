@@ -67,13 +67,13 @@ export function Cvs({ initialData }: CvsProps) {
             {
               accessor: 'status',
               title: t('cvs.status'),
-              width: 120,
+              width: 200,
               render: ({ status }) => <CvStatusBadge status={status} />,
             },
             {
               accessor: 'experienceInYears',
               title: t('cvs.experience'),
-              width: 120,
+              width: 200,
               render: ({ experienceInYears }) =>
                 experienceInYears
                   ? t('cvs.years', { number: experienceInYears })
