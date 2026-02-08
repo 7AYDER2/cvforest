@@ -27,7 +27,10 @@ export const userAccountsService = {
   async getUser(t: TranslationFn, sessionId: string) {
     const session = await prisma.user.findUnique({
       where: { id: sessionId },
-      include: { avatar: true },
+      include: {
+        cv: true,
+        avatar: true,
+      },
     });
 
     if (!session) {

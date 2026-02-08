@@ -103,6 +103,7 @@ export const accounts = new Elysia({ prefix: '/accounts' })
           role: user.role,
           email: user.email,
           avatar: user.avatar,
+          cv: user.cv,
         },
       };
     },

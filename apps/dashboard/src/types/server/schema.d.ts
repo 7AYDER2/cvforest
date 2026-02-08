@@ -1096,10 +1096,29 @@ export interface components {
         name: string;
         /** Format: email */
         email: string;
-        role?: string | null;
+        role: null | string;
         avatar: null | {
           id: string;
           key: string;
+        };
+        cv: null | {
+          id: string;
+          userId: string;
+          jobTitle: string;
+          experienceInYears: string | number;
+          expectedSalaryMin: string | number;
+          expectedSalaryMax: string | number;
+          expectedSalaryCurrency: 'Iqd' | 'Usd';
+          availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
+          workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
+          bio: string;
+          githubUrl: string;
+          linkedinUrl: string;
+          portfolioUrl: string;
+          availableForHire: boolean;
+          status: 'Pending' | 'Approved' | 'Rejected';
+          createdAt: Record<string, never> | string | number;
+          updatedAt: Record<string, never> | string | number;
         };
       };
     };
