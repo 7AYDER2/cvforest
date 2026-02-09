@@ -140,7 +140,7 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
                 required
                 key={form.key('jobTitle')}
                 label={t('uploadCv.jobTitle')}
-                placeholder={t('uploadCv.jobTitlePlaceholder')}
+                description={t('uploadCv.jobTitlePlaceholder')}
                 leftSection={<IconBriefcase size={18} />}
                 {...form.getInputProps('jobTitle')}
               />
@@ -160,7 +160,7 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
               clearable
               searchable
               label={t('uploadCv.skills')}
-              placeholder={t('browse.skillsPlaceholder')}
+              description={t('uploadCv.skillsDescription')}
               key={form.key('skillIds')}
               data={skillOptions}
               disabled={skillsQuery.isLoading}
@@ -244,7 +244,7 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
               minRows={4}
               key={form.key('bio')}
               label={t('uploadCv.bio')}
-              placeholder={t('uploadCv.bioPlaceholder')}
+              description={t('uploadCv.bioPlaceholder')}
               {...form.getInputProps('bio')}
             />
 
@@ -252,7 +252,6 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
               <TextInput
                 key={form.key('githubUrl')}
                 label={`${t('uploadCv.githubUrl')} (${t('uploadCv.optional')})`}
-                placeholder="https://github.com/username"
                 leftSection={<IconBrandGithub size={18} />}
                 {...form.getInputProps('githubUrl')}
               />
@@ -260,7 +259,6 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
               <TextInput
                 key={form.key('linkedinUrl')}
                 label={`${t('uploadCv.linkedinUrl')} (${t('uploadCv.optional')})`}
-                placeholder="https://linkedin.com/in/username"
                 leftSection={<IconBrandLinkedin size={18} />}
                 {...form.getInputProps('linkedinUrl')}
               />
@@ -268,7 +266,6 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
               <TextInput
                 key={form.key('portfolioUrl')}
                 label={`${t('uploadCv.portfolioUrl')} (${t('uploadCv.optional')})`}
-                placeholder="https://example.com"
                 leftSection={<IconLink size={18} />}
                 {...form.getInputProps('portfolioUrl')}
               />
