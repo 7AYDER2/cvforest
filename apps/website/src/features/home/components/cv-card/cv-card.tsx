@@ -190,7 +190,7 @@ export function CvCard({ cv }: { cv: CvListItem }) {
                 }
               }}
             >
-              <IconMail />
+              <IconMail size={16} />
             </ActionIcon>
           </Tooltip>
         </Group>
