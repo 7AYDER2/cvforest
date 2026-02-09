@@ -135,7 +135,11 @@ export const userCvsService = {
     userId: string,
     body: typeof UserCvsModel.UserCvsCreateBody.static,
   ): Promise<typeof UserCvsModel.UserCvsCreateResponse.static> {
-    if (body.expectedSalaryMin > body.expectedSalaryMax) {
+    if (
+      body.expectedSalaryMin !== undefined &&
+      body.expectedSalaryMax !== undefined &&
+      body.expectedSalaryMin > body.expectedSalaryMax
+    ) {
       throw new HttpError({
         statusCode: 400,
         message: t({

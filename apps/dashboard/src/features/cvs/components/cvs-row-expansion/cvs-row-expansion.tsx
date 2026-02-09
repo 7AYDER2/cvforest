@@ -288,7 +288,7 @@ export function CvsRowExpansion({ cv }: CvsRowExpansionProps) {
                 variant="light"
                 disabled={!cv.githubUrl}
                 rel="noopener noreferrer"
-                href={cv.githubUrl}
+                href={cv.githubUrl ?? undefined}
                 leftSection={<IconBrandGithub size={18} />}
               >
                 {t('cvs.github')}
@@ -300,7 +300,7 @@ export function CvsRowExpansion({ cv }: CvsRowExpansionProps) {
                 variant="light"
                 rel="noopener noreferrer"
                 disabled={!cv.linkedinUrl}
-                href={cv.linkedinUrl}
+                href={cv.linkedinUrl ?? undefined}
                 leftSection={<IconBrandLinkedin size={18} />}
               >
                 {t('cvs.linkedin')}
@@ -312,7 +312,7 @@ export function CvsRowExpansion({ cv }: CvsRowExpansionProps) {
                 variant="light"
                 rel="noopener noreferrer"
                 disabled={!cv.portfolioUrl}
-                href={cv.portfolioUrl}
+                href={cv.portfolioUrl ?? undefined}
                 leftSection={<IconWorld size={18} />}
               >
                 {t('cvs.portfolio')}

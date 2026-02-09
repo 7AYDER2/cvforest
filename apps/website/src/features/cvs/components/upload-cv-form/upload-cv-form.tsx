@@ -148,7 +148,7 @@ export function UploadCvForm() {
               min={0}
               step={50_000}
               thousandSeparator
-              label={t('uploadCv.expectedSalaryMin')}
+              label={`${t('uploadCv.expectedSalaryMin')} (${t('uploadCv.optional')})`}
               leftSection={<IconCurrencyDollar size={18} />}
               {...form.getInputProps('expectedSalaryMin')}
             />
@@ -158,14 +158,14 @@ export function UploadCvForm() {
               min={0}
               step={50_000}
               thousandSeparator
-              label={t('uploadCv.expectedSalaryMax')}
+              label={`${t('uploadCv.expectedSalaryMax')} (${t('uploadCv.optional')})`}
               leftSection={<IconCurrencyDollar size={18} />}
               {...form.getInputProps('expectedSalaryMax')}
             />
 
             <Select
               key={form.key('expectedSalaryCurrency')}
-              label={t('uploadCv.expectedSalaryCurrency')}
+              label={`${t('uploadCv.expectedSalaryCurrency')} (${t('uploadCv.optional')})`}
               data={currencyOptions}
               leftSection={<IconCurrencyDollar size={18} />}
               {...form.getInputProps('expectedSalaryCurrency')}
@@ -189,7 +189,7 @@ export function UploadCvForm() {
             <SimpleGrid cols={3}>
               <TextInput
                 key={form.key('githubUrl')}
-                label={t('uploadCv.githubUrl')}
+                label={`${t('uploadCv.githubUrl')} (${t('uploadCv.optional')})`}
                 placeholder="https://github.com/username"
                 leftSection={<IconBrandGithub size={18} />}
                 {...form.getInputProps('githubUrl')}
@@ -197,7 +197,7 @@ export function UploadCvForm() {
 
               <TextInput
                 key={form.key('linkedinUrl')}
-                label={t('uploadCv.linkedinUrl')}
+                label={`${t('uploadCv.linkedinUrl')} (${t('uploadCv.optional')})`}
                 placeholder="https://linkedin.com/in/username"
                 leftSection={<IconBrandLinkedin size={18} />}
                 {...form.getInputProps('linkedinUrl')}
@@ -205,7 +205,7 @@ export function UploadCvForm() {
 
               <TextInput
                 key={form.key('portfolioUrl')}
-                label={t('uploadCv.portfolioUrl')}
+                label={`${t('uploadCv.portfolioUrl')} (${t('uploadCv.optional')})`}
                 placeholder="https://example.com"
                 leftSection={<IconLink size={18} />}
                 {...form.getInputProps('portfolioUrl')}

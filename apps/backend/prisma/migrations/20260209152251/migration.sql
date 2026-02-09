@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Cv" ALTER COLUMN "expectedSalaryMin" DROP NOT NULL,
+ALTER COLUMN "expectedSalaryMax" DROP NOT NULL,
+ALTER COLUMN "expectedSalaryCurrency" DROP NOT NULL,
+ALTER COLUMN "githubUrl" DROP NOT NULL,
+ALTER COLUMN "linkedinUrl" DROP NOT NULL,
+ALTER COLUMN "portfolioUrl" DROP NOT NULL;

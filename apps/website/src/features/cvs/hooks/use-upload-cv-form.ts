@@ -12,6 +12,10 @@ import type { UserCvsCreateBody } from '../types';
 export function useUploadCvForm() {
   const t = useTranslations();
 
+  const optionalUrl = z
+    .union([z.url({ message: t('uploadCv.urlInvalid') }), z.literal('')])
+    .transform((s) => (s === '' ? undefined : s));
+
   const schema = z
     .object({
       jobTitle: z.string().min(1, { error: t('uploadCv.jobTitleRequired') }),
@@ -20,13 +24,17 @@ export function useUploadCvForm() {
         .min(0, { error: t('uploadCv.experienceMin') }),
       expectedSalaryMin: z
         .number()
-        .min(0, { error: t('uploadCv.salaryMinRequired') }),
+        .min(0, { error: t('uploadCv.salaryMinRequired') })
+        .optional(),
       expectedSalaryMax: z
         .number()
-        .min(0, { error: t('uploadCv.salaryMaxRequired') }),
-      expectedSalaryCurrency: z.enum([Currency.Iqd, Currency.Usd], {
-        error: t('uploadCv.currencyRequired'),
-      }),
+        .min(0, { error: t('uploadCv.salaryMaxRequired') })
+        .optional(),
+      expectedSalaryCurrency: z
+        .enum([Currency.Iqd, Currency.Usd], {
+          error: t('uploadCv.currencyRequired'),
+        })
+        .optional(),
       availabilityType: z.enum(AvailabilityType, {
         error: t('uploadCv.availabilityRequired'),
       }),
@@ -34,9 +42,9 @@ export function useUploadCvForm() {
         error: t('uploadCv.workLocationRequired'),
       }),
       bio: z.string().min(64, { error: t('uploadCv.bioRequired') }),
-      githubUrl: z.url({ error: t('uploadCv.urlInvalid') }),
-      linkedinUrl: z.url({ error: t('uploadCv.urlInvalid') }),
-      portfolioUrl: z.url({ error: t('uploadCv.urlInvalid') }),
+      githubUrl: optionalUrl,
+      linkedinUrl: optionalUrl,
+      portfolioUrl: optionalUrl,
       availableForHire: z.boolean(),
       skillIds: z
         .array(z.uuid())
@@ -45,7 +53,12 @@ export function useUploadCvForm() {
     })
     .refine(
       (data) => {
-        return data.expectedSalaryMin <= data.expectedSalaryMax;
+        const min = data.expectedSalaryMin;
+        const max = data.expectedSalaryMax;
+        if (min == null || max == null) {
+          return true;
+        }
+        return min <= max;
       },
       {
         message: t('uploadCv.salaryMinMustBeLessThanMax'),
@@ -61,9 +74,9 @@ export function useUploadCvForm() {
     initialValues: {
       jobTitle: '',
       experienceInYears: 0,
-      expectedSalaryMin: 0,
-      expectedSalaryMax: 0,
-      expectedSalaryCurrency: Currency.Usd,
+      expectedSalaryMin: undefined as number | undefined,
+      expectedSalaryMax: undefined as number | undefined,
+      expectedSalaryCurrency: undefined as Currency | undefined,
       availabilityType: AvailabilityType.FullTime,
       workLocationType: WorkLocationType.Remote,
       bio: '',
@@ -73,11 +86,23 @@ export function useUploadCvForm() {
       availableForHire: true,
       skillIds: [],
     },
-    transformValues: (values): UserCvsCreateBody => ({
-      ...values,
-      githubUrl: values.githubUrl.trim(),
-      linkedinUrl: values.linkedinUrl.trim(),
-      portfolioUrl: values.portfolioUrl.trim(),
-    }),
+    transformValues: (values): UserCvsCreateBody => {
+      const githubUrl = values.githubUrl?.trim();
+      const linkedinUrl = values.linkedinUrl?.trim();
+      const portfolioUrl = values.portfolioUrl?.trim();
+      const hasSalary =
+        values.expectedSalaryMin != null || values.expectedSalaryMax != null;
+      return {
+        ...values,
+        expectedSalaryMin: values.expectedSalaryMin,
+        expectedSalaryMax: values.expectedSalaryMax,
+        expectedSalaryCurrency: hasSalary
+          ? values.expectedSalaryCurrency
+          : undefined,
+        githubUrl: githubUrl === '' ? undefined : githubUrl,
+        linkedinUrl: linkedinUrl === '' ? undefined : linkedinUrl,
+        portfolioUrl: portfolioUrl === '' ? undefined : portfolioUrl,
+      };
+    },
   });
 }

@@ -913,18 +913,17 @@ export interface components {
         userId: string;
         jobTitle: string;
         experienceInYears: string | number;
-        expectedSalaryMin: string | number;
-        expectedSalaryMax: string | number;
-        /** @enum {string} */
-        expectedSalaryCurrency: 'Iqd' | 'Usd';
+        expectedSalaryMin: null | (string | number);
+        expectedSalaryMax: null | (string | number);
+        expectedSalaryCurrency: null | ('Iqd' | 'Usd');
         /** @enum {string} */
         availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
         /** @enum {string} */
         workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
         bio: string;
-        githubUrl: string;
-        linkedinUrl: string;
-        portfolioUrl: string;
+        githubUrl: null | string;
+        linkedinUrl: null | string;
+        portfolioUrl: null | string;
         availableForHire: boolean;
         /** @enum {string} */
         status: 'Pending' | 'Approved' | 'Rejected';
@@ -984,18 +983,17 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      expectedSalaryMin: string | number;
-      expectedSalaryMax: string | number;
-      /** @enum {string} */
-      expectedSalaryCurrency: 'Iqd' | 'Usd';
+      expectedSalaryMin: null | (string | number);
+      expectedSalaryMax: null | (string | number);
+      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
       /** @enum {string} */
       availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
       workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
       bio: string;
-      githubUrl: string;
-      linkedinUrl: string;
-      portfolioUrl: string;
+      githubUrl: null | string;
+      linkedinUrl: null | string;
+      portfolioUrl: null | string;
       availableForHire: boolean;
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
@@ -1105,15 +1103,15 @@ export interface components {
           userId: string;
           jobTitle: string;
           experienceInYears: string | number;
-          expectedSalaryMin: string | number;
-          expectedSalaryMax: string | number;
-          expectedSalaryCurrency: 'Iqd' | 'Usd';
+          expectedSalaryMin: null | (string | number);
+          expectedSalaryMax: null | (string | number);
+          expectedSalaryCurrency: null | ('Iqd' | 'Usd');
           availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
           workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
           bio: string;
-          githubUrl: string;
-          linkedinUrl: string;
-          portfolioUrl: string;
+          githubUrl: null | string;
+          linkedinUrl: null | string;
+          portfolioUrl: null | string;
           availableForHire: boolean;
           status: 'Pending' | 'Approved' | 'Rejected';
           createdAt: Record<string, never> | string | number;
@@ -1288,18 +1286,17 @@ export interface components {
         userId: string;
         jobTitle: string;
         experienceInYears: string | number;
-        expectedSalaryMin: string | number;
-        expectedSalaryMax: string | number;
-        /** @enum {string} */
-        expectedSalaryCurrency: 'Iqd' | 'Usd';
+        expectedSalaryMin: null | (string | number);
+        expectedSalaryMax: null | (string | number);
+        expectedSalaryCurrency: null | ('Iqd' | 'Usd');
         /** @enum {string} */
         availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
         /** @enum {string} */
         workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
         bio: string;
-        githubUrl: string;
-        linkedinUrl: string;
-        portfolioUrl: string;
+        githubUrl: null | string;
+        linkedinUrl: null | string;
+        portfolioUrl: null | string;
         availableForHire: boolean;
         /** @enum {string} */
         status: 'Pending' | 'Approved' | 'Rejected';
@@ -1359,18 +1356,17 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      expectedSalaryMin: string | number;
-      expectedSalaryMax: string | number;
-      /** @enum {string} */
-      expectedSalaryCurrency: 'Iqd' | 'Usd';
+      expectedSalaryMin: null | (string | number);
+      expectedSalaryMax: null | (string | number);
+      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
       /** @enum {string} */
       availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
       workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
       bio: string;
-      githubUrl: string;
-      linkedinUrl: string;
-      portfolioUrl: string;
+      githubUrl: null | string;
+      linkedinUrl: null | string;
+      portfolioUrl: null | string;
       availableForHire: boolean;
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
@@ -1427,21 +1423,21 @@ export interface components {
     UserCvsCreateBody: {
       jobTitle: string;
       experienceInYears: number;
-      expectedSalaryMin: number;
-      expectedSalaryMax: number;
+      expectedSalaryMin?: number;
+      expectedSalaryMax?: number;
       /** @enum {string} */
-      expectedSalaryCurrency: 'Iqd' | 'Usd';
+      expectedSalaryCurrency?: 'Iqd' | 'Usd';
       /** @enum {string} */
       availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
       workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
       bio: string;
       /** Format: uri */
-      githubUrl: string;
+      githubUrl?: string;
       /** Format: uri */
-      linkedinUrl: string;
+      linkedinUrl?: string;
       /** Format: uri */
-      portfolioUrl: string;
+      portfolioUrl?: string;
       availableForHire: boolean;
       skillIds: string[];
     };
@@ -1450,18 +1446,17 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      expectedSalaryMin: string | number;
-      expectedSalaryMax: string | number;
-      /** @enum {string} */
-      expectedSalaryCurrency: 'Iqd' | 'Usd';
+      expectedSalaryMin: null | (string | number);
+      expectedSalaryMax: null | (string | number);
+      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
       /** @enum {string} */
       availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
       workLocationType: 'OnSite' | 'Remote' | 'Hybrid';
       bio: string;
-      githubUrl: string;
-      linkedinUrl: string;
-      portfolioUrl: string;
+      githubUrl: null | string;
+      linkedinUrl: null | string;
+      portfolioUrl: null | string;
       availableForHire: boolean;
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
