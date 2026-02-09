@@ -160,10 +160,10 @@ export function UploadCvForm() {
             />
 
             <NumberInput
-              key={form.key('expectedSalaryMax')}
               min={0}
               step={50_000}
               thousandSeparator
+              key={form.key('expectedSalaryMax')}
               label={`${t('uploadCv.expectedSalaryMax')} (${t('uploadCv.optional')})`}
               leftSection={<IconCurrencyDollar size={18} />}
               {...form.getInputProps('expectedSalaryMax')}
