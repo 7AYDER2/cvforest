@@ -13,16 +13,16 @@ export function useSignUpForm() {
 
   const schema = z
     .object({
-      name: z.string().min(1, { error: t('signup.nameRequired') }),
-      email: z.email({ error: t('signup.emailInvalid') }),
+      name: z.string().min(1, { error: t('signUp.nameRequired') }),
+      email: z.email({ error: t('signUp.emailInvalid') }),
       password: z
         .string()
-        .min(8, { error: t('signup.passwordInvalid') })
-        .max(128, { error: t('signup.passwordInvalid') })
-        .regex(strongPasswordRegex, { error: t('signup.passwordInvalid') }),
+        .min(8, { error: t('signUp.passwordInvalid') })
+        .max(128, { error: t('signUp.passwordInvalid') })
+        .regex(strongPasswordRegex, { error: t('signUp.passwordInvalid') }),
       confirmPassword: z
         .string()
-        .min(1, { error: t('signup.confirmPasswordMismatch') }),
+        .min(1, { error: t('signUp.confirmPasswordMismatch') }),
       phoneNumber: z
         .union([z.literal(''), phoneNumberZodValidator])
         .optional()
@@ -30,7 +30,7 @@ export function useSignUpForm() {
       gender: z.enum(Gender).optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      error: t('signup.confirmPasswordMismatch'),
+      error: t('signUp.confirmPasswordMismatch'),
       path: ['confirmPassword'],
     });
 

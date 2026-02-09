@@ -12,7 +12,6 @@
     "emailVerificationFailedTitle": "فشل التحقق من بريدك الإلكتروني",
     "emailVerifiedSuccessDescription": "تم التحقق من بريدك الإلكتروني بنجاح. يمكنك الآن الانتقال الى الصحفة الرئيسية.",
     "emailVerifiedSuccessTitle": "تم التحقق من بريدك الإلكتروني بنجاح",
-    "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
     "verificationLinkInstructions": "انقر على الرابط في البريد للتحقق من حسابك.",
     "verificationLinkSent": "أرسلنا رابط التحقق إلى",
     "verifyEmail": "تحقق من بريدك الإلكتروني"
@@ -138,13 +137,15 @@
   "signIn": {
     "dontHaveAccount": "ليس لديك حساب؟",
     "email": "البريد الإلكتروني",
+    "emailDescription": "ادخل ايميلك الإلكتروني",
     "pageDescription": "قم بتسجيل الدخول للوصول إلى حسابك",
     "pageTitle": "تسجيل الدخول",
     "password": "كلمة المرور",
+    "passwordDescription": "ادخل كلمة المرور الخاصة بك",
     "signIn": "تسجيل الدخول",
     "signUp": "التسجيل"
   },
-  "signup": {
+  "signUp": {
     "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
     "confirmPassword": "تأكيد كلمة المرور",
     "confirmPasswordDescription": "أكد كلمة المرور الخاصة بك",

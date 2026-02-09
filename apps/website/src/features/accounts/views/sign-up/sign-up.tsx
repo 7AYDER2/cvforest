@@ -8,9 +8,9 @@ export function SignUp() {
   return (
     <Container size="xs" component={Stack} mt="md">
       <Box ta="center">
-        <Title order={1}>{t('signup.pageTitle')}</Title>
+        <Title order={1}>{t('signUp.pageTitle')}</Title>
         <Text c="dimmed" size="lg">
-          {t('signup.pageDescription')}
+          {t('signUp.pageDescription')}
         </Text>
       </Box>
 

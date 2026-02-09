@@ -12,7 +12,6 @@
     "emailVerificationFailedTitle": "Email Verification Failed",
     "emailVerifiedSuccessDescription": "Your email has been verified. You can now navigate to home page.",
     "emailVerifiedSuccessTitle": "Email Verified Successfully",
-    "passwordPlaceholder": "Enter your password",
     "verificationLinkInstructions": "Click the link in the email to verify your account.",
     "verificationLinkSent": "We sent a verification link to",
     "verifyEmail": "Verify Your Email"
@@ -138,13 +137,15 @@
   "signIn": {
     "dontHaveAccount": "Don't have an account?",
     "email": "Email",
+    "emailDescription": "Enter your email address",
     "pageDescription": "Sign in to access your account",
     "pageTitle": "Sign in",
     "password": "Password",
+    "passwordDescription": "Enter your password",
     "signIn": "Sign in",
     "signUp": "Sign up"
   },
-  "signup": {
+  "signUp": {
     "alreadyHaveAccount": "Already have an account?",
     "confirmPassword": "Confirm Password",
     "confirmPasswordDescription": "Re-enter your password to confirm.",

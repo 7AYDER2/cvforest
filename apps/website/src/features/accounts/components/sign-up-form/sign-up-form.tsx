@@ -35,12 +35,12 @@ export function SignUpForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Paper withBorder p="sm" component={Stack} gap="md">
+      <Paper withBorder p="sm">
         <Stack gap="md">
           <TextInput
             required
-            label={t('signup.name')}
-            description={t('signup.nameDescription')}
+            label={t('signUp.name')}
+            description={t('signUp.nameDescription')}
             leftSection={<IconUser size={18} />}
             key={form.key('name')}
             {...form.getInputProps('name')}
@@ -49,16 +49,16 @@ export function SignUpForm() {
           <TextInput
             required
             type="email"
-            label={t('signup.email')}
-            description={t('signup.emailDescription')}
+            label={t('signUp.email')}
+            description={t('signUp.emailDescription')}
             leftSection={<IconAt size={18} />}
             key={form.key('email')}
             {...form.getInputProps('email')}
           />
 
           <PhoneNumberInput
-            label={t('signup.phoneNumber')}
-            description={t('signup.phoneNumberDescription')}
+            label={t('signUp.phoneNumber')}
+            description={t('signUp.phoneNumberDescription')}
             leftSection={<IconPhone size={18} />}
             key={form.key('phoneNumber')}
             {...form.getInputProps('phoneNumber')}
@@ -66,8 +66,8 @@ export function SignUpForm() {
 
           <PasswordInput
             required
-            label={t('signup.password')}
-            description={t('signup.passwordDescription')}
+            label={t('signUp.password')}
+            description={t('signUp.passwordDescription')}
             leftSection={<IconLock size={18} />}
             key={form.key('password')}
             {...form.getInputProps('password')}
@@ -75,8 +75,8 @@ export function SignUpForm() {
 
           <PasswordInput
             required
-            label={t('signup.confirmPassword')}
-            description={t('signup.confirmPasswordDescription')}
+            label={t('signUp.confirmPassword')}
+            description={t('signUp.confirmPasswordDescription')}
             leftSection={<IconLock size={18} />}
             key={form.key('confirmPassword')}
             {...form.getInputProps('confirmPassword')}
@@ -84,8 +84,8 @@ export function SignUpForm() {
 
           <Select
             clearable
-            label={t('signup.gender')}
-            description={t('signup.genderDescription')}
+            label={t('signUp.gender')}
+            description={t('signUp.genderDescription')}
             leftSection={<IconUser size={18} />}
             data={[
               { label: t('gender.male'), value: Gender.Male },
@@ -94,24 +94,22 @@ export function SignUpForm() {
             key={form.key('gender')}
             {...form.getInputProps('gender')}
           />
-        </Stack>
 
-        <Stack gap="lg">
           <Button
             type="submit"
             leftSection={<IconCheck size={20} />}
             loading={signUpMut.isPending}
           >
-            {t('signup.submitButton')}
+            {t('signUp.submitButton')}
           </Button>
-
-          <Text ta="center" c="dimmed" size="sm">
-            {t('signup.alreadyHaveAccount')}{' '}
-            <Anchor href="/sign-in" component={Link} c="blue" fw={500}>
-              {t('signup.signIn')}
-            </Anchor>
-          </Text>
         </Stack>
+
+        <Text ta="center" c="dimmed" size="sm" mt="md">
+          {t('signUp.alreadyHaveAccount')}{' '}
+          <Anchor href="/sign-in" component={Link} c="blue" fw={500}>
+            {t('signUp.signIn')}
+          </Anchor>
+        </Text>
       </Paper>
     </form>
   );

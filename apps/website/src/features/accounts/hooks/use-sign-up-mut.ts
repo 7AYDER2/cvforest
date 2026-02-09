@@ -19,7 +19,7 @@ export function useSignUpMut() {
     },
 
     onSuccess: (data) => {
-      n.success(t('signup.registrationSuccess'));
+      n.success(t('signUp.registrationSuccess'));
       router.push(`/verify-email?email=${encodeURIComponent(data.user.email)}`);
     },
   });

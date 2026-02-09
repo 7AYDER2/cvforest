@@ -26,13 +26,13 @@ export function SignInForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Paper withBorder shadow="sm" p={{ base: 'md', sm: 'lg' }}>
+      <Paper withBorder p="sm">
         <Stack gap="md">
           <TextInput
             required
             autoCapitalize="off"
             label={t('signIn.email')}
-            placeholder={t('signup.emailPlaceholder')}
+            description={t('signIn.emailDescription')}
             leftSection={<IconUser size={18} />}
             {...form.getInputProps('email')}
           />
@@ -40,7 +40,7 @@ export function SignInForm() {
           <PasswordInput
             required
             label={t('signIn.password')}
-            placeholder={t('auth.passwordPlaceholder')}
+            description={t('signIn.passwordDescription')}
             leftSection={<IconKey size={18} />}
             {...form.getInputProps('password')}
           />
@@ -54,14 +54,14 @@ export function SignInForm() {
           >
             {t('signIn.signIn')}
           </Button>
-
-          <Text ta="center" c="dimmed" size="sm">
-            {t('signIn.dontHaveAccount')}{' '}
-            <Anchor href="/sign-up" component={Link} c="blue" fw={500}>
-              {t('signIn.signUp')}
-            </Anchor>
-          </Text>
         </Stack>
+
+        <Text ta="center" c="dimmed" size="sm" mt="md">
+          {t('signIn.dontHaveAccount')}{' '}
+          <Anchor href="/sign-up" component={Link} c="blue" fw={500}>
+            {t('signIn.signUp')}
+          </Anchor>
+        </Text>
       </Paper>
     </form>
   );
