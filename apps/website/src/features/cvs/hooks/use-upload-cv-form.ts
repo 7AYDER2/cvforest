@@ -31,7 +31,7 @@ export function useUploadCvForm() {
         .min(0, { error: t('uploadCv.salaryMaxRequired') })
         .optional(),
       expectedSalaryCurrency: z
-        .enum([Currency.Iqd, Currency.Usd], {
+        .enum(Currency, {
           error: t('uploadCv.currencyRequired'),
         })
         .optional(),
@@ -41,7 +41,9 @@ export function useUploadCvForm() {
       workLocationType: z.enum(WorkLocationType, {
         error: t('uploadCv.workLocationRequired'),
       }),
-      bio: z.string().min(64, { error: t('uploadCv.bioRequired') }),
+      bio: z.string().min(32, {
+        error: t('uploadCv.bioMustBeAtLeast32Characters'),
+      }),
       githubUrl: optionalUrl,
       linkedinUrl: optionalUrl,
       portfolioUrl: optionalUrl,
