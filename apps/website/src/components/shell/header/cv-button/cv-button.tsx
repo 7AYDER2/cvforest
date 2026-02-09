@@ -30,8 +30,6 @@ export function CvButton({ cv }: CvButtonProps) {
         <Button
           color="yellow"
           variant="filled"
-          component={Link}
-          href={`/cvs/${cv.id}`}
           leftSection={<IconEye size={18} />}
         >
           {t('header.cvUnderReview')}
