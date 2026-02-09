@@ -4,7 +4,6 @@ import {
   IconBriefcase,
   IconCalendar,
   IconClock,
-  IconCoin,
   IconMapPin,
   IconPhone,
   IconWorld,
@@ -15,7 +14,6 @@ import { PhoneNumber } from '@/components/phone-number';
 import { formatDate } from '@/utils/helpers';
 import {
   translateAvailabilityType,
-  translateCurrency,
   translateWorkLocationType,
 } from '@/utils/translation-maps';
 import type { UserDetailResponse } from '../../types';
@@ -57,18 +55,6 @@ function InfoRow({
 
 export function UserSidebar({ user }: UserSidebarProps) {
   const t = useTranslations();
-
-  const salaryRange =
-    user.expectedSalaryMin != null && user.expectedSalaryMax != null
-      ? `${Number(user.expectedSalaryMin).toLocaleString()} - ${Number(user.expectedSalaryMax).toLocaleString()}`
-      : user.expectedSalaryMin != null
-        ? `${Number(user.expectedSalaryMin).toLocaleString()}+`
-        : null;
-
-  const salaryDisplay =
-    salaryRange && user.expectedSalaryCurrency
-      ? `${salaryRange} ${translateCurrency(t, user.expectedSalaryCurrency)}`
-      : salaryRange;
 
   return (
     <Stack gap="md">
@@ -146,18 +132,6 @@ export function UserSidebar({ user }: UserSidebarProps) {
               icon={IconWorld}
               label={t('users.workLocationType')}
               value={translateWorkLocationType(t, user.workLocationType)}
-            />
-          )}
-
-          {salaryDisplay && (
-            <InfoRow
-              icon={IconCoin}
-              label={t('userDetails.expectedSalary')}
-              value={
-                <Text fz="sm" fw={600} c="primary">
-                  {salaryDisplay}
-                </Text>
-              }
             />
           )}
         </Stack>
