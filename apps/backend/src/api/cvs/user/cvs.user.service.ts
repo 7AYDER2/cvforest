@@ -36,7 +36,7 @@ export const userCvsService = {
       ...(skillIdsArray &&
         skillIdsArray.length > 0 && {
           userSkills: {
-            some: { skillId: { in: skillIdsArray } },
+            every: { skillId: { in: skillIdsArray } },
           },
         }),
 
