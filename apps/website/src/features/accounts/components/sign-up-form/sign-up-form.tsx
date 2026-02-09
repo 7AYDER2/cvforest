@@ -38,20 +38,20 @@ export function SignUpForm() {
       <Paper withBorder p="sm" component={Stack} gap="md">
         <Stack gap="md">
           <TextInput
+            required
             label={t('signup.name')}
             placeholder={t('signup.namePlaceholder')}
             leftSection={<IconUser size={18} />}
-            required
             key={form.key('name')}
             {...form.getInputProps('name')}
           />
 
           <TextInput
             required
+            type="email"
             label={t('signup.email')}
             placeholder={t('signup.emailPlaceholder')}
             leftSection={<IconAt size={18} />}
-            type="email"
             key={form.key('email')}
             {...form.getInputProps('email')}
           />
@@ -59,16 +59,18 @@ export function SignUpForm() {
           <PhoneNumberInput
             label={t('signup.phoneNumber')}
             placeholder={t('signup.phoneNumberPlaceholder')}
+            description={t('signup.phoneNumberDescription')}
             leftSection={<IconPhone size={18} />}
             key={form.key('phoneNumber')}
             {...form.getInputProps('phoneNumber')}
           />
 
           <PasswordInput
+            required
             label={t('signup.password')}
             placeholder={t('signup.passwordPlaceholder')}
+            description={t('signup.passwordDescription')}
             leftSection={<IconLock size={18} />}
-            required
             key={form.key('password')}
             {...form.getInputProps('password')}
           />
@@ -83,9 +85,9 @@ export function SignUpForm() {
           />
 
           <Select
+            clearable
             label={t('signup.gender')}
             leftSection={<IconUser size={18} />}
-            clearable
             placeholder={t('signup.gender')}
             data={[
               { label: t('gender.male'), value: Gender.Male },

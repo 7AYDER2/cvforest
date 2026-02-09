@@ -27,7 +27,7 @@ export function useSignUpForm() {
         .union([z.literal(''), phoneNumberZodValidator])
         .optional()
         .default(''),
-      gender: z.enum([Gender.Male, Gender.Female]).optional(),
+      gender: z.enum(Gender).optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
       error: t('signup.confirmPasswordMismatch'),
@@ -46,7 +46,7 @@ export function useSignUpForm() {
       password: '',
       confirmPassword: '',
       phoneNumber: '',
-      gender: undefined,
+      gender: 'Male',
     },
     transformValues: (values): SignUpRequestBody => {
       const phone = values.phoneNumber?.replaceAll(' ', '')?.trim();
