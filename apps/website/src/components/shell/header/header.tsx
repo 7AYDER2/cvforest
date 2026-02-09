@@ -23,10 +23,7 @@ export function Header({ session }: HeaderProps) {
         </Anchor>
 
         <Group>
-          <Group gap="xs">
-            <Button variant="subtle">{t('header.plans')}</Button>
-            <Button variant="subtle">{t('header.courses')}</Button>
-          </Group>
+          <Button variant="subtle">{t('header.courses')}</Button>
 
           {session ? (
             <Group gap="xs">
