@@ -30,7 +30,11 @@ const UserSkillWithSkill = t.Object({
 
 // CV with relations
 const CvWithRelations = t.Composite([
-  CvPlain,
+  t.Omit(CvPlain, [
+    'expectedSalaryMin',
+    'expectedSalaryMax',
+    'expectedSalaryCurrency',
+  ]),
   t.Object({
     user: UserWithRelations,
     userSkills: t.Array(UserSkillWithSkill),

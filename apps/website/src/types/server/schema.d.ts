@@ -1286,9 +1286,6 @@ export interface components {
         userId: string;
         jobTitle: string;
         experienceInYears: string | number;
-        expectedSalaryMin: null | (string | number);
-        expectedSalaryMax: null | (string | number);
-        expectedSalaryCurrency: null | ('Iqd' | 'Usd');
         /** @enum {string} */
         availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
         /** @enum {string} */
@@ -1356,9 +1353,6 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
       /** @enum {string} */
       availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
@@ -1446,9 +1440,6 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      expectedSalaryMin: null | (string | number);
-      expectedSalaryMax: null | (string | number);
-      expectedSalaryCurrency: null | ('Iqd' | 'Usd');
       /** @enum {string} */
       availabilityType: 'FullTime' | 'PartTime' | 'Freelance';
       /** @enum {string} */
