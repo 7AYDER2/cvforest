@@ -50,8 +50,8 @@ export function useUploadCvForm() {
       availableForHire: z.boolean(),
       skillIds: z
         .array(z.uuid())
-        .min(3, { error: t('uploadCv.skillsRequired') })
-        .max(12, { error: t('uploadCv.skillsRequired') }),
+        .min(3, { error: t('uploadCv.selectAtLeast3Skills') })
+        .max(12, { error: t('uploadCv.selectAtMost12Skills') }),
     })
     .refine(
       (data) => {
