@@ -1,7 +1,9 @@
 'use client';
 
 import {
+  Avatar,
   Button,
+  Group,
   MultiSelect,
   NumberInput,
   Select,
@@ -35,6 +37,7 @@ import { useCvCreate } from '@/features/cvs/hooks/use-cv-create';
 import { useSkillsQuery } from '@/features/cvs/hooks/use-skills-query';
 import { useUploadCvForm } from '@/features/cvs/hooks/use-upload-cv-form';
 import type { ProfileResponseBody } from '@/features/profile/types';
+import { constructImageUrl } from '@/utils/helpers';
 import {
   translateAvailabilityType,
   translateCurrency,
@@ -89,33 +92,42 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
           label={t('uploadCv.sectionProfile')}
           description={t('uploadCv.sectionProfileDescription')}
         >
-          <SimpleGrid cols={2} style={{ alignItems: 'end' }}>
-            <TextInput
-              label={t('profiles.name')}
-              value={profile.name}
-              disabled
-              leftSection={<IconUser size={18} />}
+          <Group gap="xl">
+            <Avatar
+              size={128}
+              radius="100vw"
+              name={profile.name}
+              src={constructImageUrl(profile.avatar?.key)}
             />
-            <TextInput
-              label={t('profiles.email')}
-              value={profile.email}
-              disabled
-              leftSection={<IconAt size={18} />}
-            />
-            <PhoneNumberInput
-              label={t('profiles.phone')}
-              value={profile.phoneNumber ?? ''}
-              disabled
-              leftSection={<IconPhone size={18} />}
-            />
-            <Select
-              label={t('profiles.gender')}
-              value={profile.gender ?? ''}
-              data={genderOptions}
-              disabled
-              leftSection={<IconAB size={18} />}
-            />
-          </SimpleGrid>
+
+            <SimpleGrid cols={2} style={{ flexGrow: 1 }}>
+              <TextInput
+                label={t('profiles.name')}
+                value={profile.name}
+                disabled
+                leftSection={<IconUser size={18} />}
+              />
+              <TextInput
+                label={t('profiles.email')}
+                value={profile.email}
+                disabled
+                leftSection={<IconAt size={18} />}
+              />
+              <PhoneNumberInput
+                label={t('profiles.phone')}
+                value={profile.phoneNumber ?? ''}
+                disabled
+                leftSection={<IconPhone size={18} />}
+              />
+              <Select
+                label={t('profiles.gender')}
+                value={profile.gender ?? ''}
+                data={genderOptions}
+                disabled
+                leftSection={<IconAB size={18} />}
+              />
+            </SimpleGrid>
+          </Group>
         </FormSection>
 
         <FormSection
