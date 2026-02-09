@@ -1,6 +1,6 @@
 import { Stack } from '@mantine/core';
-import { CvsSection } from '../../components/cvs-section';
-import { Hero } from '../../components/hero';
+import { CvsSection } from '@/features/home/components/cvs-section';
+import { Hero } from '@/features/home/components/hero/hero';
 
 export function Home() {
   return (
