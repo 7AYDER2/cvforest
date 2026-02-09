@@ -2,6 +2,7 @@ import {
   ActionIcon,
   Avatar,
   Badge,
+  Box,
   Group,
   Paper,
   Stack,
@@ -25,7 +26,7 @@ import {
   translateWorkLocationType,
 } from '@/utils/translation-maps';
 import type { CvListItem } from '../../types';
-import cls from './styles.module.css';
+import { InfoItem } from './info-item';
 
 export function CvCard({ cv }: { cv: CvListItem }) {
   const t = useTranslations();
@@ -54,24 +55,17 @@ export function CvCard({ cv }: { cv: CvListItem }) {
 
   return (
     <Paper
+      p="sm"
       withBorder
       radius="lg"
-      className={cls.card}
-      p={0}
       component={Link}
       href={`/cvs/${cv.id}`}
       style={{ textDecoration: 'none', color: 'inherit' }}
     >
-      <Stack align="flex-start" gap="md" className={cls.body}>
-        {/* Identity row: avatar + name/job (left-aligned) */}
-        <Group
-          align="flex-start"
-          gap="md"
-          wrap="nowrap"
-          className={cls.identityRow}
-        >
-          <div className={cls.avatarWrapper}>
-            <div className={cls.avatarRing}>
+      <Stack align="flex-start" gap="md">
+        <Group align="flex-start" gap="md" wrap="nowrap">
+          <div>
+            <div>
               <Avatar
                 size={68}
                 radius="50%"
@@ -82,7 +76,7 @@ export function CvCard({ cv }: { cv: CvListItem }) {
             </div>
           </div>
 
-          <Stack align="flex-start" gap={2} className={cls.identityText}>
+          <Stack align="flex-start" gap={2}>
             <Text fw={700} size="lg" lineClamp={1}>
               {cv.user.name}
             </Text>
@@ -95,51 +89,38 @@ export function CvCard({ cv }: { cv: CvListItem }) {
         </Group>
 
         {/* Meta chips */}
-        <Group gap={6} justify="flex-start" wrap="wrap">
-          {cv.user.governorate && (
-            <span className={cls.metaChip}>
-              <IconMapPin size={12} />
-              {cv.user.governorate.name}
-            </span>
-          )}
+        <Stack gap={6}>
+          <InfoItem
+            icon={IconMapPin}
+            value={cv.user.governorate?.name ?? '-'}
+          />
 
-          {cv.experienceInYears != null && (
-            <span className={cls.metaChip}>
-              <IconClock size={12} />
-              {t('cvs.yearsExperience', { number: cv.experienceInYears })}
-            </span>
-          )}
+          <InfoItem
+            icon={IconClock}
+            value={t('cvs.yearsExperience', { number: cv.experienceInYears })}
+          />
 
-          {cv.availabilityType && (
-            <span className={cls.metaChip}>
-              <IconBriefcase size={12} />
-              {translateAvailabilityType(t, cv.availabilityType)}
-            </span>
-          )}
+          <InfoItem
+            icon={IconBriefcase}
+            value={translateAvailabilityType(t, cv.availabilityType)}
+          />
 
-          {cv.workLocationType && (
-            <span className={cls.metaChip}>
-              <IconWorld size={12} />
-              {translateWorkLocationType(t, cv.workLocationType)}
-            </span>
-          )}
-        </Group>
+          <InfoItem
+            icon={IconWorld}
+            value={translateWorkLocationType(t, cv.workLocationType)}
+          />
+        </Stack>
 
         {/* Skills */}
-        <div className={cls.skillsRow}>
+        <Box h={48}>
           {visibleSkills.length > 0 && (
             <Group gap={6} justify="flex-start" wrap="wrap">
               {visibleSkills.map((skill) => (
-                <Badge
-                  key={skill.id}
-                  size="sm"
-                  variant="light"
-                  radius="xl"
-                  className={cls.skillPill}
-                >
+                <Badge key={skill.id} size="sm" variant="light" radius="xl">
                   {skill.name}
                 </Badge>
               ))}
+
               {remainingCount > 0 && (
                 <Badge size="sm" variant="light" color="gray" radius="xl">
                   +{remainingCount}
@@ -147,10 +128,10 @@ export function CvCard({ cv }: { cv: CvListItem }) {
               )}
             </Group>
           )}
-        </div>
+        </Box>
 
         {/* Social links footer */}
-        <Group w="100%" className={cls.socialFooter} justify="space-between">
+        <Group w="100%" justify="space-between">
           <Group gap="xs">
             {socialLinks.map((link) => (
               <Tooltip key={link.label} label={link.label} withArrow>
