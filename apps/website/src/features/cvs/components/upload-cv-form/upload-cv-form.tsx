@@ -82,6 +82,7 @@ export function UploadCvForm() {
           <Stack>
             <SimpleGrid cols={2} style={{ alignItems: 'end' }}>
               <TextInput
+                required
                 key={form.key('jobTitle')}
                 label={t('uploadCv.jobTitle')}
                 placeholder={t('uploadCv.jobTitlePlaceholder')}
@@ -90,8 +91,9 @@ export function UploadCvForm() {
               />
 
               <NumberInput
-                key={form.key('experienceInYears')}
+                required
                 min={0}
+                key={form.key('experienceInYears')}
                 label={t('uploadCv.experienceInYears')}
                 leftSection={<IconUser size={18} />}
                 {...form.getInputProps('experienceInYears')}
@@ -99,11 +101,12 @@ export function UploadCvForm() {
             </SimpleGrid>
 
             <MultiSelect
-              key={form.key('skillIds')}
+              required
               clearable
               searchable
               label={t('uploadCv.skills')}
               placeholder={t('browse.skillsPlaceholder')}
+              key={form.key('skillIds')}
               data={skillOptions}
               disabled={skillsQuery.isLoading}
               leftSection={<IconTools size={18} />}
@@ -118,6 +121,7 @@ export function UploadCvForm() {
         >
           <SimpleGrid cols={3}>
             <Select
+              required
               key={form.key('availabilityType')}
               label={t('uploadCv.availabilityType')}
               data={availabilityOptions}
@@ -126,6 +130,7 @@ export function UploadCvForm() {
             />
 
             <Select
+              required
               key={form.key('workLocationType')}
               label={t('uploadCv.workLocationType')}
               data={workLocationOptions}
@@ -133,6 +138,7 @@ export function UploadCvForm() {
             />
 
             <Select
+              required
               key={form.key('availableForHire')}
               label={t('uploadCv.availableForHire')}
               data={availableForHireOptions}
@@ -179,10 +185,11 @@ export function UploadCvForm() {
         >
           <Stack gap="md">
             <Textarea
+              required
+              minRows={4}
               key={form.key('bio')}
               label={t('uploadCv.bio')}
               placeholder={t('uploadCv.bioPlaceholder')}
-              minRows={4}
               {...form.getInputProps('bio')}
             />
 
