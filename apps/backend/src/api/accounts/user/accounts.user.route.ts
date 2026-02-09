@@ -5,6 +5,7 @@ import { mustBeUser } from '@/plugins/better-auth';
 import { genRateLimit } from '@/plugins/rate-limit';
 import { auth } from '@/utils/auth';
 import { HttpError } from '@/utils/error';
+import { setBetterAuthHeaders } from '../accounts.helpers';
 import { UserAccountsModel } from './accounts.user.model';
 import { userAccountsService } from './accounts.user.service';
 
@@ -66,14 +67,18 @@ export const accounts = new Elysia({ prefix: '/accounts' })
 
   .get(
     '/verify-email',
-    async ({ redirect, query: { token } }) => {
+    async ({ set, redirect, query: { token } }) => {
       try {
-        const res = await auth.api.verifyEmail({ query: { token } });
+        const res = await auth.api.verifyEmail({
+          returnHeaders: true,
+          query: { token },
+        });
 
         if (!res) {
           return redirect(env.BETTER_AUTH_VERIFICATION_CALLBACK_FAILED_URL);
         }
 
+        setBetterAuthHeaders(set, res.headers);
         return redirect(env.BETTER_AUTH_VERIFICATION_CALLBACK_SUCCESS_URL);
       } catch {
         return redirect(env.BETTER_AUTH_VERIFICATION_CALLBACK_FAILED_URL);
