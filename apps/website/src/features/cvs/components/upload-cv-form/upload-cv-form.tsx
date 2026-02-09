@@ -16,27 +16,32 @@ import {
   WorkLocationType,
 } from '@repo/backend/prisma/enums';
 import {
+  IconAB,
+  IconAt,
   IconBrandGithub,
   IconBrandLinkedin,
   IconBriefcase,
   IconCheck,
   IconCurrencyDollar,
   IconLink,
+  IconPhone,
   IconTools,
   IconUser,
 } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { FormSection } from '@/components/form-section';
+import { PhoneNumberInput } from '@/components/phone-number-input';
 import { useCvCreate } from '@/features/cvs/hooks/use-cv-create';
 import { useSkillsQuery } from '@/features/cvs/hooks/use-skills-query';
 import { useUploadCvForm } from '@/features/cvs/hooks/use-upload-cv-form';
+import type { ProfileResponseBody } from '@/features/profile/types';
 import {
   translateAvailabilityType,
   translateCurrency,
   translateWorkLocationType,
 } from '@/utils/translation-maps';
 
-export function UploadCvForm() {
+export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
   const t = useTranslations();
   const form = useUploadCvForm();
   const createMut = useCvCreate();
@@ -72,9 +77,47 @@ export function UploadCvForm() {
     await createMut.mutateAsync(data);
   });
 
+  const genderOptions = [
+    { label: t('profiles.male'), value: 'Male' },
+    { label: t('profiles.female'), value: 'Female' },
+  ];
+
   return (
     <form onSubmit={handleSubmit}>
       <Stack gap="xl">
+        <FormSection
+          label={t('uploadCv.sectionProfile')}
+          description={t('uploadCv.sectionProfileDescription')}
+        >
+          <SimpleGrid cols={2} style={{ alignItems: 'end' }}>
+            <TextInput
+              label={t('profiles.name')}
+              value={profile.name}
+              disabled
+              leftSection={<IconUser size={18} />}
+            />
+            <TextInput
+              label={t('profiles.email')}
+              value={profile.email}
+              disabled
+              leftSection={<IconAt size={18} />}
+            />
+            <PhoneNumberInput
+              label={t('profiles.phone')}
+              value={profile.phoneNumber ?? ''}
+              disabled
+              leftSection={<IconPhone size={18} />}
+            />
+            <Select
+              label={t('profiles.gender')}
+              value={profile.gender ?? ''}
+              data={genderOptions}
+              disabled
+              leftSection={<IconAB size={18} />}
+            />
+          </SimpleGrid>
+        </FormSection>
+
         <FormSection
           label={t('uploadCv.sectionProfessional')}
           description={t('uploadCv.sectionProfessionalDescription')}

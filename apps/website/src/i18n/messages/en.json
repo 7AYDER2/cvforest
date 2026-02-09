@@ -200,6 +200,8 @@
     "sectionAboutLinksDescription": "Short bio and your profile links",
     "sectionAvailabilityAndSalary": "Availability and salary",
     "sectionAvailabilityAndSalaryDescription": "Your availability, work location, hire status, and salary expectations",
+    "sectionProfile": "Your profile",
+    "sectionProfileDescription": "Your profile information. To edit, go to Profile.",
     "sectionProfessional": "Professional details",
     "sectionProfessionalDescription": "Your role and work preferences",
     "selectAtLeast3Skills": "Select at least 3 skills",
