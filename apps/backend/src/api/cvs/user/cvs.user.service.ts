@@ -32,12 +32,11 @@ export const userCvsService = {
         ],
       }),
 
-      // Filter by skills (CV must have at least one of the specified skills)
       ...(skillIdsArray &&
         skillIdsArray.length > 0 && {
-          userSkills: {
-            some: { skillId: { in: skillIdsArray } },
-          },
+          AND: skillIdsArray.map((skillId) => ({
+            userSkills: { some: { skillId } },
+          })),
         }),
 
       // Filter by governorate (through user relation)
