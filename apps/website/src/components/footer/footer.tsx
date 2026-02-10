@@ -10,7 +10,6 @@ import {
 } from '@mantine/core';
 import {
   IconBrandGithub,
-  IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandX,
 } from '@tabler/icons-react';
@@ -22,11 +21,6 @@ import cls from './styles.module.css';
 const socialLinks = [
   { icon: IconBrandX, href: 'https://x.com', label: 'X' },
   { icon: IconBrandLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  {
-    icon: IconBrandInstagram,
-    href: 'https://instagram.com',
-    label: 'Instagram',
-  },
   { icon: IconBrandGithub, href: 'https://github.com', label: 'GitHub' },
 ];
 
