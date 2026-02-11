@@ -48,9 +48,9 @@ import {
 
 export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
   const t = useTranslations();
-  const form = useUploadCvForm();
   const createMut = useCvCreate();
   const skillsQuery = useSkillsQuery();
+  const form = useUploadCvForm({ profile });
   const governoratesQuery = useGovernoratesQuery();
 
   const skillOptions =
@@ -111,36 +111,45 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
 
             <SimpleGrid cols={2} style={{ flexGrow: 1 }}>
               <TextInput
+                required
+                key={form.key('name')}
                 label={t('profiles.name')}
-                value={profile.name}
-                disabled
                 leftSection={<IconUser size={18} />}
+                {...form.getInputProps('name')}
               />
               <TextInput
+                required
+                key={form.key('email')}
                 label={t('profiles.email')}
-                value={profile.email}
-                disabled
                 leftSection={<IconAt size={18} />}
+                {...form.getInputProps('email')}
               />
               <PhoneNumberInput
+                key={form.key('phoneNumber')}
                 label={t('profiles.phone')}
-                value={profile.phoneNumber ?? ''}
-                disabled
+                placeholder="+964 770 333 4444"
                 leftSection={<IconPhone size={18} />}
+                {...form.getInputProps('phoneNumber')}
               />
               <Select
+                required
+                allowDeselect={false}
+                key={form.key('gender')}
                 label={t('profiles.gender')}
-                value={profile.gender ?? ''}
                 data={genderOptions}
-                disabled
                 leftSection={<IconAB size={18} />}
+                {...form.getInputProps('gender')}
               />
               <Select
-                disabled
+                key={form.key('governorateId')}
                 label={t('users.governorate')}
-                value={profile.governorateId ?? ''}
+                allowDeselect
+                searchable
+                placeholder={t('browse.governoratePlaceholder')}
                 data={governorateOptions}
+                disabled={governoratesQuery.isLoading}
                 leftSection={<IconMapPin size={18} />}
+                {...form.getInputProps('governorateId')}
               />
             </SimpleGrid>
           </Group>

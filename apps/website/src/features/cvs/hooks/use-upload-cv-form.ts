@@ -2,14 +2,17 @@ import { useForm } from '@mantine/form';
 import {
   AvailabilityType,
   Currency,
+  Gender,
   WorkLocationType,
 } from '@repo/backend/prisma/enums';
 import { zod4Resolver } from 'mantine-form-zod-resolver';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
+import type { ProfileResponseBody } from '@/features/profile/types';
+import { phoneNumberZodValidator } from '@/utils/schemas';
 import type { UserCvsCreateBody } from '../types';
 
-export function useUploadCvForm() {
+export function useUploadCvForm({ profile }: { profile: ProfileResponseBody }) {
   const t = useTranslations();
 
   const optionalUrl = z
@@ -18,6 +21,14 @@ export function useUploadCvForm() {
 
   const schema = z
     .object({
+      // Profile fields
+      name: z.string().min(1, { message: t('profiles.nameRequired') }),
+      email: z.email({ message: t('profiles.emailRequired') }),
+      phoneNumber: phoneNumberZodValidator,
+      gender: z.enum(Gender, { message: t('profiles.genderRequired') }),
+      governorateId: z.union([z.uuid(), z.literal(''), z.null()]).optional(),
+
+      // CV fields
       jobTitle: z.string().min(1, { error: t('uploadCv.jobTitleRequired') }),
       experienceInYears: z
         .number()
@@ -74,6 +85,14 @@ export function useUploadCvForm() {
     mode: 'uncontrolled',
     validate: zod4Resolver(schema),
     initialValues: {
+      // Profile fields
+      name: profile.name ?? '',
+      email: profile.email ?? '',
+      phoneNumber: profile.phoneNumber ?? '',
+      gender: profile.gender ?? 'Male',
+      governorateId: profile.governorateId ?? null,
+
+      // CV fields
       jobTitle: '',
       experienceInYears: 0,
       expectedSalaryMin: undefined as number | undefined,
@@ -94,16 +113,32 @@ export function useUploadCvForm() {
       const portfolioUrl = values.portfolioUrl?.trim();
       const hasSalary =
         values.expectedSalaryMin != null || values.expectedSalaryMax != null;
+
+      const profilePayload = {
+        name: values.name,
+        email: values.email,
+        phoneNumber: values.phoneNumber.replaceAll(' ', ''),
+        gender: values.gender,
+        governorateId: values.governorateId || null,
+      };
+
       return {
-        ...values,
+        profile: profilePayload,
+        jobTitle: values.jobTitle,
+        experienceInYears: values.experienceInYears,
         expectedSalaryMin: values.expectedSalaryMin,
         expectedSalaryMax: values.expectedSalaryMax,
         expectedSalaryCurrency: hasSalary
           ? values.expectedSalaryCurrency
           : undefined,
+        availabilityType: values.availabilityType,
+        workLocationType: values.workLocationType,
+        bio: values.bio,
         githubUrl: githubUrl === '' ? undefined : githubUrl,
         linkedinUrl: linkedinUrl === '' ? undefined : linkedinUrl,
         portfolioUrl: portfolioUrl === '' ? undefined : portfolioUrl,
+        availableForHire: values.availableForHire,
+        skillIds: values.skillIds,
       };
     },
   });
