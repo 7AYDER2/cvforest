@@ -14,6 +14,7 @@ export function useProfileForm({ profile }: { profile: ProfileResponseBody }) {
     email: z.email({ message: t('profiles.emailRequired') }),
     phoneNumber: phoneNumberZodValidator,
     gender: z.enum(Gender, { message: t('profiles.genderRequired') }),
+    governorateId: z.union([z.uuid(), z.literal(''), z.null()]).optional(),
   });
 
   type FormValues = z.infer<typeof schema>;
@@ -26,11 +27,13 @@ export function useProfileForm({ profile }: { profile: ProfileResponseBody }) {
       email: profile.email ?? '',
       phoneNumber: profile.phoneNumber ?? '',
       gender: profile.gender ?? 'Male',
+      governorateId: profile.governorateId ?? null,
     },
     transformValues: (values) => {
       return {
         ...values,
         phoneNumber: values.phoneNumber.replaceAll(' ', ''),
+        governorateId: values.governorateId || null,
       };
     },
   });

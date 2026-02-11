@@ -71,6 +71,7 @@ export const UserAccountsModel = {
     gender: t.Optional(t.Enum(Gender)),
     birthDate: t.Optional(t.Date()),
     avatarId: t.Optional(t.String({ format: 'uuid' })),
+    governorateId: t.Optional(t.Nullable(t.String({ format: 'uuid' }))),
   }),
   UserAccountsProfileUpdateResponse: UserPlain,
 

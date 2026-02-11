@@ -5,11 +5,13 @@ import {
   IconAB,
   IconAt,
   IconCheck,
+  IconMapPin,
   IconPhone,
   IconUser,
 } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { PhoneNumberInput } from '@/components/phone-number-input';
+import { useGovernoratesQuery } from '@/features/cvs/hooks/use-governorates-query';
 import { useProfileForm } from '@/features/profile/hooks/use-profile-form';
 import { useProfileUpdate } from '@/features/profile/hooks/use-profile-update';
 import type { ProfileResponseBody } from '@/features/profile/types';
@@ -19,8 +21,15 @@ export function ProfileForm({ profile }: { profile: ProfileResponseBody }) {
   const form = useProfileForm({ profile });
   const updateProfileMut = useProfileUpdate();
 
-  const handleSubmit = form.onSubmit((data) => {
-    updateProfileMut.mutate(data);
+  const governoratesQuery = useGovernoratesQuery();
+  const governorateOptions =
+    governoratesQuery.data?.map((gov) => ({
+      label: gov.name,
+      value: gov.id,
+    })) ?? [];
+
+  const handleSubmit = form.onSubmit(async (data) => {
+    await updateProfileMut.mutateAsync(data);
   });
 
   return (
@@ -60,10 +69,21 @@ export function ProfileForm({ profile }: { profile: ProfileResponseBody }) {
               ]}
             />
 
+            <Select
+              label={t('users.governorate')}
+              allowDeselect
+              searchable
+              placeholder={t('browse.governoratePlaceholder')}
+              leftSection={<IconMapPin size={18} />}
+              data={governorateOptions}
+              disabled={governoratesQuery.isLoading}
+              {...form.getInputProps('governorateId')}
+            />
+
             <Button
               type="submit"
+              loading={form.submitting}
               leftSection={<IconCheck />}
-              loading={updateProfileMut.isPending}
             >
               {t('_.save')}
             </Button>

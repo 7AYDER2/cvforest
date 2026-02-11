@@ -654,6 +654,7 @@ export interface components {
       gender?: 'Male' | 'Female';
       /** Format: uuid */
       avatarId?: string;
+      governorateId?: (string | null) | null;
     };
     AdminAccountsProfileUpdateResponse: {
       id: string;
@@ -1186,6 +1187,7 @@ export interface components {
       birthDate?: Record<string, never> | string | number;
       /** Format: uuid */
       avatarId?: string;
+      governorateId?: (string | null) | null;
     };
     UserAccountsProfileUpdateResponse: {
       id: string;

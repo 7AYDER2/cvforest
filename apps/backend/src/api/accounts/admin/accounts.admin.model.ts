@@ -55,6 +55,7 @@ export const AdminAccountsModel = {
     phoneNumber: t.Optional(IraqiPhoneNumberSchema),
     gender: t.Optional(t.Enum(Gender)),
     avatarId: t.Optional(t.String({ format: 'uuid' })),
+    governorateId: t.Optional(t.Nullable(t.String({ format: 'uuid' }))),
   }),
   AdminAccountsProfileUpdateResponse: UserPlain,
 

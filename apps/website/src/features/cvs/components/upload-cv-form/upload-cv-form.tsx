@@ -26,6 +26,7 @@ import {
   IconCheck,
   IconCurrencyDollar,
   IconLink,
+  IconMapPin,
   IconPhone,
   IconTools,
   IconUser,
@@ -34,6 +35,7 @@ import { useTranslations } from 'next-intl';
 import { FormSection } from '@/components/form-section';
 import { PhoneNumberInput } from '@/components/phone-number-input';
 import { useCvCreate } from '@/features/cvs/hooks/use-cv-create';
+import { useGovernoratesQuery } from '@/features/cvs/hooks/use-governorates-query';
 import { useSkillsQuery } from '@/features/cvs/hooks/use-skills-query';
 import { useUploadCvForm } from '@/features/cvs/hooks/use-upload-cv-form';
 import type { ProfileResponseBody } from '@/features/profile/types';
@@ -49,11 +51,18 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
   const form = useUploadCvForm();
   const createMut = useCvCreate();
   const skillsQuery = useSkillsQuery();
+  const governoratesQuery = useGovernoratesQuery();
 
   const skillOptions =
     skillsQuery.data?.map((skill) => ({
       label: skill.name,
       value: skill.id,
+    })) ?? [];
+
+  const governorateOptions =
+    governoratesQuery.data?.map((gov) => ({
+      label: gov.name,
+      value: gov.id,
     })) ?? [];
 
   const availabilityOptions = Object.values(AvailabilityType).map((value) => ({
@@ -125,6 +134,13 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
                 data={genderOptions}
                 disabled
                 leftSection={<IconAB size={18} />}
+              />
+              <Select
+                disabled
+                label={t('users.governorate')}
+                value={profile.governorateId ?? ''}
+                data={governorateOptions}
+                leftSection={<IconMapPin size={18} />}
               />
             </SimpleGrid>
           </Group>
