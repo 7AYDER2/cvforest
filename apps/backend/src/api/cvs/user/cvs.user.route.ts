@@ -22,6 +22,21 @@ export const cvs = new Elysia({ prefix: '/cvs' })
     },
   )
 
+  .get(
+    '/:id',
+    async ({ t, params: { id } }) => {
+      return userCvsService.getById(id, t);
+    },
+    {
+      afterHandle: async ({ params: { id }, request, server }) => {
+        await trackCvView(id, request, server);
+      },
+      response: {
+        200: 'UserCvsGetResponse',
+      },
+    },
+  )
+
   .use(mustBeUser)
 
   .get(
@@ -59,21 +74,6 @@ export const cvs = new Elysia({ prefix: '/cvs' })
       body: 'UserCvsCreateBody',
       response: {
         201: 'UserCvsCreateResponse',
-      },
-    },
-  )
-
-  .get(
-    '/:id',
-    async ({ t, params: { id } }) => {
-      return userCvsService.getById(id, t);
-    },
-    {
-      afterHandle: async ({ params: { id }, request, server }) => {
-        await trackCvView(id, request, server);
-      },
-      response: {
-        200: 'UserCvsGetResponse',
       },
     },
   );
