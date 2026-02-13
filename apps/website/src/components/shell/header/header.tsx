@@ -1,56 +1,38 @@
 'use client';
 
-import { Anchor, Button, Container, Divider, Group } from '@mantine/core';
-import { useTranslations } from 'next-intl';
+import { Anchor, Box, Container, Group } from '@mantine/core';
 import { Link } from '@/components/link';
 import type { SessionResponseBody } from '@/features/accounts/types';
-import { CvButton } from './cv-button/cv-button';
+import { DesktopNav } from './desktop-nav';
+import { MobileNav } from './mobile-nav';
 import cls from './styles.module.css';
-import { UserButton } from './user-button';
 
 interface HeaderProps {
   session: SessionResponseBody | null;
 }
 
 export function Header({ session }: HeaderProps) {
-  const t = useTranslations();
-
   return (
     <Container size="lg" strategy="grid" className={cls.header}>
-      <Group p="sm" justify="space-between">
-        <Anchor underline="never" fz="h2" fw={600} href="/" component={Link}>
+      <Group p="sm" justify="space-between" wrap="nowrap">
+        <Anchor
+          underline="never"
+          fz="h2"
+          fw={600}
+          href="/"
+          component={Link}
+          className={cls.logo}
+        >
           CV Forest
         </Anchor>
 
-        <Group>
-          <Button href="/courses" variant="subtle" component={Link}>
-            {t('header.courses')}
-          </Button>
+        <Box visibleFrom="sm">
+          <DesktopNav session={session} />
+        </Box>
 
-          {session ? (
-            <Group gap="xs">
-              <CvButton cv={session.user.cv} />
-
-              <Divider orientation="vertical" />
-
-              <UserButton session={session} />
-            </Group>
-          ) : (
-            <>
-              <Divider orientation="vertical" />
-
-              <Group gap={4}>
-                <Button href="/sign-in" variant="subtle" component={Link}>
-                  {t('header.signIn')}
-                </Button>
-
-                <Button href="/sign-up" variant="filled" component={Link}>
-                  {t('header.signUp')}
-                </Button>
-              </Group>
-            </>
-          )}
-        </Group>
+        <Box hiddenFrom="sm">
+          <MobileNav session={session} />
+        </Box>
       </Group>
     </Container>
   );
