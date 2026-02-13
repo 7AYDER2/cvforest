@@ -1,5 +1,14 @@
 import { Button, Container, Group, Stack, Text, Title } from '@mantine/core';
-import { IconBriefcase, IconUpload } from '@tabler/icons-react';
+import {
+  IconBriefcase,
+  IconCode,
+  IconFileDescription,
+  IconShieldCheck,
+  IconSparkles,
+  IconUpload,
+  IconUsers,
+  IconWorld,
+} from '@tabler/icons-react';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/components/link/link';
 import cls from './styles.module.css';
@@ -7,21 +16,32 @@ import cls from './styles.module.css';
 export async function Hero() {
   const t = await getTranslations();
 
+  const glassCards = [
+    { key: 'file', icon: IconFileDescription },
+    { key: 'shield', icon: IconShieldCheck },
+    { key: 'code', icon: IconCode },
+    { key: 'users', icon: IconUsers },
+    { key: 'world', icon: IconWorld },
+    { key: 'sparkles', icon: IconSparkles },
+  ];
+
   return (
     <section className={cls.hero}>
-      <Container size="lg" strategy="grid">
-        <Stack align="center" gap="xl" py={80}>
-          <Stack align="center" gap="md" maw={720}>
-            <Text
-              className={cls.badge}
-              size="sm"
-              fw={500}
-              tt="uppercase"
-              c="dimmed"
-            >
-              {t('hero.subtitle')}
-            </Text>
+      {/* ── Aurora gradient orbs ── */}
+      <div className={`${cls.orb} ${cls.orbPrimary}`} />
+      <div className={`${cls.orb} ${cls.orbSecondary}`} />
 
+      {/* ── Floating glass cards ── */}
+      {glassCards.map(({ key, icon: Icon }, i) => (
+        <div key={key} className={`${cls.glassCard} ${cls[`glass${i + 1}`]}`}>
+          <Icon size={24} stroke={1.5} />
+        </div>
+      ))}
+
+      {/* ── Content ── */}
+      <Container size="md" className={cls.content}>
+        <Stack align="center" gap="xl" py={100}>
+          <Stack align="center" gap="md" maw={760}>
             <Title order={1} ta="center" className={cls.title}>
               {t('hero.title')}
             </Title>
@@ -30,7 +50,7 @@ export async function Hero() {
               size="lg"
               c="dimmed"
               ta="center"
-              maw={560}
+              maw={580}
               className={cls.description}
             >
               {t('hero.description')}
@@ -43,6 +63,7 @@ export async function Hero() {
               href="/upload-cv"
               component={Link}
               leftSection={<IconUpload size={20} />}
+              className={cls.ctaPrimary}
             >
               {t('hero.ctaDeveloper')}
             </Button>
@@ -50,12 +71,28 @@ export async function Hero() {
             <Button
               size="lg"
               href="/cvs"
-              variant="light"
+              variant="outline"
               component={Link}
               leftSection={<IconBriefcase size={20} />}
+              className={cls.ctaSecondary}
             >
               {t('hero.ctaRecruiter')}
             </Button>
+          </Group>
+
+          <Group gap="sm" wrap="wrap" justify="center" className={cls.features}>
+            <span className={cls.featurePill}>
+              <IconShieldCheck size={16} stroke={1.5} />
+              {t('hero.feature1')}
+            </span>
+            <span className={cls.featurePill}>
+              <IconFileDescription size={16} stroke={1.5} />
+              {t('hero.feature2')}
+            </span>
+            <span className={cls.featurePill}>
+              <IconSparkles size={16} stroke={1.5} />
+              {t('hero.feature3')}
+            </span>
           </Group>
         </Stack>
       </Container>

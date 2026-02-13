@@ -9,7 +9,7 @@ export function UploadCv({ profile }: { profile: ProfileResponseBody }) {
   const t = useTranslations();
 
   return (
-    <Stack gap="xl" py="xl">
+    <Stack gap="xl">
       <Stack gap="xs">
         <Title order={2}>{t('uploadCv.pageTitle')}</Title>
         <Text size="lg" c="dimmed">

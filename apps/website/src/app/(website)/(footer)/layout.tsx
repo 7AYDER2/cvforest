@@ -6,7 +6,7 @@ export default function FooterLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Container>
+    <Container mt="xl" size="lg">
       <Typography>{children}</Typography>
     </Container>
   );

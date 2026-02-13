@@ -1,3 +1,4 @@
+import { Container } from '@mantine/core';
 import { redirect } from 'next/navigation';
 import type { SessionResponseBody } from '@/features/accounts/types';
 import { getKy } from '@/server/actions';
@@ -20,5 +21,9 @@ export default async function AuthedLayout({ children }: AuthedLayoutProps) {
     return redirect('/sign-in');
   }
 
-  return <>{children}</>;
+  return (
+    <Container mt="xl" size="lg">
+      {children}
+    </Container>
+  );
 }

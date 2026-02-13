@@ -96,7 +96,9 @@
     "ctaDeveloper": "Upload Your CV",
     "ctaRecruiter": "Browse Talent",
     "description": "For developers: showcase your skills and control your data. For recruiters: access quality talent with structured profiles.",
-    "subtitle": "Privacy-First Platform",
+    "feature1": "Privacy-First",
+    "feature2": "Structured Profiles",
+    "feature3": "Quality Talent",
     "title": "Connect Talent with Opportunity"
   },
   "meta": {
