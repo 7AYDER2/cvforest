@@ -66,8 +66,6 @@ export const UserAccountsModel = {
   // Profile Update
   UserAccountsProfileUpdateBody: t.Object({
     name: t.Optional(t.String()),
-    email: t.Optional(t.String({ format: 'email' })),
-    phoneNumber: t.Optional(IraqiPhoneNumberSchema),
     gender: t.Optional(t.Enum(Gender)),
     birthDate: t.Optional(t.Date()),
     avatarId: t.Optional(t.String({ format: 'uuid' })),

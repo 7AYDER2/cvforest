@@ -134,15 +134,16 @@ export function UploadCvForm({
                 {...form.getInputProps('name')}
               />
               <TextInput
-                required
+                disabled
                 key={form.key('email')}
                 label={t('profiles.email')}
                 leftSection={<IconAt size={18} />}
                 {...form.getInputProps('email')}
               />
               <PhoneNumberInput
-                key={form.key('phoneNumber')}
+                disabled
                 label={t('profiles.phone')}
+                key={form.key('phoneNumber')}
                 placeholder="+964 770 333 4444"
                 leftSection={<IconPhone size={18} />}
                 {...form.getInputProps('phoneNumber')}

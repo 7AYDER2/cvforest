@@ -933,15 +933,13 @@ export interface components {
         expectedSalaryMin: null | (string | number);
         expectedSalaryMax: null | (string | number);
         expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-        /** @enum {string} */
-        availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-        /** @enum {string} */
-        workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
         bio: string;
         githubUrl: null | string;
         linkedinUrl: null | string;
         portfolioUrl: null | string;
         availableForHire: boolean;
+        availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+        workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
         /** @enum {string} */
         status: 'Pending' | 'Approved' | 'Rejected';
         createdAt: Record<string, never> | string | number;
@@ -1003,15 +1001,13 @@ export interface components {
       expectedSalaryMin: null | (string | number);
       expectedSalaryMax: null | (string | number);
       expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-      /** @enum {string} */
-      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-      /** @enum {string} */
-      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio: string;
       githubUrl: null | string;
       linkedinUrl: null | string;
       portfolioUrl: null | string;
       availableForHire: boolean;
+      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
       createdAt: Record<string, never> | string | number;
@@ -1123,13 +1119,13 @@ export interface components {
           expectedSalaryMin: null | (string | number);
           expectedSalaryMax: null | (string | number);
           expectedSalaryCurrency: null | ('Iqd' | 'Usd');
-          availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-          workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
           bio: string;
           githubUrl: null | string;
           linkedinUrl: null | string;
           portfolioUrl: null | string;
           availableForHire: boolean;
+          availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+          workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
           status: 'Pending' | 'Approved' | 'Rejected';
           createdAt: Record<string, never> | string | number;
           updatedAt: Record<string, never> | string | number;
@@ -1194,10 +1190,6 @@ export interface components {
     };
     UserAccountsProfileUpdateBody: {
       name?: string;
-      /** Format: email */
-      email?: string;
-      /** @description يجب ادخال رقم هاتف عراقي صحيح مثال +9647701234567 */
-      phoneNumber?: string;
       /** @enum {string} */
       gender?: 'Male' | 'Female';
       birthDate?: Record<string, never> | string | number;
@@ -1304,15 +1296,13 @@ export interface components {
         userId: string;
         jobTitle: string;
         experienceInYears: string | number;
-        /** @enum {string} */
-        availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-        /** @enum {string} */
-        workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
         bio: string;
         githubUrl: null | string;
         linkedinUrl: null | string;
         portfolioUrl: null | string;
         availableForHire: boolean;
+        availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+        workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
         /** @enum {string} */
         status: 'Pending' | 'Approved' | 'Rejected';
         createdAt: Record<string, never> | string | number;
@@ -1371,15 +1361,13 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      /** @enum {string} */
-      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-      /** @enum {string} */
-      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio: string;
       githubUrl: null | string;
       linkedinUrl: null | string;
       portfolioUrl: null | string;
       availableForHire: boolean;
+      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
       createdAt: Record<string, never> | string | number;
@@ -1435,10 +1423,6 @@ export interface components {
     UserCvsCreateBody: {
       profile?: {
         name?: string;
-        /** Format: email */
-        email?: string;
-        /** @description يجب ادخال رقم هاتف عراقي صحيح مثال +9647701234567 */
-        phoneNumber?: string;
         /** @enum {string} */
         gender?: 'Male' | 'Female';
         birthDate?: Record<string, never> | string | number;
@@ -1452,9 +1436,7 @@ export interface components {
       expectedSalaryMax?: number;
       /** @enum {string} */
       expectedSalaryCurrency?: 'Iqd' | 'Usd';
-      /** @enum {string} */
       availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-      /** @enum {string} */
       workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio: string;
       /** Format: uri */
@@ -1471,15 +1453,13 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      /** @enum {string} */
-      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-      /** @enum {string} */
-      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio: string;
       githubUrl: null | string;
       linkedinUrl: null | string;
       portfolioUrl: null | string;
       availableForHire: boolean;
+      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
       createdAt: Record<string, never> | string | number;
@@ -1535,10 +1515,6 @@ export interface components {
     UserCvsUpdateBody: {
       profile?: {
         name?: string;
-        /** Format: email */
-        email?: string;
-        /** @description يجب ادخال رقم هاتف عراقي صحيح مثال +9647701234567 */
-        phoneNumber?: string;
         /** @enum {string} */
         gender?: 'Male' | 'Female';
         birthDate?: Record<string, never> | string | number;
@@ -1552,9 +1528,7 @@ export interface components {
       expectedSalaryMax?: number;
       /** @enum {string} */
       expectedSalaryCurrency?: 'Iqd' | 'Usd';
-      /** @enum {string} */
       availabilityTypes?: ('FullTime' | 'PartTime' | 'Freelance')[];
-      /** @enum {string} */
       workLocationTypes?: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio?: string;
       /** Format: uri */
@@ -1571,15 +1545,13 @@ export interface components {
       userId: string;
       jobTitle: string;
       experienceInYears: string | number;
-      /** @enum {string} */
-      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
-      /** @enum {string} */
-      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio: string;
       githubUrl: null | string;
       linkedinUrl: null | string;
       portfolioUrl: null | string;
       availableForHire: boolean;
+      availabilityTypes: ('FullTime' | 'PartTime' | 'Freelance')[];
+      workLocationTypes: ('OnSite' | 'Remote' | 'Hybrid')[];
       /** @enum {string} */
       status: 'Pending' | 'Approved' | 'Rejected';
       createdAt: Record<string, never> | string | number;

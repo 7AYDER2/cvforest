@@ -46,12 +46,14 @@ export function ProfileForm({ profile }: { profile: ProfileResponseBody }) {
             />
 
             <TextInput
+              disabled
               label={t('profiles.email')}
               leftSection={<IconAt size={18} />}
               {...form.getInputProps('email')}
             />
 
             <PhoneNumberInput
+              disabled
               label={t('profiles.phone')}
               placeholder="+964 770 333 4444"
               leftSection={<IconPhone size={18} />}
