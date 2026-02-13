@@ -10,9 +10,64 @@ import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 import type { ProfileResponseBody } from '@/features/profile/types';
 import { phoneNumberZodValidator } from '@/utils/schemas';
-import type { UserCvsCreateBody } from '../types';
+import type { UserCvsCreateBody, UserDetailResponse } from '../types';
 
-export function useUploadCvForm({ profile }: { profile: ProfileResponseBody }) {
+function getInitialValues(
+  profile: ProfileResponseBody,
+  cv?: UserDetailResponse,
+) {
+  if (!cv) {
+    return {
+      name: profile.name ?? '',
+      email: profile.email ?? '',
+      phoneNumber: profile.phoneNumber ?? '',
+      gender: profile.gender ?? 'Male',
+      governorateId: profile.governorateId ?? null,
+      jobTitle: '',
+      experienceInYears: 0,
+      expectedSalaryMin: undefined as number | undefined,
+      expectedSalaryMax: undefined as number | undefined,
+      expectedSalaryCurrency: undefined as Currency | undefined,
+      availabilityType: AvailabilityType.FullTime,
+      workLocationType: WorkLocationType.Remote,
+      bio: '',
+      githubUrl: '',
+      linkedinUrl: '',
+      portfolioUrl: '',
+      availableForHire: true,
+      skillIds: [] as string[],
+    };
+  }
+
+  return {
+    name: cv.user.name ?? '',
+    email: cv.user.email ?? '',
+    phoneNumber: cv.user.phoneNumber ?? '',
+    gender: cv.user.gender ?? 'Male',
+    governorateId: cv.user.governorateId ?? null,
+    jobTitle: cv.jobTitle,
+    experienceInYears: Number(cv.experienceInYears),
+    expectedSalaryMin: undefined as number | undefined,
+    expectedSalaryMax: undefined as number | undefined,
+    expectedSalaryCurrency: undefined as Currency | undefined,
+    availabilityType: cv.availabilityType,
+    workLocationType: cv.workLocationType,
+    bio: cv.bio,
+    githubUrl: cv.githubUrl ?? '',
+    linkedinUrl: cv.linkedinUrl ?? '',
+    portfolioUrl: cv.portfolioUrl ?? '',
+    availableForHire: cv.availableForHire,
+    skillIds: cv.userSkills.map((us) => us.skillId),
+  };
+}
+
+export function useUploadCvForm({
+  profile,
+  cv,
+}: {
+  profile: ProfileResponseBody;
+  cv?: UserDetailResponse;
+}) {
   const t = useTranslations();
 
   const optionalUrl = z
@@ -81,32 +136,12 @@ export function useUploadCvForm({ profile }: { profile: ProfileResponseBody }) {
 
   type FormValues = z.infer<typeof schema>;
 
+  const initialValues = getInitialValues(profile, cv);
+
   return useForm<FormValues, (values: FormValues) => UserCvsCreateBody>({
     mode: 'uncontrolled',
     validate: zod4Resolver(schema),
-    initialValues: {
-      // Profile fields
-      name: profile.name ?? '',
-      email: profile.email ?? '',
-      phoneNumber: profile.phoneNumber ?? '',
-      gender: profile.gender ?? 'Male',
-      governorateId: profile.governorateId ?? null,
-
-      // CV fields
-      jobTitle: '',
-      experienceInYears: 0,
-      expectedSalaryMin: undefined as number | undefined,
-      expectedSalaryMax: undefined as number | undefined,
-      expectedSalaryCurrency: undefined as Currency | undefined,
-      availabilityType: AvailabilityType.FullTime,
-      workLocationType: WorkLocationType.Remote,
-      bio: '',
-      githubUrl: '',
-      linkedinUrl: '',
-      portfolioUrl: '',
-      availableForHire: true,
-      skillIds: [],
-    },
+    initialValues,
     transformValues: (values): UserCvsCreateBody => {
       const githubUrl = values.githubUrl?.trim();
       const linkedinUrl = values.linkedinUrl?.trim();

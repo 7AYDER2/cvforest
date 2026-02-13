@@ -1,32 +1,31 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useKy } from '@/hooks/use-ky';
 import { useNotifications } from '@/hooks/use-notifications';
-import type { UserCvsCreateBody, UserCvsCreateResponseBody } from '../types';
+import type { UserCvsUpdateBody, UserCvsUpdateResponseBody } from '../types';
 
-interface UseCvCreateOptions {
+interface UseCvUpdateOptions {
   onSuccess?: () => void;
 }
 
-export function useCvCreate({ onSuccess }: UseCvCreateOptions) {
+export function useCvUpdate({ onSuccess }: UseCvUpdateOptions) {
   const ky = useKy();
-  const router = useRouter();
   const t = useTranslations();
   const n = useNotifications();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (body: UserCvsCreateBody) => {
-      return ky.post('cvs', { json: body }).json<UserCvsCreateResponseBody>();
+    mutationFn: (body: UserCvsUpdateBody) => {
+      return ky
+        .patch('cvs/mine', { json: body })
+        .json<UserCvsUpdateResponseBody>();
     },
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/cvs'] });
-      n.success(t('uploadCv.successMessage'));
-      router.push('/profile');
-      router.refresh();
+      queryClient.invalidateQueries({ queryKey: ['/cv/mine'] });
 
+      n.success(t('cvMine.updateSuccess'));
       onSuccess?.();
     },
   });

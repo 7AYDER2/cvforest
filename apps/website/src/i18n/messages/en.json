@@ -46,6 +46,12 @@
     "iqd": "IQD",
     "usd": "USD"
   },
+  "cvMine": {
+    "cancel": "Cancel",
+    "editCv": "Edit my CV",
+    "saveChanges": "Save changes",
+    "updateSuccess": "Your CV has been updated."
+  },
   "cvs": {
     "availableForHire": "Available for hire",
     "browseAll": "Browse All Talent",

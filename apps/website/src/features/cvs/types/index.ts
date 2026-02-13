@@ -9,6 +9,16 @@ export type UserCvsCreateResponseBody = GetResponseBody<
   201
 >;
 
+// Mine
+export type UserCvsMineResponse = GetResponseBody<'/user/cvs/mine', 'get'>;
+
+// Update
+export type UserCvsUpdateBody = GetRequestBody<'/user/cvs/mine', 'patch'>;
+export type UserCvsUpdateResponseBody = GetResponseBody<
+  '/user/cvs/mine',
+  'patch'
+>;
+
 export type GovernorateListResponseBody = GetResponseBody<
   '/user/governorates/',
   'get'

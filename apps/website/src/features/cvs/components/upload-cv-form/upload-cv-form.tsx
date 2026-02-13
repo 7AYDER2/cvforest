@@ -35,9 +35,11 @@ import { useTranslations } from 'next-intl';
 import { FormSection } from '@/components/form-section';
 import { PhoneNumberInput } from '@/components/phone-number-input';
 import { useCvCreate } from '@/features/cvs/hooks/use-cv-create';
+import { useCvUpdate } from '@/features/cvs/hooks/use-cv-update';
 import { useGovernoratesQuery } from '@/features/cvs/hooks/use-governorates-query';
 import { useSkillsQuery } from '@/features/cvs/hooks/use-skills-query';
 import { useUploadCvForm } from '@/features/cvs/hooks/use-upload-cv-form';
+import type { UserDetailResponse } from '@/features/cvs/types';
 import type { ProfileResponseBody } from '@/features/profile/types';
 import { constructImageUrl } from '@/utils/helpers';
 import {
@@ -46,12 +48,26 @@ import {
   translateWorkLocationType,
 } from '@/utils/translation-maps';
 
-export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
+interface UploadCvFormProps {
+  profile: ProfileResponseBody;
+  cv?: UserDetailResponse;
+  onUpdateSuccess?: () => void;
+  onCreateSuccess?: () => void;
+}
+
+export function UploadCvForm({
+  profile,
+  cv,
+  onUpdateSuccess,
+  onCreateSuccess,
+}: UploadCvFormProps) {
   const t = useTranslations();
-  const createMut = useCvCreate();
   const skillsQuery = useSkillsQuery();
-  const form = useUploadCvForm({ profile });
+  const form = useUploadCvForm({ profile, cv });
   const governoratesQuery = useGovernoratesQuery();
+
+  const createMut = useCvCreate({ onSuccess: onCreateSuccess });
+  const updateMut = useCvUpdate({ onSuccess: onUpdateSuccess });
 
   const skillOptions =
     skillsQuery.data?.map((skill) => ({
@@ -86,7 +102,7 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
   ];
 
   const handleSubmit = form.onSubmit(async (data) => {
-    await createMut.mutateAsync(data);
+    !cv ? await createMut.mutateAsync(data) : await updateMut.mutateAsync(data);
   });
 
   const genderOptions = [
@@ -303,7 +319,7 @@ export function UploadCvForm({ profile }: { profile: ProfileResponseBody }) {
           loading={form.submitting}
           leftSection={<IconCheck />}
         >
-          {t('uploadCv.submit')}
+          {cv ? t('cvMine.saveChanges') : t('uploadCv.submit')}
         </Button>
       </Stack>
     </form>

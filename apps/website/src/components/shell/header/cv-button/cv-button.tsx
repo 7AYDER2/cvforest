@@ -29,6 +29,8 @@ export function CvButton({ cv }: CvButtonProps) {
       return (
         <Button
           color="yellow"
+          href="/cv/mine"
+          component={Link}
           variant="filled"
           leftSection={<IconEye size={18} />}
         >
@@ -43,7 +45,7 @@ export function CvButton({ cv }: CvButtonProps) {
           color="green"
           variant="light"
           component={Link}
-          href={`/cvs/${cv.id}`}
+          href="/cv/mine"
           leftSection={<IconEye size={18} />}
         >
           {t('header.cvApproved')}
@@ -57,7 +59,7 @@ export function CvButton({ cv }: CvButtonProps) {
           color="red"
           variant="light"
           component={Link}
-          href={`/cvs/${cv.id}`}
+          href="/cv/mine"
           leftSection={<IconAlertCircle size={18} />}
         >
           {t('header.cvRejected')}
