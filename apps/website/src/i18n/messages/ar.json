@@ -73,7 +73,6 @@
     "followUs": "تابعنا",
     "home": "الرئيسية",
     "language": "اللغة",
-    "plans": "الخطط",
     "privacyPolicy": "سياسة الخصوصية",
     "quickLinks": "روابط سريعة",
     "termsOfService": "شروط الخدمة"
@@ -102,7 +101,13 @@
   },
   "meta": {
     "description": "CV Forest | منصة للعثور على السير الذاتية",
-    "title": "CV Forest | لوحة التحكم"
+    "privacyDescription": "",
+    "privacyTitle": "",
+    "termsDescription": "",
+    "termsTitle": "",
+    "title": "CV Forest | لوحة التحكم",
+    "whoDescription": "",
+    "whoTitle": ""
   },
   "notFound": {
     "description": "قد تكون الصفحة المطلوبة قد تم نقلها أو حذفها، أو ربما أدخلت رابطاً خاطئاً.",

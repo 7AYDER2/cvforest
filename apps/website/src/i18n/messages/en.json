@@ -73,7 +73,6 @@
     "followUs": "Follow Us",
     "home": "Home",
     "language": "Language",
-    "plans": "Plans",
     "privacyPolicy": "Privacy Policy",
     "quickLinks": "Quick Links",
     "termsOfService": "Terms of Service"
@@ -102,7 +101,13 @@
   },
   "meta": {
     "description": "CV Forest | A platform for finding CVs",
-    "title": "CV Forest | Dashboard"
+    "privacyDescription": "",
+    "privacyTitle": "",
+    "termsDescription": "",
+    "termsTitle": "",
+    "title": "CV Forest | Dashboard",
+    "whoDescription": "",
+    "whoTitle": ""
   },
   "notFound": {
     "description": "The page you requested might have been moved, deleted, or you might have entered the wrong URL.",

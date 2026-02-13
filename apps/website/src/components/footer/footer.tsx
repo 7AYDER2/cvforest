@@ -35,7 +35,6 @@ export async function Footer() {
 
   const quickLinks = [
     { href: '/', label: t('footer.home') },
-    { href: '/plans', label: t('footer.plans') },
     { href: '/courses', label: t('footer.courses') },
   ];
 
