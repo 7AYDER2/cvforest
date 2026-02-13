@@ -102,7 +102,16 @@ export function UploadCvForm({
   ];
 
   const handleSubmit = form.onSubmit(async (data) => {
-    !cv ? await createMut.mutateAsync(data) : await updateMut.mutateAsync(data);
+    if (!cv) {
+      await createMut.mutateAsync(data);
+    } else {
+      await updateMut.mutateAsync({
+        ...data,
+        githubUrl: data.githubUrl ?? null,
+        linkedinUrl: data.linkedinUrl ?? null,
+        portfolioUrl: data.portfolioUrl ?? null,
+      });
+    }
   });
 
   const genderOptions = [

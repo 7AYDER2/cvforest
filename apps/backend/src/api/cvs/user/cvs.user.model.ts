@@ -106,9 +106,9 @@ export const UserCvsModel = {
       t.Array(t.Enum(WorkLocationType), { minItems: 1 }),
     ),
     bio: t.Optional(t.String({ minLength: 64 })),
-    githubUrl: t.Optional(t.String({ format: 'uri' })),
-    linkedinUrl: t.Optional(t.String({ format: 'uri' })),
-    portfolioUrl: t.Optional(t.String({ format: 'uri' })),
+    githubUrl: t.Optional(t.Union([t.String({ format: 'uri' }), t.Null()])),
+    linkedinUrl: t.Optional(t.Union([t.String({ format: 'uri' }), t.Null()])),
+    portfolioUrl: t.Optional(t.Union([t.String({ format: 'uri' }), t.Null()])),
     availableForHire: t.Optional(t.Boolean()),
     skillIds: t.Optional(
       t.Array(t.String({ format: 'uuid' }), {

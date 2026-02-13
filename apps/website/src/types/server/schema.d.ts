@@ -1538,11 +1538,11 @@ export interface components {
       workLocationTypes?: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio?: string;
       /** Format: uri */
-      githubUrl?: string;
+      githubUrl?: string | null;
       /** Format: uri */
-      linkedinUrl?: string;
+      linkedinUrl?: string | null;
       /** Format: uri */
-      portfolioUrl?: string;
+      portfolioUrl?: string | null;
       availableForHire?: boolean;
       skillIds?: string[];
     };
