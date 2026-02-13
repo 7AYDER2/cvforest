@@ -41,5 +41,9 @@ export const env = createEnv({
     // Resend
     RESEND_API_KEY: z.string(),
     RESEND_FROM_ADDRESS: z.string(),
+
+    // Telegram
+    TELEGRAM_CHANNEL_ID: z.string(),
+    TELEGRAM_BOT_TOKEN: z.string(),
   },
 });

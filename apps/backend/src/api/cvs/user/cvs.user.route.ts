@@ -1,6 +1,7 @@
 import { Elysia } from 'elysia';
 import { init } from '@/init';
 import { mustBeUser } from '@/plugins/better-auth';
+import { sendMessageToChannel } from '@/utils/telegram';
 import { trackCvView } from '../cv.helpers';
 import { UserCvsModel } from './cvs.user.model';
 import { userCvsService } from './cvs.user.service';
@@ -61,6 +62,11 @@ export const cvs = new Elysia({ prefix: '/cvs' })
       response: {
         200: 'UserCvsUpdateResponse',
       },
+      afterResponse: async ({ user }) => {
+        await sendMessageToChannel(
+          `CV updated by ${user.name} (${user.email})`,
+        );
+      },
     },
   )
 
@@ -74,6 +80,11 @@ export const cvs = new Elysia({ prefix: '/cvs' })
       body: 'UserCvsCreateBody',
       response: {
         201: 'UserCvsCreateResponse',
+      },
+      afterResponse: async ({ user }) => {
+        await sendMessageToChannel(
+          `New CV created by ${user.name} (${user.email})`,
+        );
       },
     },
   );

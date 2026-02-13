@@ -5,6 +5,7 @@ import { mustBeUser } from '@/plugins/better-auth';
 import { genRateLimit } from '@/plugins/rate-limit';
 import { auth } from '@/utils/auth';
 import { HttpError } from '@/utils/error';
+import { sendMessageToChannel } from '@/utils/telegram';
 import { setBetterAuthHeaders } from '../accounts.helpers';
 import { UserAccountsModel } from './accounts.user.model';
 import { userAccountsService } from './accounts.user.service';
@@ -41,6 +42,11 @@ export const accounts = new Elysia({ prefix: '/accounts' })
             body: 'UserAccountsSignUpBody',
             response: {
               201: 'UserAccountsSignUpResponse',
+            },
+            afterResponse: async ({ body }) => {
+              await sendMessageToChannel(
+                `New user registered: ${body.name} (${body.email})`,
+              );
             },
           },
         )
