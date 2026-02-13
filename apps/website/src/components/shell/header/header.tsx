@@ -18,7 +18,7 @@ export function Header({ session }: HeaderProps) {
   return (
     <Container size="lg" strategy="grid" className={cls.header}>
       <Group p="sm" justify="space-between">
-        <Anchor fz="h2" fw={600} href="/">
+        <Anchor underline="never" fz="h2" fw={600} href="/" component={Link}>
           CV Forest
         </Anchor>
 
