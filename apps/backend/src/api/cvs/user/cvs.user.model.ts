@@ -79,7 +79,7 @@ export const UserCvsModel = {
     expectedSalaryCurrency: t.Optional(t.Enum(Currency)),
     availabilityTypes: t.Array(t.Enum(AvailabilityType), { minItems: 1 }),
     workLocationTypes: t.Array(t.Enum(WorkLocationType), { minItems: 1 }),
-    bio: t.String({ minLength: 64 }),
+    bio: t.String({ minLength: 32 }),
     githubUrl: t.Optional(t.String({ format: 'uri' })),
     linkedinUrl: t.Optional(t.String({ format: 'uri' })),
     portfolioUrl: t.Optional(t.String({ format: 'uri' })),
@@ -105,7 +105,7 @@ export const UserCvsModel = {
     workLocationTypes: t.Optional(
       t.Array(t.Enum(WorkLocationType), { minItems: 1 }),
     ),
-    bio: t.Optional(t.String({ minLength: 64 })),
+    bio: t.Optional(t.String({ minLength: 32 })),
     githubUrl: t.Optional(t.Union([t.String({ format: 'uri' }), t.Null()])),
     linkedinUrl: t.Optional(t.Union([t.String({ format: 'uri' }), t.Null()])),
     portfolioUrl: t.Optional(t.Union([t.String({ format: 'uri' }), t.Null()])),
