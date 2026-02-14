@@ -14,8 +14,8 @@ export const UserAccountsModel = {
     // Required fields
     name: t.String(),
     email: t.String({ format: 'email' }),
-    phoneNumber: t.Optional(IraqiPhoneNumberSchema),
-    gender: t.Optional(t.Enum(Gender)),
+    phoneNumber: IraqiPhoneNumberSchema,
+    gender: t.Enum(Gender),
     birthDate: t.Optional(t.Date()),
     avatarId: t.Optional(t.String({ format: 'uuid' })),
     password: StrongPasswordSchema,
