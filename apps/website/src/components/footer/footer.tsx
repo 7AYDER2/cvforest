@@ -28,7 +28,7 @@ export async function Footer() {
     { icon: IconBrandGithub, href: 'https://github.com', label: 'GitHub' },
     {
       icon: IconBrandLinkedin,
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/showcase/cvforest',
       label: 'LinkedIn',
     },
   ];
