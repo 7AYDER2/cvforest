@@ -4,7 +4,6 @@ import {
   IconBriefcase,
   IconCalendar,
   IconClock,
-  IconEye,
   IconMapPin,
   IconPhone,
   IconWorld,
@@ -93,12 +92,6 @@ export function UserSidebar({ user }: UserSidebarProps) {
             icon={IconCalendar}
             label={t('profiles.memberSince')}
             value={formatDate(user.createdAt as string)}
-          />
-
-          <InfoRow
-            icon={IconEye}
-            label={t('userDetails.views')}
-            value={Number(user.views).toLocaleString()}
           />
         </Stack>
       </Paper>
