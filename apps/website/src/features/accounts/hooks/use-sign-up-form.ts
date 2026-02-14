@@ -23,7 +23,7 @@ export function useSignUpForm() {
       confirmPassword: z
         .string()
         .min(1, { error: t('signUp.confirmPasswordMismatch') }),
-      phoneNumber: phoneNumberZodValidator.optional().default(''),
+      phoneNumber: phoneNumberZodValidator,
       gender: z.enum(Gender).optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
@@ -49,7 +49,7 @@ export function useSignUpForm() {
       name: values.name,
       email: values.email,
       password: values.password,
-      phoneNumber: values.phoneNumber,
+      phoneNumber: values.phoneNumber.replaceAll(' ', ''),
       gender: values.gender ?? 'Male',
     }),
   });
