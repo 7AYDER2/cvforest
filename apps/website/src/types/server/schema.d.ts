@@ -1073,9 +1073,9 @@ export interface components {
       /** Format: email */
       email: string;
       /** @description يجب ادخال رقم هاتف عراقي صحيح مثال +9647701234567 */
-      phoneNumber?: string;
+      phoneNumber: string;
       /** @enum {string} */
-      gender?: 'Male' | 'Female';
+      gender: 'Male' | 'Female';
       birthDate?: Record<string, never> | string | number;
       /** Format: uuid */
       avatarId?: string;
@@ -1537,11 +1537,8 @@ export interface components {
       availabilityTypes?: ('FullTime' | 'PartTime' | 'Freelance')[];
       workLocationTypes?: ('OnSite' | 'Remote' | 'Hybrid')[];
       bio?: string;
-      /** Format: uri */
       githubUrl?: string | null;
-      /** Format: uri */
       linkedinUrl?: string | null;
-      /** Format: uri */
       portfolioUrl?: string | null;
       availableForHire?: boolean;
       skillIds?: string[];
