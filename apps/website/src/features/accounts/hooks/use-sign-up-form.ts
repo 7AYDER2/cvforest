@@ -23,10 +23,7 @@ export function useSignUpForm() {
       confirmPassword: z
         .string()
         .min(1, { error: t('signUp.confirmPasswordMismatch') }),
-      phoneNumber: z
-        .union([z.literal(''), phoneNumberZodValidator])
-        .optional()
-        .default(''),
+      phoneNumber: phoneNumberZodValidator.optional().default(''),
       gender: z.enum(Gender).optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
@@ -48,15 +45,12 @@ export function useSignUpForm() {
       phoneNumber: '',
       gender: 'Male',
     },
-    transformValues: (values): SignUpRequestBody => {
-      const phone = values.phoneNumber?.replaceAll(' ', '')?.trim();
-      return {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-        ...(phone ? { phoneNumber: phone } : {}),
-        ...(values.gender ? { gender: values.gender } : {}),
-      };
-    },
+    transformValues: (values): SignUpRequestBody => ({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      phoneNumber: values.phoneNumber,
+      gender: values.gender ?? 'Male',
+    }),
   });
 }
